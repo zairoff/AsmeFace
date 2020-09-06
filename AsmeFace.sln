@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1082
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsmeFace", "AsmeFace\AsmeFace.csproj", "{28D79370-2220-49A2-82D1-2318557894CD}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "QuantRegister", "QuantRegister\QuantRegister.vdproj", "{BEDEBDED-F0B4-4D84-88F0-8280DEF37372}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28D79370-2220-49A2-82D1-2318557894CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28D79370-2220-49A2-82D1-2318557894CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28D79370-2220-49A2-82D1-2318557894CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28D79370-2220-49A2-82D1-2318557894CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEDEBDED-F0B4-4D84-88F0-8280DEF37372}.Debug|Any CPU.ActiveCfg = Debug
+		{BEDEBDED-F0B4-4D84-88F0-8280DEF37372}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE098444-2E26-4599-816E-18C641250F31}
+	EndGlobalSection
+EndGlobal
