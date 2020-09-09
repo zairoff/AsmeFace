@@ -210,17 +210,25 @@ namespace AsmeFace.UserControls
 
         private void label6_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
+            new Forms.AddedDoors().Show();
+            //dataGridView1.Rows.Clear();
 
-            var devices = _dataBase.GetDevices("select *from devices");
+            //var devices = _dataBase.GetDevices("select *from devices");
 
-            if (devices.Count < 1)
-                return;
+            //if (devices.Count < 1)
+            //    return;
 
-            foreach (var device in devices)
-            {
-                dataGridView1.Rows.Insert(0, device.szVersion, device.szMac, device.dwIPAddress);
-            }
+            ////Column4.Items.Clear();
+            ////Column5.Items.Clear();
+            ////Column6.Items.Clear();
+
+            //foreach (var device in devices)
+            //{
+            //    dataGridView1.Rows.Insert(0, device.szVersion, device.szMac, device.dwIPAddress);
+            //    //Column6.Items.Add(device.dwDoor);
+            //    //Column5.Items.Add(device.dwStatus);
+            //    //Column4.Items.Add(device.dwType);
+            //}
         }
    
     }

@@ -27,13 +27,13 @@ namespace AsmeFace.UserControls
             if (string.IsNullOrEmpty(textBox1.Text))
                 return;
 
-            if (_dataBase.CheckDB("select exists(select 1 from smena where smena_nomi = '" + textBox1.Text + "')"))
+            if (_dataBase.CheckDB("select exists(select 1 from smena where smena_nomi = '" + textBox1.Text.Trim() + "')"))
             {
                 CustomMessageBox.Info("Smena sushestvuet");
                 return;
             }
             if (_dataBase.InsertData("insert into smena (smena_nomi, smena_boshlanishi, smena_tugashi, obed_boshlanishi," +
-                "obed_tugashi, kech_keldi, vox_ketdi) values ('" + textBox1.Text + "','" + dateTimePicker1.Text + "','" +
+                "obed_tugashi, kech_keldi, vox_ketdi) values ('" + textBox1.Text.Trim() + "','" + dateTimePicker1.Text + "','" +
                 dateTimePicker2.Text + "','" + dateTimePicker3.Text + "','" + dateTimePicker4.Text + "'," +
                 numericUpDown1.Value + "," + numericUpDown2.Value + ")"))
             {

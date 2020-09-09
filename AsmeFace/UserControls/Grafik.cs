@@ -73,7 +73,7 @@ namespace AsmeFace.UserControls
             if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox3.Text) || string.IsNullOrEmpty(comboBox1.Text))
                 return;
 
-            if (_dataBase.CheckDB("select exists(select 1 from grafik where grafik_nomi = '" + textBox1.Text + "')"))
+            if (_dataBase.CheckDB("select exists(select 1 from grafik where grafik_nomi = '" + textBox1.Text.Trim() + "')"))
             {
                 CustomMessageBox.Info("График сушествует");
                 return;
@@ -88,10 +88,10 @@ namespace AsmeFace.UserControls
 
             for(int i = 1; i <= sikl; i++)
             {
-                if (!_dataBase.InsertData("insert into grafik (grafik_nomi, kun) values('" + textBox1.Text + "'," + i + ")"))
+                if (!_dataBase.InsertData("insert into grafik (grafik_nomi, kun) values('" + textBox1.Text.Trim() + "'," + i + ")"))
                     break;
             }
-            UpdateGrid("select *from grafik where grafik_nomi = '" + textBox1.Text + "' order by kun desc");
+            UpdateGrid("select *from grafik where grafik_nomi = '" + textBox1.Text.Trim() + "' order by kun desc");
 
             FillListview();
         }

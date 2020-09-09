@@ -83,6 +83,12 @@
     <Compile Include="Door.cs" />
     <Compile Include="EmployeeGrafik.cs" />
     <Compile Include="EmployeeInDevice.cs" />
+    <Compile Include="Forms\AddedDoors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddedDoors.Designer.cs">
+      <DependentUpon>AddedDoors.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,6 +221,9 @@
     <Compile Include="UserControls\Staff.Designer.cs">
       <DependentUpon>Staff.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\AddedDoors.resx">
+      <DependentUpon>AddedDoors.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </EmbeddedResource>
