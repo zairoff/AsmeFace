@@ -17,10 +17,6 @@ namespace AsmeFace.Forms
         {
             InitializeComponent();
             basic_combo_auth.SelectedIndex = 0;
-            basic_combo_open_type.SelectedIndex = 0;
-            basic_combo_sensor_type.SelectedIndex = 0;
-            basic_combo_wiegend.SelectedIndex = 0;
-
             alarm_combo_mode.SelectedIndex = 0;
             alarm_combo_type.SelectedIndex = 0;
             this.ip = ip;
@@ -94,16 +90,16 @@ namespace AsmeFace.Forms
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            if(_asmeDevice.OpenDevice(ip) < 0)
+            if (_asmeDevice.OpenDevice(ip) < 0)
             {
-                MessageBox.Show("Failed to open the device: " + ip);
+                CustomMessageBox.Error("Failed to open the device: " + ip);
                 return;
             }
 
-            if (_asmeDevice.SetupFinger(0, 0) < 0)
-                MessageBox.Show("Failed to save settings");
+            if (_asmeDevice.SetUpDevice(Convert.ToInt32(basic_txt_open_time.Text), basic_combo_auth.SelectedIndex + 5) < 0)
+                CustomMessageBox.Error("Failed to save settings");
             else
-                MessageBox.Show("Success!");
+                CustomMessageBox.Info("Successfully configured!");
         }
 
         private void btn_close_Click(object sender, EventArgs e)

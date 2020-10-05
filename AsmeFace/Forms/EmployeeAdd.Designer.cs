@@ -52,7 +52,6 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btn_finger = new System.Windows.Forms.Button();
-            this.btn_card = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -174,7 +173,6 @@
             // 
             resources.ApplyResources(this.textBox7, "textBox7");
             this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
             // 
             // label7
             // 
@@ -201,19 +199,11 @@
             this.btn_finger.UseVisualStyleBackColor = true;
             this.btn_finger.Click += new System.EventHandler(this.btn_finger_Click);
             // 
-            // btn_card
-            // 
-            resources.ApplyResources(this.btn_card, "btn_card");
-            this.btn_card.Name = "btn_card";
-            this.btn_card.UseVisualStyleBackColor = true;
-            this.btn_card.Click += new System.EventHandler(this.btn_card_Click);
-            // 
             // EmployeeAdd
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(56)))), ((int)(((byte)(57)))));
-            this.Controls.Add(this.btn_card);
             this.Controls.Add(this.btn_finger);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.label8);
@@ -270,6 +260,5 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btn_finger;
-        private System.Windows.Forms.Button btn_card;
     }
 }

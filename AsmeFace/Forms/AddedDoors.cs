@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AsmeFace.Forms
@@ -15,7 +8,14 @@ namespace AsmeFace.Forms
         public AddedDoors()
         {
             InitializeComponent();
-            var _dataBase = new DataBase();
+            _dataBase = new DataBase();
+            GetDoors();
+        }
+
+        private DataBase _dataBase;
+
+        private void GetDoors()
+        {
             var devices = _dataBase.GetDevices("select *from devices");
 
             if (devices.Count < 1)
@@ -23,13 +23,26 @@ namespace AsmeFace.Forms
 
             foreach (var device in devices)
             {
-                dataGridView1.Rows.Insert(0, device.dwIPAddress, device.dwType, device.dwStatus, device.dwDoor);
+                dataGridView1.Rows.Insert(0, device.szMac, device.dwIPAddress, device.dwType, device.dwStatus, device.dwDoor);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.CurrentCell.ColumnIndex.Equals(5) && e.RowIndex != -1)
+            {
+                if (_dataBase.InsertData("delete from devices where device_mac = '"
+                    + dataGridView1.CurrentRow.Cells[0].Value.ToString().Replace(" ", "") + "'"))
+                {
+                    dataGridView1.Rows.Clear();
+                    GetDoors();
+                }
+            }
         }
     }
 }

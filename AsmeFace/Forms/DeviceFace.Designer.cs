@@ -31,33 +31,20 @@
             this.components = new System.ComponentModel.Container();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.basic_panel = new System.Windows.Forms.Panel();
-            this.basic_combo_display_name = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.basic_combo_open_type = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.basic_txt_close_time = new System.Windows.Forms.TextBox();
             this.basic_combo_auth = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.basic_combo_wiegend = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.basic_combo_sensor_type = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.basic_combo_btn_type = new System.Windows.Forms.ComboBox();
             this.basic_txt_open_time = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.basic_btn = new System.Windows.Forms.Button();
             this.alarm_panel = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.alarm_txt_delay = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.alarm_combo_type = new System.Windows.Forms.ComboBox();
-            this.alarm_txt_mode = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.alarm_btn = new System.Windows.Forms.Button();
             this.temp_panel = new System.Windows.Forms.Panel();
-            this.temp_action = new System.Windows.Forms.ComboBox();
+            this.temp_combo_action = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.temp_combo_compensation = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -92,6 +79,7 @@
             this.timer_alarm = new System.Windows.Forms.Timer(this.components);
             this.timer_temp = new System.Windows.Forms.Timer(this.components);
             this.timer_adv = new System.Windows.Forms.Timer(this.components);
+            this.alarm_combo_mode = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.basic_panel.SuspendLayout();
             this.alarm_panel.SuspendLayout();
@@ -116,83 +104,25 @@
             // 
             // basic_panel
             // 
-            this.basic_panel.Controls.Add(this.basic_combo_display_name);
-            this.basic_panel.Controls.Add(this.label8);
-            this.basic_panel.Controls.Add(this.basic_combo_open_type);
-            this.basic_panel.Controls.Add(this.label7);
-            this.basic_panel.Controls.Add(this.label6);
-            this.basic_panel.Controls.Add(this.basic_txt_close_time);
             this.basic_panel.Controls.Add(this.basic_combo_auth);
             this.basic_panel.Controls.Add(this.label5);
-            this.basic_panel.Controls.Add(this.basic_combo_wiegend);
-            this.basic_panel.Controls.Add(this.label4);
-            this.basic_panel.Controls.Add(this.basic_combo_sensor_type);
-            this.basic_panel.Controls.Add(this.label3);
             this.basic_panel.Controls.Add(this.label2);
-            this.basic_panel.Controls.Add(this.basic_combo_btn_type);
             this.basic_panel.Controls.Add(this.basic_txt_open_time);
-            this.basic_panel.Controls.Add(this.label1);
             this.basic_panel.Controls.Add(this.basic_btn);
             this.basic_panel.Location = new System.Drawing.Point(3, 3);
-            this.basic_panel.MaximumSize = new System.Drawing.Size(910, 186);
+            this.basic_panel.MaximumSize = new System.Drawing.Size(910, 82);
             this.basic_panel.MinimumSize = new System.Drawing.Size(910, 28);
             this.basic_panel.Name = "basic_panel";
-            this.basic_panel.Size = new System.Drawing.Size(910, 30);
+            this.basic_panel.Size = new System.Drawing.Size(910, 82);
             this.basic_panel.TabIndex = 2;
-            // 
-            // basic_combo_display_name
-            // 
-            this.basic_combo_display_name.FormattingEnabled = true;
-            this.basic_combo_display_name.Location = new System.Drawing.Point(691, 153);
-            this.basic_combo_display_name.Name = "basic_combo_display_name";
-            this.basic_combo_display_name.Size = new System.Drawing.Size(189, 21);
-            this.basic_combo_display_name.TabIndex = 16;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(530, 156);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(152, 13);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "Отображать имя персонала:";
-            // 
-            // basic_combo_open_type
-            // 
-            this.basic_combo_open_type.FormattingEnabled = true;
-            this.basic_combo_open_type.Location = new System.Drawing.Point(691, 115);
-            this.basic_combo_open_type.Name = "basic_combo_open_type";
-            this.basic_combo_open_type.Size = new System.Drawing.Size(189, 21);
-            this.basic_combo_open_type.TabIndex = 14;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(553, 118);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(129, 13);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Режим открытия двери:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(587, 82);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(95, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Время закрытия:";
-            // 
-            // basic_txt_close_time
-            // 
-            this.basic_txt_close_time.Location = new System.Drawing.Point(691, 79);
-            this.basic_txt_close_time.Name = "basic_txt_close_time";
-            this.basic_txt_close_time.Size = new System.Drawing.Size(189, 20);
-            this.basic_txt_close_time.TabIndex = 11;
             // 
             // basic_combo_auth
             // 
             this.basic_combo_auth.FormattingEnabled = true;
+            this.basic_combo_auth.Items.AddRange(new object[] {
+            "Face or Card",
+            "Face and Card",
+            "Face"});
             this.basic_combo_auth.Location = new System.Drawing.Point(691, 43);
             this.basic_combo_auth.Name = "basic_combo_auth";
             this.basic_combo_auth.Size = new System.Drawing.Size(189, 21);
@@ -207,72 +137,22 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Режим аутентификации:";
             // 
-            // basic_combo_wiegend
-            // 
-            this.basic_combo_wiegend.FormattingEnabled = true;
-            this.basic_combo_wiegend.Location = new System.Drawing.Point(150, 153);
-            this.basic_combo_wiegend.Name = "basic_combo_wiegend";
-            this.basic_combo_wiegend.Size = new System.Drawing.Size(189, 21);
-            this.basic_combo_wiegend.TabIndex = 8;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(88, 156);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Wiegend:";
-            // 
-            // basic_combo_sensor_type
-            // 
-            this.basic_combo_sensor_type.FormattingEnabled = true;
-            this.basic_combo_sensor_type.Location = new System.Drawing.Point(150, 115);
-            this.basic_combo_sensor_type.Name = "basic_combo_sensor_type";
-            this.basic_combo_sensor_type.Size = new System.Drawing.Size(189, 21);
-            this.basic_combo_sensor_type.TabIndex = 6;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(74, 118);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Сенсор тип:";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(47, 79);
+            this.label2.Location = new System.Drawing.Point(47, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Время открытия:";
             // 
-            // basic_combo_btn_type
-            // 
-            this.basic_combo_btn_type.FormattingEnabled = true;
-            this.basic_combo_btn_type.Location = new System.Drawing.Point(150, 43);
-            this.basic_combo_btn_type.Name = "basic_combo_btn_type";
-            this.basic_combo_btn_type.Size = new System.Drawing.Size(189, 21);
-            this.basic_combo_btn_type.TabIndex = 3;
-            // 
             // basic_txt_open_time
             // 
-            this.basic_txt_open_time.Location = new System.Drawing.Point(150, 79);
+            this.basic_txt_open_time.Location = new System.Drawing.Point(150, 44);
             this.basic_txt_open_time.Name = "basic_txt_open_time";
             this.basic_txt_open_time.Size = new System.Drawing.Size(189, 20);
             this.basic_txt_open_time.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(54, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Кнопка выхода:";
+            this.basic_txt_open_time.Text = "3";
             // 
             // basic_btn
             // 
@@ -293,18 +173,18 @@
             // 
             // alarm_panel
             // 
+            this.alarm_panel.Controls.Add(this.alarm_combo_mode);
             this.alarm_panel.Controls.Add(this.label11);
             this.alarm_panel.Controls.Add(this.alarm_txt_delay);
             this.alarm_panel.Controls.Add(this.label15);
             this.alarm_panel.Controls.Add(this.alarm_combo_type);
-            this.alarm_panel.Controls.Add(this.alarm_txt_mode);
             this.alarm_panel.Controls.Add(this.label16);
             this.alarm_panel.Controls.Add(this.alarm_btn);
-            this.alarm_panel.Location = new System.Drawing.Point(3, 39);
+            this.alarm_panel.Location = new System.Drawing.Point(3, 91);
             this.alarm_panel.MaximumSize = new System.Drawing.Size(910, 113);
             this.alarm_panel.MinimumSize = new System.Drawing.Size(910, 25);
             this.alarm_panel.Name = "alarm_panel";
-            this.alarm_panel.Size = new System.Drawing.Size(910, 37);
+            this.alarm_panel.Size = new System.Drawing.Size(910, 113);
             this.alarm_panel.TabIndex = 3;
             // 
             // label11
@@ -322,6 +202,7 @@
             this.alarm_txt_delay.Name = "alarm_txt_delay";
             this.alarm_txt_delay.Size = new System.Drawing.Size(189, 20);
             this.alarm_txt_delay.TabIndex = 11;
+            this.alarm_txt_delay.Text = "3";
             // 
             // label15
             // 
@@ -335,17 +216,13 @@
             // alarm_combo_type
             // 
             this.alarm_combo_type.FormattingEnabled = true;
+            this.alarm_combo_type.Items.AddRange(new object[] {
+            "Normal-Open",
+            "Normal-Close"});
             this.alarm_combo_type.Location = new System.Drawing.Point(150, 41);
             this.alarm_combo_type.Name = "alarm_combo_type";
             this.alarm_combo_type.Size = new System.Drawing.Size(189, 21);
             this.alarm_combo_type.TabIndex = 3;
-            // 
-            // alarm_txt_mode
-            // 
-            this.alarm_txt_mode.Location = new System.Drawing.Point(150, 77);
-            this.alarm_txt_mode.Name = "alarm_txt_mode";
-            this.alarm_txt_mode.Size = new System.Drawing.Size(189, 20);
-            this.alarm_txt_mode.TabIndex = 2;
             // 
             // label16
             // 
@@ -375,7 +252,7 @@
             // 
             // temp_panel
             // 
-            this.temp_panel.Controls.Add(this.temp_action);
+            this.temp_panel.Controls.Add(this.temp_combo_action);
             this.temp_panel.Controls.Add(this.label14);
             this.temp_panel.Controls.Add(this.temp_combo_compensation);
             this.temp_panel.Controls.Add(this.label13);
@@ -386,20 +263,23 @@
             this.temp_panel.Controls.Add(this.temp_low);
             this.temp_panel.Controls.Add(this.label12);
             this.temp_panel.Controls.Add(this.temperature_btn);
-            this.temp_panel.Location = new System.Drawing.Point(3, 82);
+            this.temp_panel.Location = new System.Drawing.Point(3, 210);
             this.temp_panel.MaximumSize = new System.Drawing.Size(910, 152);
             this.temp_panel.MinimumSize = new System.Drawing.Size(910, 28);
             this.temp_panel.Name = "temp_panel";
-            this.temp_panel.Size = new System.Drawing.Size(910, 30);
+            this.temp_panel.Size = new System.Drawing.Size(910, 31);
             this.temp_panel.TabIndex = 4;
             // 
-            // temp_action
+            // temp_combo_action
             // 
-            this.temp_action.FormattingEnabled = true;
-            this.temp_action.Location = new System.Drawing.Point(691, 82);
-            this.temp_action.Name = "temp_action";
-            this.temp_action.Size = new System.Drawing.Size(189, 21);
-            this.temp_action.TabIndex = 16;
+            this.temp_combo_action.FormattingEnabled = true;
+            this.temp_combo_action.Items.AddRange(new object[] {
+            "Open Door",
+            "Close Door"});
+            this.temp_combo_action.Location = new System.Drawing.Point(691, 82);
+            this.temp_combo_action.Name = "temp_combo_action";
+            this.temp_combo_action.Size = new System.Drawing.Size(189, 21);
+            this.temp_combo_action.TabIndex = 16;
             // 
             // label14
             // 
@@ -413,6 +293,22 @@
             // temp_combo_compensation
             // 
             this.temp_combo_compensation.FormattingEnabled = true;
+            this.temp_combo_compensation.Items.AddRange(new object[] {
+            "-1.4",
+            "-1.2",
+            "-1",
+            "-0.8",
+            "-0.6",
+            "-0.4",
+            "-0.2",
+            "0",
+            "0.2",
+            "0.4",
+            "0.6",
+            "0.8",
+            "1",
+            "1.2",
+            "1.4"});
             this.temp_combo_compensation.Location = new System.Drawing.Point(150, 118);
             this.temp_combo_compensation.Name = "temp_combo_compensation";
             this.temp_combo_compensation.Size = new System.Drawing.Size(189, 21);
@@ -442,6 +338,7 @@
             this.temp_high.Name = "temp_high";
             this.temp_high.Size = new System.Drawing.Size(189, 20);
             this.temp_high.TabIndex = 11;
+            this.temp_high.Text = "37";
             // 
             // label10
             // 
@@ -455,6 +352,9 @@
             // temp_combo_trigger
             // 
             this.temp_combo_trigger.FormattingEnabled = true;
+            this.temp_combo_trigger.Items.AddRange(new object[] {
+            "Trigger Alarm",
+            "No Trigger Alarm"});
             this.temp_combo_trigger.Location = new System.Drawing.Point(150, 82);
             this.temp_combo_trigger.Name = "temp_combo_trigger";
             this.temp_combo_trigger.Size = new System.Drawing.Size(189, 21);
@@ -466,6 +366,7 @@
             this.temp_low.Name = "temp_low";
             this.temp_low.Size = new System.Drawing.Size(189, 20);
             this.temp_low.TabIndex = 2;
+            this.temp_low.Text = "25";
             // 
             // label12
             // 
@@ -512,11 +413,11 @@
             this.advanced_panel.Controls.Add(this.adv_txt_bright);
             this.advanced_panel.Controls.Add(this.label21);
             this.advanced_panel.Controls.Add(this.adv_btn);
-            this.advanced_panel.Location = new System.Drawing.Point(3, 118);
+            this.advanced_panel.Location = new System.Drawing.Point(3, 247);
             this.advanced_panel.MaximumSize = new System.Drawing.Size(910, 192);
             this.advanced_panel.MinimumSize = new System.Drawing.Size(910, 28);
             this.advanced_panel.Name = "advanced_panel";
-            this.advanced_panel.Size = new System.Drawing.Size(910, 31);
+            this.advanced_panel.Size = new System.Drawing.Size(910, 29);
             this.advanced_panel.TabIndex = 5;
             // 
             // label24
@@ -661,7 +562,7 @@
             this.adv_btn.Location = new System.Drawing.Point(0, 0);
             this.adv_btn.Name = "adv_btn";
             this.adv_btn.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.adv_btn.Size = new System.Drawing.Size(910, 30);
+            this.adv_btn.Size = new System.Drawing.Size(910, 29);
             this.adv_btn.TabIndex = 0;
             this.adv_btn.Text = "Расширенные настройки";
             this.adv_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -674,13 +575,14 @@
             this.btn_save.FlatAppearance.BorderSize = 0;
             this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_save.ForeColor = System.Drawing.Color.White;
-            this.btn_save.Location = new System.Drawing.Point(6, 155);
+            this.btn_save.Location = new System.Drawing.Point(6, 282);
             this.btn_save.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(123, 41);
             this.btn_save.TabIndex = 6;
             this.btn_save.Text = "Сохранить";
             this.btn_save.UseVisualStyleBackColor = false;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
             // btn_close
             // 
@@ -688,7 +590,7 @@
             this.btn_close.FlatAppearance.BorderSize = 0;
             this.btn_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_close.ForeColor = System.Drawing.Color.White;
-            this.btn_close.Location = new System.Drawing.Point(138, 155);
+            this.btn_close.Location = new System.Drawing.Point(138, 282);
             this.btn_close.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(123, 41);
@@ -716,6 +618,16 @@
             // 
             this.timer_adv.Interval = 15;
             this.timer_adv.Tick += new System.EventHandler(this.timer_adv_Tick);
+            // 
+            // alarm_combo_mode
+            // 
+            this.alarm_combo_mode.FormattingEnabled = true;
+            this.alarm_combo_mode.Items.AddRange(new object[] {
+            "Syncronize with Alarm Input"});
+            this.alarm_combo_mode.Location = new System.Drawing.Point(150, 78);
+            this.alarm_combo_mode.Name = "alarm_combo_mode";
+            this.alarm_combo_mode.Size = new System.Drawing.Size(189, 21);
+            this.alarm_combo_mode.TabIndex = 13;
             // 
             // DeviceFace
             // 
@@ -745,33 +657,20 @@
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel basic_panel;
-        private System.Windows.Forms.ComboBox basic_combo_display_name;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox basic_combo_open_type;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox basic_txt_close_time;
         private System.Windows.Forms.ComboBox basic_combo_auth;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox basic_combo_wiegend;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox basic_combo_sensor_type;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox basic_combo_btn_type;
         private System.Windows.Forms.TextBox basic_txt_open_time;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button basic_btn;
         private System.Windows.Forms.Panel alarm_panel;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox alarm_txt_delay;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox alarm_combo_type;
-        private System.Windows.Forms.TextBox alarm_txt_mode;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button alarm_btn;
         private System.Windows.Forms.Panel temp_panel;
-        private System.Windows.Forms.ComboBox temp_action;
+        private System.Windows.Forms.ComboBox temp_combo_action;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox temp_combo_compensation;
         private System.Windows.Forms.Label label13;
@@ -806,5 +705,6 @@
         private System.Windows.Forms.Timer timer_temp;
         private System.Windows.Forms.Timer timer_adv;
         private System.Windows.Forms.Button btn_close;
+        private System.Windows.Forms.ComboBox alarm_combo_mode;
     }
 }

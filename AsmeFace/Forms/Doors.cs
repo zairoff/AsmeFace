@@ -55,16 +55,22 @@ namespace AsmeFace.Forms
 
             if (dialogResult == DialogResult.Yes)
             {
+                if(_dataBase.CheckDB("select exists(select 1 from devices where device_door = '" + name + "')"))
+                {
+                    CustomMessageBox.Error("Удалить дверь невозможно \nДверь используется");
+                    return;
+                }
+
                 if (_dataBase.InsertData("delete from doors where name = '" +
                 checkedListBox1.Items[checkedListBox1.SelectedIndex].ToString() + "'"))
                     GetDoors();
-            }            
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             Close();
-        }          
+        }
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -80,13 +86,27 @@ namespace AsmeFace.Forms
 
             if (dialogResult == DialogResult.Yes)
             {
-                for(int i = 0; i < checkedListBox1.Items.Count; i++)
+                for (int i = 0; i < checkedListBox1.Items.Count; i++)
                 {
                     _dataBase.InsertData("update doors set main = " +
                      checkedListBox1.GetItemChecked(i) + " where name = '" + checkedListBox1.Items[i].ToString() + "'");
                 }
                 GetDoors();
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox1.Text) || checkedListBox1.SelectedItem == null)
+                return;
+
+            var door = checkedListBox1.Items[checkedListBox1.SelectedIndex].ToString();
+
+            if (_dataBase.InsertData(
+                "update doors set name = '" + textBox1.Text + "' where name = '" + door + "';" +
+                "update reports set door_name = '" + textBox1.Text + "' where door_name = '" + door + "';" +
+                "update devices set device_door = '" + textBox1.Text + "' where device_door = '" + door + "';"))
+                GetDoors();
         }
     }
 }

@@ -416,5 +416,54 @@ namespace AsmeFace
             }
             return doors;
         }
+
+        public System.Collections.Generic.List<Access> GetAccessSmena(string query)
+        {
+            var accesses = new System.Collections.Generic.List<Access>();
+            using (var connection = new Npgsql.NpgsqlConnection(Helper.CnnVal("DBConnection")))
+            {
+                using (var cmd = new Npgsql.NpgsqlCommand(query, connection))
+                {
+                    connection.Open();
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var access = new Access
+                        {
+                            Name = reader["smena_nomi"].ToString(),
+                            Start = reader["smena_boshlanishi"].ToString(),
+                            Stop = reader["smena_tugashi"].ToString()
+                        };
+                        accesses.Add(access);
+                    }
+                }
+            }
+            return accesses;
+        }
+
+        public System.Collections.Generic.List<AccessGr> GetAccessGr(string query)
+        {
+            var accesses = new System.Collections.Generic.List<AccessGr>();
+            using (var connection = new Npgsql.NpgsqlConnection(Helper.CnnVal("DBConnection")))
+            {
+                using (var cmd = new Npgsql.NpgsqlCommand(query, connection))
+                {
+                    connection.Open();
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var access = new AccessGr
+                        {
+                            Name = reader["grafik_nomi"].ToString(),
+                            Start = reader["smena_boshlanishi"].ToString(),
+                            Stop = reader["smena_tugashi"].ToString(),
+                            Day = Convert.ToInt32(reader["kun"])
+                        };
+                        accesses.Add(access);
+                    }
+                }
+            }
+            return accesses;
+        }
     }    
 }

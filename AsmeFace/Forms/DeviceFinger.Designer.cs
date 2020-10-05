@@ -31,16 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.basic_panel = new System.Windows.Forms.Panel();
-            this.basic_combo_open_type = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.basic_txt_close_time = new System.Windows.Forms.TextBox();
             this.basic_combo_auth = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.basic_combo_wiegend = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.basic_combo_sensor_type = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.basic_txt_open_time = new System.Windows.Forms.TextBox();
             this.basic_btn = new System.Windows.Forms.Button();
@@ -76,69 +68,28 @@
             // 
             // basic_panel
             // 
-            this.basic_panel.Controls.Add(this.basic_combo_open_type);
-            this.basic_panel.Controls.Add(this.label7);
-            this.basic_panel.Controls.Add(this.label6);
-            this.basic_panel.Controls.Add(this.basic_txt_close_time);
             this.basic_panel.Controls.Add(this.basic_combo_auth);
             this.basic_panel.Controls.Add(this.label5);
-            this.basic_panel.Controls.Add(this.basic_combo_wiegend);
-            this.basic_panel.Controls.Add(this.label4);
-            this.basic_panel.Controls.Add(this.basic_combo_sensor_type);
-            this.basic_panel.Controls.Add(this.label3);
             this.basic_panel.Controls.Add(this.label2);
             this.basic_panel.Controls.Add(this.basic_txt_open_time);
             this.basic_panel.Controls.Add(this.basic_btn);
             this.basic_panel.Location = new System.Drawing.Point(3, 3);
-            this.basic_panel.MaximumSize = new System.Drawing.Size(910, 154);
+            this.basic_panel.MaximumSize = new System.Drawing.Size(910, 78);
             this.basic_panel.MinimumSize = new System.Drawing.Size(910, 28);
             this.basic_panel.Name = "basic_panel";
-            this.basic_panel.Size = new System.Drawing.Size(910, 28);
+            this.basic_panel.Size = new System.Drawing.Size(910, 35);
             this.basic_panel.TabIndex = 2;
-            // 
-            // basic_combo_open_type
-            // 
-            this.basic_combo_open_type.FormattingEnabled = true;
-            this.basic_combo_open_type.Items.AddRange(new object[] {
-            "Normal Mode",
-            "Latch Mode",
-            "Keep Opening After Valid Access",
-            "Normal Open Automatically"});
-            this.basic_combo_open_type.Location = new System.Drawing.Point(691, 115);
-            this.basic_combo_open_type.Name = "basic_combo_open_type";
-            this.basic_combo_open_type.Size = new System.Drawing.Size(189, 21);
-            this.basic_combo_open_type.TabIndex = 14;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(553, 118);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(129, 13);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Режим открытия двери:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(587, 82);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(95, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Время закрытия:";
-            // 
-            // basic_txt_close_time
-            // 
-            this.basic_txt_close_time.Location = new System.Drawing.Point(691, 79);
-            this.basic_txt_close_time.Name = "basic_txt_close_time";
-            this.basic_txt_close_time.Size = new System.Drawing.Size(189, 20);
-            this.basic_txt_close_time.TabIndex = 11;
             // 
             // basic_combo_auth
             // 
             this.basic_combo_auth.FormattingEnabled = true;
             this.basic_combo_auth.Items.AddRange(new object[] {
-            "Open by Fingerprint or card"});
+            "Finger",
+            "Finger or card",
+            "Finger and card",
+            "Finger or card or password",
+            "Finger or password",
+            "Finger and password"});
             this.basic_combo_auth.Location = new System.Drawing.Point(691, 43);
             this.basic_combo_auth.Name = "basic_combo_auth";
             this.basic_combo_auth.Size = new System.Drawing.Size(189, 21);
@@ -152,46 +103,6 @@
             this.label5.Size = new System.Drawing.Size(131, 13);
             this.label5.TabIndex = 9;
             this.label5.Text = "Режим аутентификации:";
-            // 
-            // basic_combo_wiegend
-            // 
-            this.basic_combo_wiegend.FormattingEnabled = true;
-            this.basic_combo_wiegend.Items.AddRange(new object[] {
-            "Wiegand 26",
-            "Wiegand 34"});
-            this.basic_combo_wiegend.Location = new System.Drawing.Point(112, 120);
-            this.basic_combo_wiegend.Name = "basic_combo_wiegend";
-            this.basic_combo_wiegend.Size = new System.Drawing.Size(189, 21);
-            this.basic_combo_wiegend.TabIndex = 8;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(50, 123);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Wiegand:";
-            // 
-            // basic_combo_sensor_type
-            // 
-            this.basic_combo_sensor_type.FormattingEnabled = true;
-            this.basic_combo_sensor_type.Items.AddRange(new object[] {
-            "Normal-open",
-            "Normal-close"});
-            this.basic_combo_sensor_type.Location = new System.Drawing.Point(112, 82);
-            this.basic_combo_sensor_type.Name = "basic_combo_sensor_type";
-            this.basic_combo_sensor_type.Size = new System.Drawing.Size(189, 21);
-            this.basic_combo_sensor_type.TabIndex = 6;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(36, 85);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Сенсор тип:";
             // 
             // label2
             // 
@@ -208,6 +119,7 @@
             this.basic_txt_open_time.Name = "basic_txt_open_time";
             this.basic_txt_open_time.Size = new System.Drawing.Size(189, 20);
             this.basic_txt_open_time.TabIndex = 2;
+            this.basic_txt_open_time.Text = "3";
             // 
             // basic_btn
             // 
@@ -235,11 +147,11 @@
             this.alarm_panel.Controls.Add(this.alarm_combo_type);
             this.alarm_panel.Controls.Add(this.label16);
             this.alarm_panel.Controls.Add(this.alarm_btn);
-            this.alarm_panel.Location = new System.Drawing.Point(3, 37);
+            this.alarm_panel.Location = new System.Drawing.Point(3, 44);
             this.alarm_panel.MaximumSize = new System.Drawing.Size(910, 113);
             this.alarm_panel.MinimumSize = new System.Drawing.Size(910, 25);
             this.alarm_panel.Name = "alarm_panel";
-            this.alarm_panel.Size = new System.Drawing.Size(910, 25);
+            this.alarm_panel.Size = new System.Drawing.Size(910, 29);
             this.alarm_panel.TabIndex = 3;
             // 
             // alarm_combo_mode
@@ -268,6 +180,7 @@
             this.alarm_txt_delay.Name = "alarm_txt_delay";
             this.alarm_txt_delay.Size = new System.Drawing.Size(189, 20);
             this.alarm_txt_delay.TabIndex = 11;
+            this.alarm_txt_delay.Text = "3";
             // 
             // label15
             // 
@@ -321,7 +234,7 @@
             this.btn_save.FlatAppearance.BorderSize = 0;
             this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_save.ForeColor = System.Drawing.Color.White;
-            this.btn_save.Location = new System.Drawing.Point(6, 68);
+            this.btn_save.Location = new System.Drawing.Point(6, 79);
             this.btn_save.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(123, 41);
@@ -336,7 +249,7 @@
             this.btn_close.FlatAppearance.BorderSize = 0;
             this.btn_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_close.ForeColor = System.Drawing.Color.White;
-            this.btn_close.Location = new System.Drawing.Point(138, 68);
+            this.btn_close.Location = new System.Drawing.Point(138, 79);
             this.btn_close.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(123, 41);
@@ -380,14 +293,6 @@
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel basic_panel;
-        private System.Windows.Forms.ComboBox basic_combo_open_type;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox basic_txt_close_time;
-        private System.Windows.Forms.ComboBox basic_combo_wiegend;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox basic_combo_sensor_type;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox basic_txt_open_time;
         private System.Windows.Forms.Button basic_btn;

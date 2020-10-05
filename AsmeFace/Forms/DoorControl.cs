@@ -108,7 +108,7 @@ namespace AsmeFace.Forms
                                 checkedListBox2.Items[i].ToString() + "'");
                             foreach (var device in devices)
                             {
-                                SyncAction(_employees[j], device);    
+                                SyncAction(_employees[j], device);
                             }
                         }
                     }
@@ -126,7 +126,7 @@ namespace AsmeFace.Forms
         private void SyncAction(Employee employee, DeviceInfo device)
         {
             int nRes = _asmeDevice.OpenDevice(device.dwIPAddress);
-            if (nRes < 0)
+            if (nRes < 0) 
             {
                 BeginInvoke(new MethodInvoker(delegate ()
                 {
@@ -161,6 +161,7 @@ namespace AsmeFace.Forms
 
             if (employee.Finger != null && string.Equals(device.dwType, "Finger"))
             {
+                CustomLog.WriteToFile("FINGER");
                 //IntPtr unmanagedPointer = Marshal.AllocHGlobal(employee.Finger.Length);
                 //Marshal.Copy(employee.Finger, 0, unmanagedPointer, employee.Finger.Length);
                 //var unmanagedPointer = new byte[570];
@@ -186,6 +187,8 @@ namespace AsmeFace.Forms
 
             if (string.Equals(device.dwType, "Face"))
             {
+                CustomLog.WriteToFile("FACE");
+
                 nRes = _asmeDevice.WriteFace(employee.Photo, employee.ID);
 
                 if (nRes < 0)
@@ -211,7 +214,7 @@ namespace AsmeFace.Forms
                     0,
                     employee.Familiya + " " + employee.Ism,
                     device.dwIPAddress,
-                    "Success: " + nRes
+                    "Success"
                     );
             }));
 

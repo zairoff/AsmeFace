@@ -81,6 +81,18 @@ namespace AsmeFace.UserControls
             label6.ForeColor = Color.White;
         }
 
+        private void label7_MouseEnter(object sender, EventArgs e)
+        {
+            label7.Font = new Font("Lucida fax", 13f, FontStyle.Regular);
+            label7.ForeColor = Color.White;
+        }
+
+        private void label7_MouseLeave(object sender, EventArgs e)
+        {
+            label7.Font = new Font("Microsoft Sans Serif", 10f, FontStyle.Regular);
+            label7.ForeColor = Color.White;
+        }
+
         private void label3_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
@@ -187,7 +199,7 @@ namespace AsmeFace.UserControls
                     new Forms.DeviceFinger(dataGridView1.CurrentRow.Cells[2].Value.ToString()).Show();
 
                 if (string.Equals("Face", dataGridView1.CurrentRow.Cells[3].Value.ToString()))
-                    new Forms.DeviceFace(/*dataGridView1.CurrentRow.Cells[2].Value.ToString()*/).Show();
+                    new Forms.DeviceFace(dataGridView1.CurrentRow.Cells[2].Value.ToString()).Show();
             }
 
             if (dataGridView1.CurrentCell.ColumnIndex.Equals(9) && e.RowIndex != -1)
@@ -230,6 +242,10 @@ namespace AsmeFace.UserControls
             //    //Column4.Items.Add(device.dwType);
             //}
         }
-   
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            new Forms.AccessForm().Show();
+        }
     }
 }

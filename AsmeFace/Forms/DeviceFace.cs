@@ -13,15 +13,25 @@ namespace AsmeFace.Forms
 {
     public partial class DeviceFace : Form
     {
-        public DeviceFace()
+        public DeviceFace(string ip)
         {
             InitializeComponent();
+            basic_combo_auth.SelectedIndex = 0;
+            alarm_combo_mode.SelectedIndex = 0;
+            alarm_combo_type.SelectedIndex = 0;
+            temp_combo_compensation.SelectedIndex = 0;
+            temp_combo_trigger.SelectedIndex = 0;
+            temp_combo_action.SelectedIndex = 0;
+            _asmeDevice = new AsmeDevice();
+            _ip = ip;
         }
 
         private static bool _isCollapsedBasic;
         private static bool _isCollapsedAlarm;
         private static bool _isCollapsedTemp;
-        private static bool _isCollapsedAdvanced;        
+        private static bool _isCollapsedAdvanced;
+        private readonly AsmeDevice _asmeDevice;
+        private readonly string _ip;
 
         private void timer_basic_Tick(object sender, EventArgs e)
         {
@@ -142,6 +152,24 @@ namespace AsmeFace.Forms
         private void btn_close_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            if(_asmeDevice.OpenDevice(_ip) < 0)
+            {
+                CustomMessageBox.Error("Failed to open the device");
+                return;
+            }
+
+            var auth_mode = basic_combo_auth.SelectedIndex + 11;
+            if (_asmeDevice.SetUpDevice(Convert.ToInt32(basic_txt_open_time.Text), auth_mode) < 0)
+            {
+                CustomMessageBox.Error("Failed to configure the device");
+                return;
+            }
+
+            CustomMessageBox.Info("Successfully configured!");
         }
     }
 }

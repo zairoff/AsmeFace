@@ -73,13 +73,9 @@ namespace AsmeFace.Forms
 
         private bool CheckFields()
         {
-            if( !string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) &&
+            return (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) &&
                 !string.IsNullOrEmpty(textBox3.Text) && !string.IsNullOrEmpty(textBox5.Text) &&
-                !string.IsNullOrEmpty(textBox6.Text) && pictureBox1.Image != null)
-            {
-                return true;
-            }
-            return false;
+                !string.IsNullOrEmpty(textBox6.Text) && pictureBox1.Image != null);
         }
 
         private void ClearFields()
@@ -198,35 +194,35 @@ namespace AsmeFace.Forms
             }
         }
 
-        private void btn_card_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                textBox7.Text = "";
-                int nRes = _asmeDevice.OpenDevice(System.Configuration.ConfigurationManager.AppSettings["finger"].ToString());
-                if (nRes < 0)
-                {
-                    CustomMessageBox.Error("Failed to open the device " + nRes);
-                    return;
-                }
+        //private void btn_card_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        textBox7.Text = "";
+        //        int nRes = _asmeDevice.OpenDevice(System.Configuration.ConfigurationManager.AppSettings["finger"].ToString());
+        //        if (nRes < 0)
+        //        {
+        //            CustomMessageBox.Error("Failed to open the device " + nRes);
+        //            return;
+        //        }
 
-                ulong card = 0;
-                nRes = _asmeDevice.ReadCard(card);                              
-                if (nRes < 0)
-                {
-                    CustomMessageBox.Error("Failed to read fingerprint " + nRes);
-                    _asmeDevice.CloseDevice();
-                    return;
-                }
+        //        ulong card = 0;
+        //        nRes = _asmeDevice.ReadCard(card);                              
+        //        if (nRes < 0)
+        //        {
+        //            CustomMessageBox.Error("Failed to read fingerprint " + nRes);
+        //            _asmeDevice.CloseDevice();
+        //            return;
+        //        }
 
-                _asmeDevice.CloseDevice();
+        //        _asmeDevice.CloseDevice();
 
-                textBox7.Text = card.ToString();
-            }
-            catch (Exception msg)
-            {
-                MessageBox.Show(msg.ToString());
-            }
-        }
+        //        textBox7.Text = card.ToString();
+        //    }
+        //    catch (Exception msg)
+        //    {
+        //        MessageBox.Show(msg.ToString());
+        //    }
+        //}
     }
 }

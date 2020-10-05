@@ -107,7 +107,8 @@ namespace AsmeFace.UserControls
                     int nRes = _asmeDevice.OpenDevice(device.dwIPAddress);
                     if(nRes < 0)
                     {
-                        CustomMessageBox.Error("Failed to open device " 
+                        CustomMessageBox.Error(
+                            "Failed to open device " 
                             + device.dwIPAddress +
                             " : " + _asmeDevice.GetResponse(nRes));
                         return;
@@ -151,12 +152,15 @@ namespace AsmeFace.UserControls
                     }
                 }
 
-                if (_dataBase.InsertData("insert into retireds (employeeid, photo, ism, familiya, otchestvo, department, " +
+                var query = "insert into retireds (employeeid, photo, ism, familiya, otchestvo, department, " +
                     "otdel, lavozim) select employeeid, photo, ism, familiya, otchestvo, department, otdel, lavozim from " +
-                    "employee where employeeid = " + Convert.ToInt32(dataGridView1[1, dataGridView1.CurrentRow.Index].Value)))
+                    "employee where employeeid = " + Convert.ToInt32(dataGridView1[1, dataGridView1.CurrentRow.Index].Value);
+
+                if (_dataBase.InsertData(query))
                 {
-                    if (_dataBase.InsertData("delete from employee where employeeid = " + Convert.ToInt32(dataGridView1[1,
-                    dataGridView1.CurrentRow.Index].Value)))
+                    query = "delete from employee where employeeid = " + Convert.ToInt32(dataGridView1[1, dataGridView1.CurrentRow.Index].Value);
+
+                    if (_dataBase.InsertData(query))
                         RetriveData();
                 }
             }            
