@@ -16,6 +16,6 @@
 
         public string Vox_ketdi { get; set; }
 
-        public string Kun { get; set; }
+        public string Kun { get; set; } 
     }
 }

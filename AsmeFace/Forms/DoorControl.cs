@@ -141,7 +141,7 @@ namespace AsmeFace.Forms
                 return;
             }          
             
-            nRes = _asmeDevice.SetCard(employee.ID, employee.Card);                                     
+            nRes = _asmeDevice.SetCard(employee.ID, employee.Card, 0);                                     
 
             if (nRes < 0)
             {

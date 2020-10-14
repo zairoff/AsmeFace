@@ -77,7 +77,7 @@
             this.basic_panel.MaximumSize = new System.Drawing.Size(910, 78);
             this.basic_panel.MinimumSize = new System.Drawing.Size(910, 28);
             this.basic_panel.Name = "basic_panel";
-            this.basic_panel.Size = new System.Drawing.Size(910, 35);
+            this.basic_panel.Size = new System.Drawing.Size(910, 33);
             this.basic_panel.TabIndex = 2;
             // 
             // basic_combo_auth
@@ -147,7 +147,7 @@
             this.alarm_panel.Controls.Add(this.alarm_combo_type);
             this.alarm_panel.Controls.Add(this.label16);
             this.alarm_panel.Controls.Add(this.alarm_btn);
-            this.alarm_panel.Location = new System.Drawing.Point(3, 44);
+            this.alarm_panel.Location = new System.Drawing.Point(3, 42);
             this.alarm_panel.MaximumSize = new System.Drawing.Size(910, 113);
             this.alarm_panel.MinimumSize = new System.Drawing.Size(910, 25);
             this.alarm_panel.Name = "alarm_panel";
@@ -234,7 +234,7 @@
             this.btn_save.FlatAppearance.BorderSize = 0;
             this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_save.ForeColor = System.Drawing.Color.White;
-            this.btn_save.Location = new System.Drawing.Point(6, 79);
+            this.btn_save.Location = new System.Drawing.Point(6, 77);
             this.btn_save.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(123, 41);
@@ -249,7 +249,7 @@
             this.btn_close.FlatAppearance.BorderSize = 0;
             this.btn_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_close.ForeColor = System.Drawing.Color.White;
-            this.btn_close.Location = new System.Drawing.Point(138, 79);
+            this.btn_close.Location = new System.Drawing.Point(138, 77);
             this.btn_close.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(123, 41);

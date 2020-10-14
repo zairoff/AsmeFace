@@ -8,21 +8,14 @@ namespace AsmeFace
 {
     public class Access
     {
-        public string Name { get; set; }
+        public int Employeeid { get; set; }
 
-        public string Start { get; set; }
+        public string Card { get; set; }
 
-        public string Stop { get; set; }
-    }
+        public int GroupID { get; set; }
 
-    public class AccessGr
-    {
-        public string Name { get; set; }
+        public string Grafik { get; set; }
 
-        public string Start { get; set; }
-
-        public string Stop { get; set; }
-
-        public int Day { get; set; }
+        public string DeviceIp { get; set; }
     }
 }

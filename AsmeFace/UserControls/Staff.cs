@@ -114,15 +114,18 @@ namespace AsmeFace.UserControls
                         return;
                     }
 
-                    nRes = _asmeDevice.DeleteCard(userID);
-
-                    if(nRes < 0)
+                    if (device.dwType.Equals("Face"))
                     {
-                        CustomMessageBox.Error("Failed to delete card, device "
-                            + device.dwIPAddress +
-                            " : " + _asmeDevice.GetResponse(nRes));
-                        _asmeDevice.CloseDevice();
-                        return;
+                        CustomLog.WriteToFile("sTAFF " + userID);
+                        nRes = _asmeDevice.DeleteFace(userID);
+                        if (nRes < 0)
+                        {
+                            CustomMessageBox.Error("Failed to delete face, device "
+                                + device.dwIPAddress +
+                                " : " + _asmeDevice.GetResponse(nRes));
+                            _asmeDevice.CloseDevice();
+                            return;
+                        }
                     }
 
                     if (device.dwType.Equals("Finger"))
@@ -138,18 +141,16 @@ namespace AsmeFace.UserControls
                         }
                     }
 
-                    if (device.Equals("Face"))
+                    nRes = _asmeDevice.DeleteCard(userID);
+
+                    if(nRes < 0)
                     {
-                        nRes = _asmeDevice.DeleteFace(userID);
-                        if (nRes < 0)
-                        {
-                            CustomMessageBox.Error("Failed to delete face, device "
-                                + device.dwIPAddress +
-                                " : " + _asmeDevice.GetResponse(nRes));
-                            _asmeDevice.CloseDevice();
-                            return;
-                        }
-                    }
+                        CustomMessageBox.Error("Failed to delete card, device "
+                            + device.dwIPAddress +
+                            " : " + _asmeDevice.GetResponse(nRes));
+                        _asmeDevice.CloseDevice();
+                        return;
+                    }                                     
                 }
 
                 var query = "insert into retireds (employeeid, photo, ism, familiya, otchestvo, department, " +

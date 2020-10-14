@@ -16,7 +16,7 @@ namespace AsmeFace
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Forms.AccessForm());
+            Application.Run(new Forms.Login());
         }
     }
 }

@@ -90,18 +90,6 @@
     <Compile Include="Forms\AccessForm.Designer.cs">
       <DependentUpon>AccessForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AccessGrafik.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AccessGrafik.Designer.cs">
-      <DependentUpon>AccessGrafik.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\AccessSmena.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AccessSmena.Designer.cs">
-      <DependentUpon>AccessSmena.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\AddedDoors.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,12 +231,6 @@
     <EmbeddedResource Include="Forms\AccessForm.resx">
       <DependentUpon>AccessForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AccessGrafik.resx">
-      <DependentUpon>AccessGrafik.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AccessSmena.resx">
-      <DependentUpon>AccessSmena.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddedDoors.resx">
       <DependentUpon>AddedDoors.cs</DependentUpon>
     </EmbeddedResource>
@@ -334,7 +316,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\user.png" />

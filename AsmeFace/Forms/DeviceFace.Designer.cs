@@ -37,6 +37,7 @@
             this.basic_txt_open_time = new System.Windows.Forms.TextBox();
             this.basic_btn = new System.Windows.Forms.Button();
             this.alarm_panel = new System.Windows.Forms.Panel();
+            this.alarm_combo_mode = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.alarm_txt_delay = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -79,7 +80,6 @@
             this.timer_alarm = new System.Windows.Forms.Timer(this.components);
             this.timer_temp = new System.Windows.Forms.Timer(this.components);
             this.timer_adv = new System.Windows.Forms.Timer(this.components);
-            this.alarm_combo_mode = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.basic_panel.SuspendLayout();
             this.alarm_panel.SuspendLayout();
@@ -113,7 +113,7 @@
             this.basic_panel.MaximumSize = new System.Drawing.Size(910, 82);
             this.basic_panel.MinimumSize = new System.Drawing.Size(910, 28);
             this.basic_panel.Name = "basic_panel";
-            this.basic_panel.Size = new System.Drawing.Size(910, 82);
+            this.basic_panel.Size = new System.Drawing.Size(910, 31);
             this.basic_panel.TabIndex = 2;
             // 
             // basic_combo_auth
@@ -180,12 +180,22 @@
             this.alarm_panel.Controls.Add(this.alarm_combo_type);
             this.alarm_panel.Controls.Add(this.label16);
             this.alarm_panel.Controls.Add(this.alarm_btn);
-            this.alarm_panel.Location = new System.Drawing.Point(3, 91);
+            this.alarm_panel.Location = new System.Drawing.Point(3, 40);
             this.alarm_panel.MaximumSize = new System.Drawing.Size(910, 113);
             this.alarm_panel.MinimumSize = new System.Drawing.Size(910, 25);
             this.alarm_panel.Name = "alarm_panel";
-            this.alarm_panel.Size = new System.Drawing.Size(910, 113);
+            this.alarm_panel.Size = new System.Drawing.Size(910, 27);
             this.alarm_panel.TabIndex = 3;
+            // 
+            // alarm_combo_mode
+            // 
+            this.alarm_combo_mode.FormattingEnabled = true;
+            this.alarm_combo_mode.Items.AddRange(new object[] {
+            "Syncronize with Alarm Input"});
+            this.alarm_combo_mode.Location = new System.Drawing.Point(150, 78);
+            this.alarm_combo_mode.Name = "alarm_combo_mode";
+            this.alarm_combo_mode.Size = new System.Drawing.Size(189, 21);
+            this.alarm_combo_mode.TabIndex = 13;
             // 
             // label11
             // 
@@ -263,7 +273,7 @@
             this.temp_panel.Controls.Add(this.temp_low);
             this.temp_panel.Controls.Add(this.label12);
             this.temp_panel.Controls.Add(this.temperature_btn);
-            this.temp_panel.Location = new System.Drawing.Point(3, 210);
+            this.temp_panel.Location = new System.Drawing.Point(3, 73);
             this.temp_panel.MaximumSize = new System.Drawing.Size(910, 152);
             this.temp_panel.MinimumSize = new System.Drawing.Size(910, 28);
             this.temp_panel.Name = "temp_panel";
@@ -413,7 +423,7 @@
             this.advanced_panel.Controls.Add(this.adv_txt_bright);
             this.advanced_panel.Controls.Add(this.label21);
             this.advanced_panel.Controls.Add(this.adv_btn);
-            this.advanced_panel.Location = new System.Drawing.Point(3, 247);
+            this.advanced_panel.Location = new System.Drawing.Point(3, 110);
             this.advanced_panel.MaximumSize = new System.Drawing.Size(910, 192);
             this.advanced_panel.MinimumSize = new System.Drawing.Size(910, 28);
             this.advanced_panel.Name = "advanced_panel";
@@ -575,7 +585,7 @@
             this.btn_save.FlatAppearance.BorderSize = 0;
             this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_save.ForeColor = System.Drawing.Color.White;
-            this.btn_save.Location = new System.Drawing.Point(6, 282);
+            this.btn_save.Location = new System.Drawing.Point(6, 145);
             this.btn_save.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(123, 41);
@@ -590,7 +600,7 @@
             this.btn_close.FlatAppearance.BorderSize = 0;
             this.btn_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_close.ForeColor = System.Drawing.Color.White;
-            this.btn_close.Location = new System.Drawing.Point(138, 282);
+            this.btn_close.Location = new System.Drawing.Point(138, 145);
             this.btn_close.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(123, 41);
@@ -618,16 +628,6 @@
             // 
             this.timer_adv.Interval = 15;
             this.timer_adv.Tick += new System.EventHandler(this.timer_adv_Tick);
-            // 
-            // alarm_combo_mode
-            // 
-            this.alarm_combo_mode.FormattingEnabled = true;
-            this.alarm_combo_mode.Items.AddRange(new object[] {
-            "Syncronize with Alarm Input"});
-            this.alarm_combo_mode.Location = new System.Drawing.Point(150, 78);
-            this.alarm_combo_mode.Name = "alarm_combo_mode";
-            this.alarm_combo_mode.Size = new System.Drawing.Size(189, 21);
-            this.alarm_combo_mode.TabIndex = 13;
             // 
             // DeviceFace
             // 

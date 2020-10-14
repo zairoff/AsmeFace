@@ -394,7 +394,7 @@ namespace AsmeFace
                    asc_STU.AS_ME_NO_PASSWORD, ref OpenControllerStop, ref m_hController);
         }
 
-        public int SetCard(int UserID, string card)
+        public int SetCard(int UserID, string card, int groupID)
         {
             bool bIgnoreCardNum = true;
             ulong dw64CardNum = AS_ME_NO_CARD;
@@ -405,7 +405,7 @@ namespace AsmeFace
                 bHasDeadline = false,
                 bFirstCard = false,
                 bSetGuard = false,
-                nGroup = 0,
+                nGroup = groupID,
                 szName = Marshal.StringToHGlobalUni(UserID.ToString()),
                 szPassword = Marshal.StringToHGlobalUni("8888")
             };
@@ -506,16 +506,7 @@ namespace AsmeFace
 
         public int DeleteFace(int userID)
         {
-            bool bSearch = true;
-            asc_STU.LPAS_ME_CARD_PARAM pParam = new asc_STU.LPAS_ME_CARD_PARAM();
-            pParam.bCancelOpen = false;
-            pParam.bHasPassCount = false;
-            pParam.bHasDeadline = false;
-            pParam.bFirstCard = false;
-            pParam.nGroup = 0;
-            pParam.szPassword = IntPtr.Zero;
-
-            return asc_SDKAPI.AS_ME_SetFace(m_hController, bSearch, userID, null, userID.ToString());
+            return asc_SDKAPI.AS_ME_SetFace(m_hController, true, userID, null, userID.ToString());
         }
 
         public int DeleteAllFace()
@@ -567,7 +558,10 @@ namespace AsmeFace
             return nRes;
         }
 
-        public int SetUpDevice(int doorDelay, int accessType)
+        int nReaderNum = -1;
+        int nCurDoorNum = 0;
+
+        public int CommunicationTest()
         {
             IntPtr init = Marshal.AllocHGlobal(asc_STU.AS_ME_TYPE_NAME_LEN);
             asc_STU.LPAS_ME_TYPE_INFO pInfo = new asc_STU.LPAS_ME_TYPE_INFO
@@ -575,15 +569,16 @@ namespace AsmeFace
                 szTypeName = init
             };
 
-            int nRes = asc_SDKAPI.AS_ME_CommuncationTest(m_hController, ref pInfo, 1);
+            var nRes = asc_SDKAPI.AS_ME_CommuncationTest(m_hController, ref pInfo, 1);
             if (nRes < 0)
             {
                 CloseWriteToFile("AS_ME_CommuncationTest " + GetResponse(nRes));
                 return nRes;
             }
 
-            var nReaderNum = pInfo.nReaderNum;
+            nReaderNum = pInfo.nReaderNum;
             pInfo.nCurDoorNum = pInfo.nDoorNum;
+            nCurDoorNum = pInfo.nCurDoorNum;
 
             if (pInfo.dwType != asc_SDKAPI.AS_ME_GetType(m_hController))
             {
@@ -593,11 +588,18 @@ namespace AsmeFace
 
             Marshal.FreeHGlobal(init);
             init = IntPtr.Zero;
+            return 1;
+        }
 
-            for (int i = 0; i < pInfo.nCurDoorNum; i++)
+        public int SetReader(int doorDelay, int accessType)
+        {
+            if (CommunicationTest() < 0)
+                return -1;
+
+            for (int i = 0; i < nCurDoorNum; i++)
             {
                 ////Set the lock 0 relay to 0, the lock 1 relay to 1...
-                nRes = asc_SDKAPI.AS_ME_SetLockRelay(m_hController, i, i);
+                var nRes = asc_SDKAPI.AS_ME_SetLockRelay(m_hController, i, i);
                 if (nRes < 0)//Error Return
                 {
                     CloseWriteToFile("AS_ME_SetLockRelay " + GetResponse(nRes));
@@ -624,7 +626,7 @@ namespace AsmeFace
 
             for (int i = 0; i < nReaderNum; i++)
             {
-                nRes = asc_SDKAPI.AS_ME_SetReader(m_hController, i, ref reader);
+                var nRes = asc_SDKAPI.AS_ME_SetReader(m_hController, i, ref reader);
                 if (nRes < 0)//Error Return
                 {
                     CloseWriteToFile("Failed to SetUp the reader " + GetResponse(nRes));
@@ -632,6 +634,11 @@ namespace AsmeFace
                 }
             }
 
+            return 1;
+        }
+
+        public int SetGroup(int groupID, asc_STU.LPAS_ME_WEEK_SCHEDULE week)
+        {
             //nRes = asc_SDKAPI.AS_ME_Clear_Memory(m_hController, AS_ME_MEM_TYPE_HOLIDAY_SCHEDULE);
             //if (nRes < 0)
             //{
@@ -666,12 +673,14 @@ namespace AsmeFace
             {
                 aHoliday = new asc_STU.AS_ME_HOLIDAY[asc_STU.Holiday_Num]
             };
+
             for (int i = 0; i < asc_STU.Holiday_Num; i++)
             {
                 holiday.aHoliday[i].byMonth = 0xff;
                 holiday.aHoliday[i].byDay = 0xff;
             }
-            nRes = asc_SDKAPI.AS_ME_SetHolidaySchedule(m_hController, 0, ref holiday);
+
+            var nRes = asc_SDKAPI.AS_ME_SetHolidaySchedule(m_hController, 0, ref holiday);
             if (nRes < 0)
             {
                 CloseWriteToFile("Set holiday schedule, error code: " + GetResponse(nRes));
@@ -680,6 +689,69 @@ namespace AsmeFace
 
             // Week
             //We just two time segments per day from Monday to Friday.
+
+            //asc_STU.LPAS_ME_WEEK_SCHEDULE week = new asc_STU.LPAS_ME_WEEK_SCHEDULE
+            //{
+            //    aDaySeg = new asc_STU.AS_ME_TIME_SEG[7, 3]
+            //};
+
+            //for (int i = 0; i < 7; i++)
+            //{
+            //    week.aDaySeg[i, 0].byStartHour = 0;
+            //    week.aDaySeg[i, 0].byStartMinute = 0;
+            //    week.aDaySeg[i, 0].byEndHour = 23;
+            //    week.aDaySeg[i, 0].byEndMinute = 59;
+
+            //    week.aDaySeg[i, 1].byStartHour = 0;
+            //    week.aDaySeg[i, 1].byStartMinute = 0;
+            //    week.aDaySeg[i, 1].byEndHour = 0;
+            //    week.aDaySeg[i, 1].byEndMinute = 0;
+
+            //    week.aDaySeg[i, 2].byStartHour = 0;
+            //    week.aDaySeg[i, 2].byStartMinute = 0;
+            //    week.aDaySeg[i, 2].byEndHour = 0;
+            //    week.aDaySeg[i, 2].byEndMinute = 0;
+            //}
+
+            nRes = asc_SDKAPI.AS_ME_SetWeekSchedule(m_hController, (groupID + 1), ref week);
+            if (nRes < 0)
+            {
+                CloseWriteToFile("Set week schedule, error code: " + GetResponse(nRes));
+                return nRes;
+            }
+
+            int[] aHolidaySchedule = new int[asc_STU.AS_ME_READER_MAX_NUM]{
+                                0, 0, 0, 0,
+                                0, 0, 0, 0,
+                                0, 0, 0, 0,
+                                0, 0, 0, 0
+                            };
+            int[] aWeekSchedule = new int[asc_STU.AS_ME_READER_MAX_NUM]{
+                                (groupID + 1), 0, 0, 0,
+                                0, 0, 0, 0,
+                                0, 0, 0, 0,
+                                0, 0, 0, 0
+                            };
+
+            asc_STU.LPAS_ME_GROUP lmftr = new asc_STU.LPAS_ME_GROUP
+            {
+                aHolidaySchedule = aHolidaySchedule,
+                aWeekSchedule = aWeekSchedule,
+                dwReaderMask = (uint)(1 << nReaderNum) - 1
+            };
+
+            nRes = asc_SDKAPI.AS_ME_SetGroup(m_hController, groupID, ref lmftr);
+            if (nRes < 0)
+            {
+                CloseWriteToFile("Set group, error code: " + GetResponse(nRes));
+                return nRes;
+            }
+            
+            return nRes;
+        }
+
+        public asc_STU.LPAS_ME_WEEK_SCHEDULE GetDefaultWeek()
+        {
             asc_STU.LPAS_ME_WEEK_SCHEDULE week = new asc_STU.LPAS_ME_WEEK_SCHEDULE
             {
                 aDaySeg = new asc_STU.AS_ME_TIME_SEG[7, 3]
@@ -702,51 +774,13 @@ namespace AsmeFace
                 week.aDaySeg[i, 2].byEndHour = 0;
                 week.aDaySeg[i, 2].byEndMinute = 0;
             }
-
-            nRes = asc_SDKAPI.AS_ME_SetWeekSchedule(m_hController, 1, ref week);
-            if (nRes < 0)
-            {
-                CloseWriteToFile("Set week schedule, error code: " + GetResponse(nRes));
-                return nRes;
-            }
-
-            int[] aHolidaySchedule = new int[asc_STU.AS_ME_READER_MAX_NUM]{
-                                0, 0, 0, 0,
-                                0, 0, 0, 0,
-                                0, 0, 0, 0,
-                                0, 0, 0, 0
-                            };
-            int[] aWeekSchedule = new int[asc_STU.AS_ME_READER_MAX_NUM]{
-                                1, 0, 0, 0,
-                                0, 0, 0, 0,
-                                0, 0, 0, 0,
-                                0, 0, 0, 0
-                            };
-
-            asc_STU.LPAS_ME_GROUP lmftr = new asc_STU.LPAS_ME_GROUP
-            {
-                aHolidaySchedule = aHolidaySchedule,
-                aWeekSchedule = aWeekSchedule,
-                dwReaderMask = (uint)(1 << nReaderNum) - 1
-            };
-
-            nRes = asc_SDKAPI.AS_ME_SetGroup(m_hController, 0, ref lmftr);
-            if (nRes < 0)
-            {
-                CloseWriteToFile("Set group, error code: " + GetResponse(nRes));
-                return nRes;
-            }
-            
-            asc_SDKAPI.AS_ME_CloseController(m_hController);
-            m_hController = IntPtr.Zero;
-            return nRes;
-        }        
+            return week;
+        }
 
         private void CloseWriteToFile(string log)
         {
             CustomLog.WriteToFile(log);
-            asc_SDKAPI.AS_ME_CloseController(m_hController);
-            m_hController = IntPtr.Zero;
+            CloseDevice();
         }
     }
 }

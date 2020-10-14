@@ -163,11 +163,25 @@ namespace AsmeFace.Forms
             }
 
             var auth_mode = basic_combo_auth.SelectedIndex + 11;
-            if (_asmeDevice.SetUpDevice(Convert.ToInt32(basic_txt_open_time.Text), auth_mode) < 0)
+            if (_asmeDevice.CommunicationTest() < 0)
             {
-                CustomMessageBox.Error("Failed to configure the device");
+                CustomMessageBox.Error("Failed to communicate");
                 return;
             }
+
+            if (_asmeDevice.SetReader(Convert.ToInt32(basic_txt_open_time.Text), auth_mode) < 0)
+            {
+                CustomMessageBox.Error("Failed to SetReader");
+                return;
+            }
+
+            if (_asmeDevice.SetGroup(0, _asmeDevice.GetDefaultWeek()) < 0)
+            {
+                CustomMessageBox.Error("Failed to SetGroup");
+                return;
+            }
+
+            _asmeDevice.CloseDevice();
 
             CustomMessageBox.Info("Successfully configured!");
         }

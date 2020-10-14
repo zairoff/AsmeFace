@@ -92,14 +92,32 @@ namespace AsmeFace.Forms
         {
             if (_asmeDevice.OpenDevice(ip) < 0)
             {
-                CustomMessageBox.Error("Failed to open the device: " + ip);
+                CustomMessageBox.Error("Failed to open the device");
+                return;
+            }
+            
+            if (_asmeDevice.CommunicationTest() < 0)
+            {
+                CustomMessageBox.Error("Failed to communicate");
                 return;
             }
 
-            if (_asmeDevice.SetUpDevice(Convert.ToInt32(basic_txt_open_time.Text), basic_combo_auth.SelectedIndex + 5) < 0)
-                CustomMessageBox.Error("Failed to save settings");
-            else
-                CustomMessageBox.Info("Successfully configured!");
+            var auth_mode = basic_combo_auth.SelectedIndex + 5;
+            if (_asmeDevice.SetReader(Convert.ToInt32(basic_txt_open_time.Text), auth_mode) < 0)
+            {
+                CustomMessageBox.Error("Failed to SetReader");
+                return;
+            }
+
+            if (_asmeDevice.SetGroup(0, _asmeDevice.GetDefaultWeek()) < 0)
+            {
+                CustomMessageBox.Error("Failed to SetGroup");
+                return;
+            }
+
+            _asmeDevice.CloseDevice();
+
+            CustomMessageBox.Info("Successfully configured!");
         }
 
         private void btn_close_Click(object sender, EventArgs e)

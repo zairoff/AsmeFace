@@ -9,8 +9,8 @@ namespace AsmeFace.UserControls
         public Grafik()
         {
             InitializeComponent();
-            var programm_type = Convert.ToInt32((System.Configuration.ConfigurationManager.AppSettings["program_type"]));
-            if(programm_type == 1)
+            var programm_type = (System.Configuration.ConfigurationManager.AppSettings["program_type"]);
+            if(programm_type == "1")
             {
                 comboBox1.SelectedIndex = 0;
                 comboBox1.Enabled = false;
@@ -91,6 +91,8 @@ namespace AsmeFace.UserControls
                 if (!_dataBase.InsertData("insert into grafik (grafik_nomi, kun) values('" + textBox1.Text.Trim() + "'," + i + ")"))
                     break;
             }
+
+            //_dataBase.InsertData("select update_access_group('" + textBox1.Text.Trim() + "')");
             UpdateGrid("select *from grafik where grafik_nomi = '" + textBox1.Text.Trim() + "' order by kun desc");
 
             FillListview();
@@ -134,9 +136,26 @@ namespace AsmeFace.UserControls
             {
                 CustomMessageBox.Info("Выберите график");
                 return;
-            }                
+            }        
+            
+            // Need to finde alternatives, it's in rush
+            if(_dataBase.CheckDB("select exists(select 1 from grafik_employee where grafik_nomi = '" + textBox1.Text.Trim() + "')"))
+            {
+                CustomMessageBox.Warning("График исползуется");
+                return;
+            }
 
-            if(_dataBase.InsertData("delete from grafik where grafik_nomi = '" + listBox1.Items[listBox1.SelectedIndex].ToString() + "'"))
+            //if (_dataBase.CheckDB("select exists(select 1 from access_employee where grafik_nomi = '" + textBox1.Text.Trim() + "')"))
+            //{
+            //    CustomMessageBox.Warning("График исползуется");
+            //    return;
+            //}            
+
+            if (_dataBase.InsertData(
+                "delete from grafik where grafik_nomi = '" + listBox1.Items[listBox1.SelectedIndex].ToString() + "';" + 
+                "delete from grafik_employee where grafik_nomi = '" + listBox1.Items[listBox1.SelectedIndex].ToString() + "';" /*+
+                "delete from access_employee where grafik_nomi = '" + listBox1.Items[listBox1.SelectedIndex].ToString() + "';" +
+                "delete from access_group where grafik_nomi = '" + listBox1.Items[listBox1.SelectedIndex].ToString() + "';"*/))
             {
                 ClearAll();
                 FillListview();

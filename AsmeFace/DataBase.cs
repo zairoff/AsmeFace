@@ -417,9 +417,9 @@ namespace AsmeFace
             return doors;
         }
 
-        public System.Collections.Generic.List<Access> GetAccessSmena(string query)
+        public System.Collections.Generic.List<Access> GetAccess(string query)
         {
-            var accesses = new System.Collections.Generic.List<Access>();
+            var acceses = new System.Collections.Generic.List<Access>();
             using (var connection = new Npgsql.NpgsqlConnection(Helper.CnnVal("DBConnection")))
             {
                 using (var cmd = new Npgsql.NpgsqlCommand(query, connection))
@@ -430,40 +430,17 @@ namespace AsmeFace
                     {
                         var access = new Access
                         {
-                            Name = reader["smena_nomi"].ToString(),
-                            Start = reader["smena_boshlanishi"].ToString(),
-                            Stop = reader["smena_tugashi"].ToString()
+                            Employeeid = Convert.ToInt32(reader["employeeid"]),
+                            Card = reader["card"].ToString(),
+                            GroupID = Convert.ToInt32(reader["access_group_id"]),
+                            Grafik = reader["grafik_nomi"].ToString(),
+                            DeviceIp = reader["device_ip"].ToString()
                         };
-                        accesses.Add(access);
+                        acceses.Add(access);
                     }
                 }
             }
-            return accesses;
-        }
-
-        public System.Collections.Generic.List<AccessGr> GetAccessGr(string query)
-        {
-            var accesses = new System.Collections.Generic.List<AccessGr>();
-            using (var connection = new Npgsql.NpgsqlConnection(Helper.CnnVal("DBConnection")))
-            {
-                using (var cmd = new Npgsql.NpgsqlCommand(query, connection))
-                {
-                    connection.Open();
-                    var reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        var access = new AccessGr
-                        {
-                            Name = reader["grafik_nomi"].ToString(),
-                            Start = reader["smena_boshlanishi"].ToString(),
-                            Stop = reader["smena_tugashi"].ToString(),
-                            Day = Convert.ToInt32(reader["kun"])
-                        };
-                        accesses.Add(access);
-                    }
-                }
-            }
-            return accesses;
-        }
+            return acceses;
+        }        
     }    
 }
