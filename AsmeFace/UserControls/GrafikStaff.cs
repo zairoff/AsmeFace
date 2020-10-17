@@ -37,20 +37,36 @@ namespace AsmeFace.UserControls
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            var query = "select employeeid, familiya, ism, otchestvo, otdel, " +
+                "lavozim from employee where department <@ '" + treeView1.SelectedNode.Name + "' and status = true";
+
+            GetEmployee(query);
+
+            query = "select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.grafik_nomi, " +
+                "t2.dan, t2.gacha from employee t1 inner join grafik_employee t2 on t1.employeeid = t2.employeeid where " +
+                "(t1.department <@ '" + treeView1.SelectedNode.Name + "' and t1.status = true and t2.dan >= '" + dateTimePicker1.Text + "'" +
+                "and t2.dan <= '" + dateTimePicker2.Text + "') or (t1.department <@ '" + treeView1.SelectedNode.Name + "'" +
+                " and t1.status = true and t2.gacha >= '" + dateTimePicker1.Text + "' and t2.gacha <= '" + dateTimePicker2.Text + "')" +
+                "or (t1.department <@ '" + treeView1.SelectedNode.Name + "' and t1.status = true and " +
+                "'" + dateTimePicker1.Text + "' >= t2.dan and '" + dateTimePicker2.Text + "' <= t2.gacha)";
+
+            RetriveGrafik(query);
+        }
+
+        private void GetEmployee(string query)
+        {
             dataGridView1.Rows.Clear();
             checkedListBox1.Items.Clear();
 
-            _employeeShortInfo = _dataBase.GetEmployeeShortInfo("select employeeid, familiya, ism, otchestvo, otdel, " +
-                "lavozim from employee where department <@ '" + treeView1.SelectedNode.Name + "'");
+            _employeeShortInfo = _dataBase.GetEmployeeShortInfo(query);
 
             if (_employeeShortInfo.Count < 1)
                 return;
-            
-            for(int i = 0; i < _employeeShortInfo.Count; i++)
+
+            for (int i = 0; i < _employeeShortInfo.Count; i++)
             {
                 checkedListBox1.Items.Add(_employeeShortInfo[i].Familiya);
-            }
-            RetriveGrafik();
+            }            
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -74,6 +90,7 @@ namespace AsmeFace.UserControls
                 CustomMessageBox.Info("Число должна быть установлена ​​на будущее");
                 return;
             }
+
             textBox1.Text = "";
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
             {
@@ -111,12 +128,12 @@ namespace AsmeFace.UserControls
 
             if (dataGridView1.CurrentCell.ColumnIndex.Equals(7) && e.RowIndex != -1)
             {
-                if (_dataBase.InsertData("delete from grafik_employee where grafik_nomi = '" + dataGridView1[4,
+                _dataBase.InsertData("delete from grafik_employee where grafik_nomi = '" + dataGridView1[4,
                     dataGridView1.CurrentRow.Index].Value.ToString() + "' and employeeid = " + System.Convert.ToInt32(dataGridView1[0,
                     dataGridView1.CurrentRow.Index].Value) + " and dan = '" + dataGridView1[5,
                     dataGridView1.CurrentRow.Index].Value.ToString() + "' and gacha = '" + dataGridView1[6,
-                    dataGridView1.CurrentRow.Index].Value.ToString() + "'"))
-                    RetriveGrafik();
+                    dataGridView1.CurrentRow.Index].Value.ToString() + "'");
+                    //RetriveGrafik();
                 return;
             }
 
@@ -129,18 +146,11 @@ namespace AsmeFace.UserControls
             }
         }
 
-        private void RetriveGrafik()
+        private void RetriveGrafik(string query)
         {
             dataGridView1.Rows.Clear();
 
-            var employeeGrafiks = _dataBase.GetEmployeeGrafik(
-                "select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.grafik_nomi, " +
-                "t2.dan, t2.gacha from employee t1 inner join grafik_employee t2 on t1.employeeid = t2.employeeid where " +
-                "(t1.department <@ '" + treeView1.SelectedNode.Name + "' and t2.dan >= '" + dateTimePicker1.Text + "'" +
-                "and t2.dan <= '" + dateTimePicker2.Text + "') or (t1.department <@ '" + treeView1.SelectedNode.Name + "' and " +
-                "t2.gacha >= '" + dateTimePicker1.Text + "' and t2.gacha <= '" + dateTimePicker2.Text + "')" +
-                "or (t1.department <@ '" + treeView1.SelectedNode.Name + "' and " +
-                "'" + dateTimePicker1.Text + "' >= t2.dan and '" + dateTimePicker2.Text + "' <= t2.gacha)");
+            var employeeGrafiks = _dataBase.GetEmployeeGrafik(query);
 
             if (employeeGrafiks.Count < 1)
                 return;
@@ -167,6 +177,29 @@ namespace AsmeFace.UserControls
             {
                 checkedListBox1.SetItemChecked(i, checkBox1.Checked);
             }
+        }
+
+        private void SearchTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SearchTextBox.Text))
+                return;
+
+            var searchQuery = SearchTextBox.Text.Trim();
+
+            var query = "select employeeid, familiya, ism, otchestvo, otdel, lavozim from employee where familiya ILIKE '" +
+                searchQuery + "%' and status = true";
+
+            GetEmployee(query);
+
+            query = "select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.grafik_nomi, " +
+                "t2.dan, t2.gacha from employee t1 inner join grafik_employee t2 on t1.employeeid = t2.employeeid where " +
+                "(t1.familiya ILIKE '" + searchQuery + "%' and t1.status = true and t2.dan >= '" + dateTimePicker1.Text + "'" +
+                "and t2.dan <= '" + dateTimePicker2.Text + "') or (t1.familiya ILIKE '" + searchQuery + "%'" +
+                " and t1.status = true and t2.gacha >= '" + dateTimePicker1.Text + "' and t2.gacha <= '" + dateTimePicker2.Text + "')" +
+                "or (t1.familiya ILIKE '" + searchQuery + "%' and t1.status = true and " +
+                "'" + dateTimePicker1.Text + "' >= t2.dan and '" + dateTimePicker2.Text + "' <= t2.gacha)";
+
+            RetriveGrafik(query);
         }
     }
 }

@@ -39,16 +39,18 @@ namespace AsmeFace.UserControls
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            RetriveData();
+            RetriveData("select employeeid," +
+                "photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
+                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
+
+            ShowEmployeeCount();
         }
 
-        private void RetriveData()
+        private void RetriveData(string query)
         {
             dataGridView1.Rows.Clear();
 
-            var employees = _dataBase.GetEmployee("select employeeid," +
-                "photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
-                "where department <@ '" + treeView1.SelectedNode.Name + "' order by employeeid desc");
+            var employees = _dataBase.GetEmployee(query);
 
             if (employees.Count < 1)
                 return;
@@ -64,15 +66,15 @@ namespace AsmeFace.UserControls
                     employee.Otchestvo,
                     employee.Otdel,
                     employee.Lavozim);
-            }
+            }            
+        }
+
+        private void ShowEmployeeCount()
+        {
             if (treeView1.SelectedNode == treeView1.Nodes[0])
-            {
                 label1.Text = treeView1.SelectedNode.Text + " | количество сотрудников: " + dataGridView1.Rows.Count;
-            }
             else
-            {
                 label1.Text = "Отдел: " + treeView1.SelectedNode.Text + " | количество сотрудников: " + dataGridView1.Rows.Count;
-            }
         }
 
         private System.Drawing.Image ByteToImage(byte[] byteArrayIn)
@@ -88,83 +90,112 @@ namespace AsmeFace.UserControls
             if (dataGridView1.Rows.Count < 1)
                 return;
 
+            var userID = Convert.ToInt32(dataGridView1[1, dataGridView1.CurrentRow.Index].Value);
+
             if (dataGridView1.CurrentCell.ColumnIndex.Equals(7) && e.RowIndex != -1)
             {
-                new Forms.EmployeeAdd(Convert.ToInt32(dataGridView1[1, dataGridView1.CurrentRow.Index].Value)).ShowDialog();
+                new Forms.EmployeeAdd(userID).ShowDialog();
+                return;
             }
 
             if (dataGridView1.CurrentCell.ColumnIndex.Equals(8) && e.RowIndex != -1)
             {
-                var devices = _dataBase.GetDevices("select *from devices");
-
-                if (devices.Count < 1)
-                    return;
-
-                var userID = Convert.ToInt32(dataGridView1[1, dataGridView1.CurrentRow.Index].Value);
-
-                foreach (var device in devices)
+                if (UpdateOrDeleteEmployee(userID, "update employee set status = false where employeeid = " + userID))
                 {
-                    int nRes = _asmeDevice.OpenDevice(device.dwIPAddress);
-                    if(nRes < 0)
-                    {
-                        CustomMessageBox.Error(
-                            "Failed to open device " 
-                            + device.dwIPAddress +
-                            " : " + _asmeDevice.GetResponse(nRes));
-                        return;
-                    }
+                    RetriveData("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
+                                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
+                    ShowEmployeeCount();
+                }                  
 
-                    if (device.dwType.Equals("Face"))
-                    {
-                        CustomLog.WriteToFile("sTAFF " + userID);
-                        nRes = _asmeDevice.DeleteFace(userID);
-                        if (nRes < 0)
-                        {
-                            CustomMessageBox.Error("Failed to delete face, device "
-                                + device.dwIPAddress +
-                                " : " + _asmeDevice.GetResponse(nRes));
-                            _asmeDevice.CloseDevice();
-                            return;
-                        }
-                    }
+                return;
+            }
 
-                    if (device.dwType.Equals("Finger"))
-                    {
-                        nRes = _asmeDevice.DeleteFinger(userID);
-                        if (nRes < 0)
-                        {
-                            CustomMessageBox.Error("Failed to delete fingerprint, device "
-                                + device.dwIPAddress +
-                                " : " + _asmeDevice.GetResponse(nRes));
-                            _asmeDevice.CloseDevice();
-                            return;
-                        }
-                    }
+            if (dataGridView1.CurrentCell.ColumnIndex.Equals(9) && e.RowIndex != -1)
+            {
+                if (UpdateOrDeleteEmployee(userID, "delete from employee where employeeid = " + userID))
+                {
+                    RetriveData("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
+                                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
+                    ShowEmployeeCount();
+                }                
 
-                    nRes = _asmeDevice.DeleteCard(userID);
+                return;
+            }            
+        }
 
-                    if(nRes < 0)
+        private bool UpdateOrDeleteEmployee(int userID, string query)
+        {
+            var devices = _dataBase.GetDevices("select *from devices");
+
+            if (devices.Count < 1)
+                return false;
+
+            foreach (var device in devices)
+            {
+                int nRes = _asmeDevice.OpenDevice(device.dwIPAddress);
+                if (nRes < 0)
+                {
+                    CustomMessageBox.Error(
+                        "Failed to open device "
+                        + device.dwIPAddress +
+                        " : " + _asmeDevice.GetResponse(nRes));
+                    return false;
+                }
+
+                if (device.dwType.Equals("Face"))
+                {
+                    CustomLog.WriteToFile("sTAFF " + userID);
+                    nRes = _asmeDevice.DeleteFace(userID);
+                    if (nRes < 0)
                     {
-                        CustomMessageBox.Error("Failed to delete card, device "
+                        CustomMessageBox.Error("Failed to delete face, device "
                             + device.dwIPAddress +
                             " : " + _asmeDevice.GetResponse(nRes));
                         _asmeDevice.CloseDevice();
-                        return;
-                    }                                     
+                        return false;
+                    }
                 }
 
-                var query = "insert into retireds (employeeid, photo, ism, familiya, otchestvo, department, " +
-                    "otdel, lavozim) select employeeid, photo, ism, familiya, otchestvo, department, otdel, lavozim from " +
-                    "employee where employeeid = " + Convert.ToInt32(dataGridView1[1, dataGridView1.CurrentRow.Index].Value);
-
-                if (_dataBase.InsertData(query))
+                if (device.dwType.Equals("Finger"))
                 {
-                    query = "delete from employee where employeeid = " + Convert.ToInt32(dataGridView1[1, dataGridView1.CurrentRow.Index].Value);
-
-                    if (_dataBase.InsertData(query))
-                        RetriveData();
+                    nRes = _asmeDevice.DeleteFinger(userID);
+                    if (nRes < 0)
+                    {
+                        CustomMessageBox.Error("Failed to delete fingerprint, device "
+                            + device.dwIPAddress +
+                            " : " + _asmeDevice.GetResponse(nRes));
+                        _asmeDevice.CloseDevice();
+                        return false;
+                    }
                 }
-            }            
+
+                nRes = _asmeDevice.DeleteCard(userID);
+
+                if (nRes < 0)
+                {
+                    CustomMessageBox.Error("Failed to delete card, device "
+                        + device.dwIPAddress +
+                        " : " + _asmeDevice.GetResponse(nRes));
+                    _asmeDevice.CloseDevice();
+                    return false;
+                }
+            }
+
+            //var query = "update employee set status = false where employeeid = " + userID);
+            //var query = "delete from employee where employeeid = " + userID);
+            return _dataBase.InsertData(query);
+                
+        }
+
+        private void SearchTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SearchTextBox.Text))
+                return;
+
+            var query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
+                "where familiya ILIKE '" + SearchTextBox.Text.Trim() + "%' and status = true";
+
+            RetriveData(query);
         }
     }
 }

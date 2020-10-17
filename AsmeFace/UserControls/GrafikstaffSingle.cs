@@ -37,20 +37,32 @@ namespace AsmeFace.UserControls
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            var query = "select employeeid, familiya, ism, otchestvo, otdel, " +
+                "lavozim from employee where department <@ '" + treeView1.SelectedNode.Name + "' and status = true";
+
+            GetEmployee(query);
+
+            query = "select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.grafik_nomi " +
+                "from employee t1 inner join grafik_employee t2 on t1.employeeid = t2.employeeid where " +
+                "t1.department <@ '" + treeView1.SelectedNode.Name + "' and t1.status = true";
+
+            RetriveGrafik(query);
+        }
+
+        private void GetEmployee(string query)
+        {
             dataGridView1.Rows.Clear();
             checkedListBox1.Items.Clear();
 
-            _employeeShortInfo = _dataBase.GetEmployeeShortInfo("select employeeid, familiya, ism, otchestvo, " +
-                "otdel, lavozim from employee where department <@ '" + treeView1.SelectedNode.Name + "'");
+            _employeeShortInfo = _dataBase.GetEmployeeShortInfo(query);
 
             if (_employeeShortInfo.Count < 1)
                 return;
-            
+
             for (int i = 0; i < _employeeShortInfo.Count; i++)
             {
                 checkedListBox1.Items.Add(_employeeShortInfo[i].Familiya);
             }
-            RetriveGrafik();
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -99,18 +111,15 @@ namespace AsmeFace.UserControls
             {
                 _dataBase.InsertData("delete from grafik_employee where employeeid = " +
                     System.Convert.ToInt32(dataGridView1[0, dataGridView1.CurrentRow.Index].Value));
-                RetriveGrafik();
+                //RetriveGrafik();
             }
         }
 
-        private void RetriveGrafik()
+        private void RetriveGrafik(string query)
         {
             dataGridView1.Rows.Clear();
 
-            System.Collections.Generic.List<EmployeeGrafik> employeeGrafiks = _dataBase.GetEmployeeGrafikSingle(
-                "select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.grafik_nomi " +
-                "from employee t1 inner join grafik_employee t2 on t1.employeeid = t2.employeeid where " +
-                "t1.department <@ '" + treeView1.SelectedNode.Name + "'");
+            var employeeGrafiks = _dataBase.GetEmployeeGrafikSingle(query);
 
             if (employeeGrafiks.Count < 1)
                 return;
@@ -135,6 +144,25 @@ namespace AsmeFace.UserControls
             {
                 checkedListBox1.SetItemChecked(i, checkBox1.Checked);
             }
+        }
+
+        private void SearchTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SearchTextBox.Text))
+                return;
+
+            var searchQuery = SearchTextBox.Text.Trim();
+
+            var query = "select employeeid, familiya, ism, otchestvo, otdel, lavozim from employee where familiya ILIKE '" +
+                searchQuery + "%' and status = true";
+
+            GetEmployee(query);
+
+            query = "select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.grafik_nomi " +
+                "from employee t1 inner join grafik_employee t2 on t1.employeeid = t2.employeeid where " +
+                "t1.familiya ILIKE '" + searchQuery + "%' and t1.status = true";
+
+            RetriveGrafik(query);
         }
     }
 }

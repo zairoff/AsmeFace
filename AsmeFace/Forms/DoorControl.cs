@@ -48,20 +48,25 @@ namespace AsmeFace.Forms
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            _employees = _dataBase.GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, " +
+            GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, " +
                 "otdel, lavozim from employee where department <@ '" + treeView1.SelectedNode.Name +
-                "' order by employeeid desc");
+                "' and status = true order by employeeid desc");
+        }   
+        
+        private void GetEmployee(string query)
+        {
+            _employees = _dataBase.GetEmployee(query);
 
             checkedListBox1.Items.Clear();
 
             if (_employees.Count < 1)
                 return;
-            
+
             for (int i = 0; i < _employees.Count; i++)
             {
                 checkedListBox1.Items.Add(_employees[i].Familiya + " " + _employees[i].Ism + " " + _employees[i].Otchestvo);
             }
-        }       
+        }
 
         private void DoorControl_Load(object sender, EventArgs e)
         {
@@ -232,6 +237,15 @@ namespace AsmeFace.Forms
         {
             System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(Syncronize));
             thread.Start();
+        }
+
+        private void SearchTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SearchTextBox.Text))
+                return;
+
+            GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee where familiya ILIKE '" + 
+                        SearchTextBox.Text.Trim() + "%' and status = true order by employeeid desc");
         }
     }
 }

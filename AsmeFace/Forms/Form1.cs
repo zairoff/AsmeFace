@@ -12,7 +12,7 @@ namespace AsmeFace.Forms
          //System.Threading.Thread.CurrentThread.CurrentUICulture =
         //System.Globalization.CultureInfo.GetCultureInfo("ru");
             InitializeComponent();
-            programm_type = System.Convert.ToInt32((System.Configuration.ConfigurationManager.AppSettings["program_type"]));
+            programm_type = (System.Configuration.ConfigurationManager.AppSettings["program_type"]);
         }
 
         private UserControls.Department department;
@@ -27,7 +27,7 @@ namespace AsmeFace.Forms
         private DataBase mydataBase = new DataBase();
         private System.Drawing.Point lastLocation;
         private bool mouseDown = false;
-        private readonly int programm_type;
+        private readonly string programm_type;
 
         public void MouseEnterOrLeave(Button button, System.Drawing.Color TextColor, System.Drawing.Color BackColor)
         {
@@ -95,7 +95,7 @@ namespace AsmeFace.Forms
 
         private void button4_Click(object sender, System.EventArgs e)
         {
-            if (programm_type == 2)
+            if (programm_type == "2")
             {
                 if (grafikStaff != null)
                     grafikStaff.Dispose();
@@ -106,7 +106,7 @@ namespace AsmeFace.Forms
                 };
                 ReplaseUserControl(grafikStaff);
             }
-            else if (programm_type == 1)
+            else if (programm_type == "1")
             {
                 if (_grafikSingle != null)
                     _grafikSingle.Dispose();

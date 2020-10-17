@@ -51,7 +51,7 @@ namespace AsmeFace.Forms
                 "t3.device_status, t3.device_door from control_doors t2 " +
                 "inner join employee t1 on t1.employeeid = t2.employeeid " +
                 "inner join devices t3 on t3.device_mac = t2.device_mac " +
-                "where department <@ '" + treeView1.SelectedNode.Name + "' order by employeeid desc");
+                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
 
             dataGridView1.Rows.Clear();
 
