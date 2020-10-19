@@ -24,73 +24,97 @@ namespace AsmeFace.UserControls
         private void label2_MouseEnter(object sender, EventArgs e)
         {
             label2.Font = new Font("Lucida fax", 13f, FontStyle.Regular);
-            label2.ForeColor = Color.White;
+            //label2.ForeColor = Color.White;
         }
 
         private void label2_MouseLeave(object sender, EventArgs e)
         {
             label2.Font = new Font("Microsoft Sans Serif", 10f, FontStyle.Regular);
-            label2.ForeColor = Color.White;
+            //label2.ForeColor = Color.White;
         }
 
         private void label3_MouseEnter(object sender, EventArgs e)
         {
             this.label3.Font = new Font("Lucida fax", 13f, FontStyle.Regular);
-            this.label3.ForeColor = Color.White;
+            //this.label3.ForeColor = Color.White;
         }
 
         private void label3_MouseLeave(object sender, EventArgs e)
         {
             this.label3.Font = new Font("Microsoft Sans Serif", 10f, FontStyle.Regular);
-            this.label3.ForeColor = Color.White;
+            //this.label3.ForeColor = Color.White;
         }
 
         private void label4_MouseEnter(object sender, EventArgs e)
         {
             this.label4.Font = new Font("Lucida fax", 13f, FontStyle.Regular);
-            this.label4.ForeColor = Color.White;
+            //this.label4.ForeColor = Color.White;
         }
 
         private void label4_MouseLeave(object sender, EventArgs e)
         {
             this.label4.Font = new Font("Microsoft Sans Serif", 10f, FontStyle.Regular);
-            this.label4.ForeColor = Color.White;
+            //this.label4.ForeColor = Color.White;
         }
 
         private void label5_MouseEnter(object sender, EventArgs e)
         {
             label5.Font = new Font("Lucida fax", 13f, FontStyle.Regular);
-            label5.ForeColor = Color.White;
+            //label5.ForeColor = Color.White;
         }
 
         private void label5_MouseLeave(object sender, EventArgs e)
         {
             label5.Font = new Font("Microsoft Sans Serif", 10f, FontStyle.Regular);
-            label5.ForeColor = Color.White;
+            //label5.ForeColor = Color.White;
         }
 
         private void label6_MouseEnter(object sender, EventArgs e)
         {
             label6.Font = new Font("Lucida fax", 13f, FontStyle.Regular);
-            label6.ForeColor = Color.White;
+            //label6.ForeColor = Color.White;
         }
 
         private void label6_MouseLeave(object sender, EventArgs e)
         {
             label6.Font = new Font("Microsoft Sans Serif", 10f, FontStyle.Regular);
-            label6.ForeColor = Color.White;
+            //label6.ForeColor = Color.White;
         }
 
         private void label7_MouseEnter(object sender, EventArgs e)
         {
             label7.Font = new Font("Lucida fax", 13f, FontStyle.Regular);
-            label7.ForeColor = Color.White;
+            //label7.ForeColor = Color.White;
         }
 
         private void label7_MouseLeave(object sender, EventArgs e)
         {
             label7.Font = new Font("Microsoft Sans Serif", 10f, FontStyle.Regular);
-            label7.ForeColor = Color.White;
+            //label7.ForeColor = Color.White;
+        }
+
+        private void label8_MouseEnter(object sender, EventArgs e)
+        {
+            label8.Font = new Font("Lucida fax", 13f, FontStyle.Regular);
+            //label8.ForeColor = Color.White;
+        }
+
+        private void label8_MouseLeave(object sender, EventArgs e)
+        {
+            label8.Font = new Font("Microsoft Sans Serif", 10f, FontStyle.Regular);
+            //label8.ForeColor = Color.White;
+        }
+
+        private void label9_MouseEnter(object sender, EventArgs e)
+        {
+            label9.Font = new Font("Lucida fax", 13f, FontStyle.Regular);
+            //label9.ForeColor = Color.White;
+        }
+
+        private void label9_MouseLeave(object sender, EventArgs e)
+        {
+            label9.Font = new Font("Microsoft Sans Serif", 10f, FontStyle.Regular);
+            //label9.ForeColor = Color.White;
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -245,7 +269,19 @@ namespace AsmeFace.UserControls
 
         private void label7_Click(object sender, EventArgs e)
         {
-            //new Forms.AccessForm().Show();
+            new Forms.AccessForm().Show();
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+            new Forms.AccessSmena().Show();
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+            new Forms.AccessGrafik().Show();
+        }
+
+        
     }
 }

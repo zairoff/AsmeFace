@@ -30,7 +30,7 @@ namespace AsmeFace.Forms
 
         private void GetGrafik()
         {
-            var grafiks = _dataBase.GetStringList("select distinct grafik_nomi from grafik");
+            var grafiks = _dataBase.GetStringList("select distinct access_grafik_nomi from access_grafik");
             foreach (string grafik in grafiks)
             {
                 comboBox1.Items.Add(grafik);
@@ -64,10 +64,19 @@ namespace AsmeFace.Forms
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            GetEmployee("select distinct e.employeeid, e.ism, e.familiya, e.otchestvo, e.otdel, e.lavozim from employee e inner join control_doors cd on e.employeeid = cd.employeeid where e.department <@ '"
+                + treeView1.SelectedNode.Name + "' and e.status = true order by e.employeeid desc");
+
+            RetriveGrafik("select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.access_grafik_nomi " +
+                "from employee t1 inner join access_employee t2 on t1.employeeid = t2.employeeid where " +
+                "t1.department <@ '" + treeView1.SelectedNode.Name + "' and t1.status = true");
+        }        
+
+        private void GetEmployee(string query)
+        {
             checkedListBox1.Items.Clear();
 
-            _employees = _dataBase.GetEmployeeShortInfo("select distinct e.employeeid, e.ism, e.familiya, e.otchestvo, e.otdel, e.lavozim from employee e inner join control_doors cd on e.employeeid = cd.employeeid where e.department <@ '"
-                + treeView1.SelectedNode.Name + "' order by e.employeeid desc");
+            _employees = _dataBase.GetEmployeeShortInfo(query);
 
             if (_employees.Count < 1)
                 return;
@@ -76,17 +85,13 @@ namespace AsmeFace.Forms
             {
                 checkedListBox1.Items.Add(_employees[i].Familiya + " " + _employees[i].Ism);
             }
-            RetriveGrafik();
-        }        
+        }
 
-        private void RetriveGrafik()
+        private void RetriveGrafik(string query)
         {
             dataGridView1.Rows.Clear();
 
-            var employees = _dataBase.GetEmployeeGrafikSingle(
-                "select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.grafik_nomi " +
-                "from employee t1 inner join access_employee t2 on t1.employeeid = t2.employeeid where " +
-                "t1.department <@ '" + treeView1.SelectedNode.Name + "'");
+            var employees = _dataBase.GetEmployeeAccessGrafik(query);
 
             if (employees.Count < 1)
                 return;
@@ -137,17 +142,17 @@ namespace AsmeFace.Forms
             var query = "select exists(select 1 from access_employee where employeeid = " + userID + ")";
 
             if (_dataBase.CheckDB(query))
-                _dataBase.InsertData("update access_employee set grafik_nomi = '" + comboBox1.Text.Trim() + "' where employeeid = " + userID);
+                _dataBase.InsertData("update access_employee set access_grafik_nomi = '" + comboBox1.Text.Trim() + "' where employeeid = " + userID);
             else
-                _dataBase.InsertData("insert into access_employee (employeeid, grafik_nomi) values(" + userID + ",'" + comboBox1.Text.Trim() + "')");
+                _dataBase.InsertData("insert into access_employee (employeeid, access_grafik_nomi) values(" + userID + ",'" + comboBox1.Text.Trim() + "')");
         }
 
         private int UpdateDevice(int userID)
         {
             var accesses = _dataBase.GetAccess(
-                "select ae.employeeid, e.card, ag.access_group_id, ae.grafik_nomi, d.device_ip " +
+                "select ae.employeeid, e.card, ag.id, ae.access_grafik_nomi, d.device_ip " +
                 "from access_employee ae " +
-                "inner join access_group ag on ae.grafik_nomi = ag.grafik_nomi " +
+                "inner join access_group ag on ae.access_grafik_nomi = ag.access_grafik_nomi " +
                 "inner join control_doors cd on cd.employeeid = ae.employeeid " +
                 "inner join devices d on d.device_mac = cd.device_mac " +
                 "inner join employee e on e.employeeid = ae.employeeid " +
@@ -168,33 +173,67 @@ namespace AsmeFace.Forms
 
                 for (int i = 0; i < 7; i++)
                 {
-                    var grafiks = _dataBase.GetGrafik("select *from grafik where grafik_nomi = '" + access.Grafik + "' and kun = " + (i + 1));
+                    var grafiks = _dataBase.GetAccessGrafik("select *from access_grafik where access_grafik_nomi = '" + access.Grafik + "' and kun = " + (i + 1));
 
                     foreach (var grafik in grafiks)
                     {
-                        if (!string.IsNullOrEmpty(grafik.Smena_tugashi))
+                        CustomLog.WriteToFile(i + 
+                            " Boshlanishi1: " + grafik.Boshlanishi1 + "\n\r" +
+                            " Tugashi1: " + grafik.Tugashi1 + "\n\r" +
+                            " Boshlanishi2: " + grafik.Boshlanishi2 + "\n\r" +
+                            " Tugashi2: " + grafik.Tugashi2 + "\n\r" +
+                            " Boshlanishi3: " + grafik.Boshlanishi3 + "\n\r" +
+                            " Tugashi3: " + grafik.Tugashi3 + "\n\r" 
+                            );
+                        if (!string.IsNullOrEmpty(grafik.Boshlanishi1) && !string.IsNullOrEmpty(grafik.Tugashi1))
                         {
-                            week.aDaySeg[i, 0].byStartHour = (byte)Convert.ToInt32(grafik.Smena_boshlanishi.Substring(0, 2));
-                            week.aDaySeg[i, 0].byStartMinute = (byte)Convert.ToInt32(grafik.Smena_boshlanishi.Substring(3, 2));
-                            week.aDaySeg[i, 0].byEndHour = (byte)Convert.ToInt32(grafik.Smena_tugashi.Substring(0, 2));
-                            week.aDaySeg[i, 0].byEndMinute = (byte)Convert.ToInt32(grafik.Smena_tugashi.Substring(3, 2));                           
+                            week.aDaySeg[i, 0].byStartHour = (byte)Convert.ToInt32(grafik.Boshlanishi1.Substring(0, 2));
+                            week.aDaySeg[i, 0].byStartMinute = (byte)Convert.ToInt32(grafik.Boshlanishi1.Substring(3, 2));
+                            week.aDaySeg[i, 0].byEndHour = (byte)Convert.ToInt32(grafik.Tugashi1.Substring(0, 2));
+                            week.aDaySeg[i, 0].byEndMinute = (byte)Convert.ToInt32(grafik.Tugashi1.Substring(3, 2));
                         }
                         else
                         {
                             week.aDaySeg[i, 0].byStartHour = 0;
-                            week.aDaySeg[i, 0].byStartMinute = 1;
-                            week.aDaySeg[i, 0].byEndHour = 0;
-                            week.aDaySeg[i, 0].byEndMinute = 2;
+                            week.aDaySeg[i, 0].byStartMinute = 0;
+                            week.aDaySeg[i, 0].byEndHour = 23;
+                            week.aDaySeg[i, 0].byEndMinute = 59;
                         }
-                        week.aDaySeg[i, 1].byStartHour = 0;
-                        week.aDaySeg[i, 1].byStartMinute = 0;
-                        week.aDaySeg[i, 1].byEndHour = 0;
-                        week.aDaySeg[i, 1].byEndMinute = 0;
 
-                        week.aDaySeg[i, 2].byStartHour = 0;
-                        week.aDaySeg[i, 2].byStartMinute = 0;
-                        week.aDaySeg[i, 2].byEndHour = 0;
-                        week.aDaySeg[i, 2].byEndMinute = 0;
+                        if (!string.IsNullOrEmpty(grafik.Boshlanishi2) && !string.IsNullOrEmpty(grafik.Tugashi2))
+                        {
+                            week.aDaySeg[i, 1].byStartHour = (byte)Convert.ToInt32(grafik.Boshlanishi2.Substring(0, 2));
+                            week.aDaySeg[i, 1].byStartMinute = (byte)Convert.ToInt32(grafik.Boshlanishi2.Substring(3, 2));
+                            week.aDaySeg[i, 1].byEndHour = (byte)Convert.ToInt32(grafik.Tugashi2.Substring(0, 2));
+                            week.aDaySeg[i, 1].byEndMinute = (byte)Convert.ToInt32(grafik.Tugashi2.Substring(3, 2));
+                        }
+                        else
+                        {
+                            week.aDaySeg[i, 1].byStartHour = 0;
+                            week.aDaySeg[i, 1].byStartMinute = 0;
+                            week.aDaySeg[i, 1].byEndHour = 0;
+                            week.aDaySeg[i, 1].byEndMinute = 0;
+                        }
+
+                        if (!string.IsNullOrEmpty(grafik.Boshlanishi3) && !string.IsNullOrEmpty(grafik.Tugashi3))
+                        {
+                            week.aDaySeg[i, 2].byStartHour = (byte)Convert.ToInt32(grafik.Boshlanishi3.Substring(0, 2));
+                            week.aDaySeg[i, 2].byStartMinute = (byte)Convert.ToInt32(grafik.Boshlanishi3.Substring(3, 2));
+                            week.aDaySeg[i, 2].byEndHour = (byte)Convert.ToInt32(grafik.Tugashi3.Substring(0, 2));
+                            week.aDaySeg[i, 2].byEndMinute = (byte)Convert.ToInt32(grafik.Tugashi3.Substring(3, 2));
+                        }
+                        else
+                        {
+                            week.aDaySeg[i, 2].byStartHour = 0;
+                            week.aDaySeg[i, 2].byStartMinute = 0;
+                            week.aDaySeg[i, 2].byEndHour = 0;
+                            week.aDaySeg[i, 2].byEndMinute = 0;
+                        }
+
+                        //week.aDaySeg[i, 2].byStartHour = 0;
+                        //week.aDaySeg[i, 2].byStartMinute = 0;
+                        //week.aDaySeg[i, 2].byEndHour = 0;
+                        //week.aDaySeg[i, 2].byEndMinute = 0;
                     }
                 }
 
@@ -230,9 +269,9 @@ namespace AsmeFace.Forms
         private int UpdateDeviceForDefault(int userID)
         {
             var accesses = _dataBase.GetAccess(
-                "select ae.employeeid, e.card, ag.access_group_id, ae.grafik_nomi, d.device_ip " +
+                "select ae.employeeid, e.card, ag.id, ae.access_grafik_nomi, d.device_ip " +
                 "from access_employee ae " +
-                "inner join access_group ag on ae.grafik_nomi = ag.grafik_nomi " +
+                "inner join access_group ag on ae.access_grafik_nomi = ag.access_grafik_nomi " +
                 "inner join control_doors cd on cd.employeeid = ae.employeeid " +
                 "inner join devices d on d.device_mac = cd.device_mac " +
                 "inner join employee e on e.employeeid = ae.employeeid " +
@@ -289,7 +328,8 @@ namespace AsmeFace.Forms
                     return;
                 }
                 _dataBase.InsertData("delete from access_employee where employeeid = " + userID);
-                RetriveGrafik();
+                dataGridView1.Rows.Clear();
+                //RetriveGrafik();
             }
         }
 
@@ -299,6 +339,19 @@ namespace AsmeFace.Forms
             {
                 checkedListBox1.SetItemChecked(i, checkBox1.Checked);
             }
+        }
+
+        private void SearchTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SearchTextBox.Text))
+                return;
+
+            GetEmployee("select distinct e.employeeid, e.ism, e.familiya, e.otchestvo, e.otdel, e.lavozim from employee e inner join control_doors cd on e.employeeid = cd.employeeid where e.familiya ILIKE'"
+                        + SearchTextBox.Text + "%' and e.status = true order by e.employeeid desc");
+
+            RetriveGrafik("select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.access_grafik_nomi " +
+                            "from employee t1 inner join access_employee t2 on t1.employeeid = t2.employeeid where " +
+                            "t1.familiya ILIKE '" + SearchTextBox.Text + "%' and t1.status = true");
         }
     }
 }

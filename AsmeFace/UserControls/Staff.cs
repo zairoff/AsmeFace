@@ -140,6 +140,17 @@ namespace AsmeFace.UserControls
                         + device.dwIPAddress +
                         " : " + _asmeDevice.GetResponse(nRes));
                     return false;
+                }               
+
+                nRes = _asmeDevice.DeleteCard(userID);
+
+                if (nRes < 0)
+                {
+                    CustomMessageBox.Error("Failed to delete card, device "
+                        + device.dwIPAddress +
+                        " : " + _asmeDevice.GetResponse(nRes));
+                    _asmeDevice.CloseDevice();
+                    return false;
                 }
 
                 if (device.dwType.Equals("Face"))
@@ -167,17 +178,6 @@ namespace AsmeFace.UserControls
                         _asmeDevice.CloseDevice();
                         return false;
                     }
-                }
-
-                nRes = _asmeDevice.DeleteCard(userID);
-
-                if (nRes < 0)
-                {
-                    CustomMessageBox.Error("Failed to delete card, device "
-                        + device.dwIPAddress +
-                        " : " + _asmeDevice.GetResponse(nRes));
-                    _asmeDevice.CloseDevice();
-                    return false;
                 }
             }
 

@@ -139,7 +139,7 @@ namespace AsmeFace.UserControls
             }        
             
             // Need to finde alternatives, it's in rush
-            if(_dataBase.CheckDB("select exists(select 1 from grafik_employee where grafik_nomi = '" + textBox1.Text.Trim() + "')"))
+            if(_dataBase.CheckDB("select exists(select 1 from grafik_employee where grafik_nomi = '" + listBox1.Items[listBox1.SelectedIndex].ToString() + "')"))
             {
                 CustomMessageBox.Warning("График исползуется");
                 return;

@@ -432,8 +432,8 @@ namespace AsmeFace
                         {
                             Employeeid = Convert.ToInt32(reader["employeeid"]),
                             Card = reader["card"].ToString(),
-                            GroupID = Convert.ToInt32(reader["access_group_id"]),
-                            Grafik = reader["grafik_nomi"].ToString(),
+                            GroupID = Convert.ToInt32(reader["id"]),
+                            Grafik = reader["access_grafik_nomi"].ToString(),
                             DeviceIp = reader["device_ip"].ToString()
                         };
                         acceses.Add(access);
@@ -441,6 +441,91 @@ namespace AsmeFace
                 }
             }
             return acceses;
-        }        
+        }
+
+        public System.Collections.Generic.List<AccessSmenaClass> GetAccessSmenas(string query)
+        {
+            var accessSmenas = new System.Collections.Generic.List<AccessSmenaClass>();
+            using (var connection = new Npgsql.NpgsqlConnection(Helper.CnnVal("DBConnection")))
+            {
+                using (var cmd = new Npgsql.NpgsqlCommand(query, connection))
+                {
+                    connection.Open();
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var accessSmena = new AccessSmenaClass
+                        {
+                            AccessSmenaNomi = reader["access_smena_nomi"].ToString(),
+                            Boshlanishi1 = reader["boshlanishi_1"].ToString(),
+                            Tugashi1 = reader["tugashi_1"].ToString(),
+                            Boshlanishi2 = reader["boshlanishi_2"].ToString(),
+                            Tugashi2 = reader["tugashi_2"].ToString(),
+                            Boshlanishi3 = reader["boshlanishi_3"].ToString(),
+                            Tugashi3 = reader["tugashi_3"].ToString(),
+                        };
+                        accessSmenas.Add(accessSmena);
+                    }
+                }
+            }
+            return accessSmenas;
+        }
+
+        public System.Collections.Generic.List<AccessGrafikClass> GetAccessGrafik(string query)
+        {
+            var grafiks = new System.Collections.Generic.List<AccessGrafikClass>();
+            using (var connection = new Npgsql.NpgsqlConnection(Helper.CnnVal("DBConnection")))
+            {
+                using (var cmd = new Npgsql.NpgsqlCommand(query, connection))
+                {
+                    connection.Open();
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var grafik = new AccessGrafikClass
+                        {
+                            AccessSmenaNomi = reader[0].ToString(),
+                            Boshlanishi1 = reader[1].ToString(),
+                            Tugashi1 = reader[2].ToString(),
+                            Boshlanishi2 = reader[3].ToString(),
+                            Tugashi2 = reader[4].ToString(),
+                            Boshlanishi3 = reader[5].ToString(),
+                            Tugashi3 = reader[6].ToString(),
+                            Kun = reader[7].ToString()
+                        };
+                        grafiks.Add(grafik);
+                    }
+                }
+            }
+            return grafiks;
+        }
+
+        public System.Collections.Generic.List<EmployeeGrafik> GetEmployeeAccessGrafik(string query)
+        {
+            var grafiks = new System.Collections.Generic.List<EmployeeGrafik>();
+            using (var connection = new Npgsql.NpgsqlConnection(Helper.CnnVal("DBConnection")))
+            {
+                using (var cmd = new Npgsql.NpgsqlCommand(query, connection))
+                {
+                    connection.Open();
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var grafik = new EmployeeGrafik
+                        {
+                            ID = System.Convert.ToInt32(reader["employeeid"]),
+                            Familiya = reader["familiya"].ToString(),
+                            Ism = reader["ism"].ToString(),
+                            Otchestvo = reader["otchestvo"].ToString(),
+                            Otdel = reader["otdel"].ToString(),
+                            Lavozim = reader["lavozim"].ToString(),
+                            Grafik = reader["access_grafik_nomi"].ToString()
+                        };
+                        grafiks.Add(grafik);
+                    }
+                }
+            }
+            return grafiks;
+        }
     }    
 }

@@ -30,14 +30,6 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.SearchTextBox = new System.Windows.Forms.TextBox();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.label1 = new System.Windows.Forms.Label();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +40,14 @@
             this.Column8 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.SearchTextBox = new System.Windows.Forms.TextBox();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -95,6 +95,63 @@
             this.dataGridView1.Size = new System.Drawing.Size(593, 448);
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Фото";
+            this.Column1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "ID";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Фамилия";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Имя";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Отчество";
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Отдел";
+            this.Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Должность";
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Изменить";
+            this.Column8.Name = "Column8";
+            this.Column8.Text = "Изменить";
+            this.Column8.UseColumnTextForLinkValue = true;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Увольнение";
+            this.Column9.Name = "Column9";
+            this.Column9.Text = "Увольнение";
+            this.Column9.UseColumnTextForLinkValue = true;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Удалить";
+            this.Column10.Name = "Column10";
+            this.Column10.Text = "Удалить";
+            this.Column10.UseColumnTextForLinkValue = true;
             // 
             // panel2
             // 
@@ -179,6 +236,7 @@
             this.treeView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(78)))));
             this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.treeView1.Location = new System.Drawing.Point(6, 49);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(246, 480);
@@ -196,63 +254,6 @@
             this.label1.Size = new System.Drawing.Size(593, 31);
             this.label1.TabIndex = 6;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Фото";
-            this.Column1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "ID";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Фамилия";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Имя";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Отчество";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Отдел";
-            this.Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Должность";
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Изменить";
-            this.Column8.Name = "Column8";
-            this.Column8.Text = "Изменить";
-            this.Column8.UseColumnTextForLinkValue = true;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Увольнение";
-            this.Column9.Name = "Column9";
-            this.Column9.Text = "Увольнение";
-            this.Column9.UseColumnTextForLinkValue = true;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "Удалить";
-            this.Column10.Name = "Column10";
-            this.Column10.Text = "Удалить";
-            this.Column10.UseColumnTextForLinkValue = true;
             // 
             // Staff
             // 

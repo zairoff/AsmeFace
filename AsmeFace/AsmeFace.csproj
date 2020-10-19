@@ -78,6 +78,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Access.cs" />
+    <Compile Include="AccessGrafikClass.cs" />
+    <Compile Include="AccessSmenaClass.cs" />
     <Compile Include="AsmeDevice.cs" />
     <Compile Include="CustomMessageBox.cs" />
     <Compile Include="DeviceFace.cs" />
@@ -89,6 +91,18 @@
     </Compile>
     <Compile Include="Forms\AccessForm.Designer.cs">
       <DependentUpon>AccessForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AccessGrafik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AccessGrafik.Designer.cs">
+      <DependentUpon>AccessGrafik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AccessSmena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AccessSmena.Designer.cs">
+      <DependentUpon>AccessSmena.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\AddedDoors.cs">
       <SubType>Form</SubType>
@@ -116,12 +130,6 @@
     <Compile Include="Forms\DeviceFace.Designer.cs">
       <DependentUpon>DeviceFace.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DeviceSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DeviceSettings.Designer.cs">
-      <DependentUpon>DeviceSettings.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\DoorControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,12 +154,6 @@
     </Compile>
     <Compile Include="Forms\EmployeeInDevice.Designer.cs">
       <DependentUpon>EmployeeInDevice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Retireds.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Retireds.Designer.cs">
-      <DependentUpon>Retireds.cs</DependentUpon>
     </Compile>
     <Compile Include="GetTree.cs" />
     <Compile Include="Forms\GrafikView.cs">
@@ -237,6 +239,12 @@
     <EmbeddedResource Include="Forms\AccessForm.resx">
       <DependentUpon>AccessForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AccessGrafik.resx">
+      <DependentUpon>AccessGrafik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AccessSmena.resx">
+      <DependentUpon>AccessSmena.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddedDoors.resx">
       <DependentUpon>AddedDoors.cs</DependentUpon>
     </EmbeddedResource>
@@ -248,9 +256,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DeviceFace.resx">
       <DependentUpon>DeviceFace.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DeviceSettings.resx">
-      <DependentUpon>DeviceSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DoorControl.resx">
       <DependentUpon>DoorControl.cs</DependentUpon>
@@ -269,9 +274,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Retireds.resx">
-      <DependentUpon>Retireds.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Sync.resx">
       <DependentUpon>Sync.cs</DependentUpon>
