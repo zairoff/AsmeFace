@@ -101,24 +101,24 @@ namespace AsmeFace.UserControls
             if (dataGridView1.CurrentCell.ColumnIndex.Equals(8) && e.RowIndex != -1)
             {
                 if (UpdateOrDeleteEmployee(userID, "update employee set status = false where employeeid = " + userID))
-                {
-                    RetriveData("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
-                                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
-                    ShowEmployeeCount();
-                }                  
-
+                    dataGridView1.Rows.Clear();
+                //{
+                //    RetriveData("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
+                //                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
+                //    ShowEmployeeCount();
+                //}
                 return;
             }
 
             if (dataGridView1.CurrentCell.ColumnIndex.Equals(9) && e.RowIndex != -1)
             {
                 if (UpdateOrDeleteEmployee(userID, "delete from employee where employeeid = " + userID))
-                {
-                    RetriveData("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
-                                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
-                    ShowEmployeeCount();
-                }                
-
+                    dataGridView1.Rows.Clear();
+                //{
+                //    RetriveData("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
+                //                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
+                //    ShowEmployeeCount();
+                //}                
                 return;
             }            
         }

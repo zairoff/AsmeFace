@@ -256,8 +256,8 @@ namespace AsmeFace
                             Otdel = reader["otdel"].ToString(),
                             Lavozim = reader["lavozim"].ToString(),
                             Grafik = reader["grafik_nomi"].ToString(),
-                            Dan = reader["dan"].ToString(),
-                            Gacha = reader["gacha"].ToString()
+                            Dan = ((DateTime)reader["dan"]).ToString("yyyy-MM-dd HH:mm:ss"),
+                            Gacha = ((DateTime)reader["gacha"]).ToString("yyyy-MM-dd HH:mm:ss")
                         };
                         mySmenas.Add(deviceInfo);
                     }

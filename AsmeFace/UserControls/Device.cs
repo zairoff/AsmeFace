@@ -280,8 +280,6 @@ namespace AsmeFace.UserControls
         private void label9_Click(object sender, EventArgs e)
         {
             new Forms.AccessGrafik().Show();
-        }
-
-        
+        }        
     }
 }

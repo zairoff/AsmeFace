@@ -390,7 +390,7 @@ namespace AsmeFace
             address.IPV4.dwIPAddress = StrIpToUint(ip);
             address.IPV4.wServicePort = 50000;
             int dType = -1;
-            return asc_SDKAPI.AS_ME_OpenController((uint)dType, ref address, 0,
+            return asc_SDKAPI.AS_ME_OpenController((int)dType, ref address, 0,
                    asc_STU.AS_ME_NO_PASSWORD, ref OpenControllerStop, ref m_hController);
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace AsmeFace.UserControls
 {
@@ -126,24 +127,31 @@ namespace AsmeFace.UserControls
             if (dataGridView1.Rows.Count < 1)
                 return;
 
-            if (dataGridView1.CurrentCell.ColumnIndex.Equals(7) && e.RowIndex != -1)
+            try
             {
-                _dataBase.InsertData("delete from grafik_employee where grafik_nomi = '" + dataGridView1[4,
-                    dataGridView1.CurrentRow.Index].Value.ToString() + "' and employeeid = " + System.Convert.ToInt32(dataGridView1[0,
-                    dataGridView1.CurrentRow.Index].Value) + " and dan = '" + dataGridView1[5,
-                    dataGridView1.CurrentRow.Index].Value.ToString() + "' and gacha = '" + dataGridView1[6,
-                    dataGridView1.CurrentRow.Index].Value.ToString() + "'");
+                if (dataGridView1.CurrentCell.ColumnIndex.Equals(7) && e.RowIndex != -1)
+                {
+                    _dataBase.InsertData("delete from grafik_employee where grafik_nomi = '" + dataGridView1[4,
+                        dataGridView1.CurrentRow.Index].Value.ToString() + "' and employeeid = " + System.Convert.ToInt32(dataGridView1[0,
+                        dataGridView1.CurrentRow.Index].Value) + " and dan = '" + dataGridView1[5,
+                        dataGridView1.CurrentRow.Index].Value.ToString() + "' and gacha = '" + dataGridView1[6,
+                        dataGridView1.CurrentRow.Index].Value.ToString() + "'");
                     //RetriveGrafik();
-                return;
-            }
+                    return;
+                }
 
-            if (dataGridView1.CurrentCell.ColumnIndex.Equals(8) && e.RowIndex != -1)
-            {
-                new Forms.GrafikView(System.Convert.ToInt32(dataGridView1[0, dataGridView1.CurrentRow.Index].Value),
-                    dataGridView1[4, dataGridView1.CurrentRow.Index].Value.ToString(),
-                    dataGridView1[5, dataGridView1.CurrentRow.Index].Value.ToString(),
-                    dataGridView1[6, dataGridView1.CurrentRow.Index].Value.ToString()).ShowDialog();
+                if (dataGridView1.CurrentCell.ColumnIndex.Equals(8) && e.RowIndex != -1)
+                {
+                    new Forms.GrafikView(System.Convert.ToInt32(dataGridView1[0, dataGridView1.CurrentRow.Index].Value),
+                        dataGridView1[4, dataGridView1.CurrentRow.Index].Value.ToString(),
+                        dataGridView1[5, dataGridView1.CurrentRow.Index].Value.ToString(),
+                        dataGridView1[6, dataGridView1.CurrentRow.Index].Value.ToString()).ShowDialog();
+                }
             }
+            catch (Exception msg)
+            {
+                CustomMessageBox.Error(msg.ToString());
+            }            
         }
 
         private void RetriveGrafik(string query)
