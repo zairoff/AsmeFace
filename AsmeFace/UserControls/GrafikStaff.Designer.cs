@@ -113,7 +113,7 @@
             this.SearchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.SearchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchTextBox.ForeColor = System.Drawing.Color.Silver;
-            this.SearchTextBox.Location = new System.Drawing.Point(33, 8);
+            this.SearchTextBox.Location = new System.Drawing.Point(33, 6);
             this.SearchTextBox.Multiline = true;
             this.SearchTextBox.Name = "SearchTextBox";
             this.SearchTextBox.Size = new System.Drawing.Size(208, 18);

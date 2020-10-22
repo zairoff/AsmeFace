@@ -167,11 +167,10 @@ namespace AsmeFace.Forms
             if (employee.Finger != null && string.Equals(device.dwType, "Finger"))
             {
                 CustomLog.WriteToFile("FINGER");
-                //IntPtr unmanagedPointer = Marshal.AllocHGlobal(employee.Finger.Length);
-                //Marshal.Copy(employee.Finger, 0, unmanagedPointer, employee.Finger.Length);
-                //var unmanagedPointer = new byte[570];
-                nRes = _asmeDevice.SetFinger(employee.ID, employee.Finger);
-                //Marshal.FreeHGlobal(unmanagedPointer);
+                var unmanagedPointer = Marshal.AllocHGlobal(employee.Finger.Length);
+                Marshal.Copy(employee.Finger, 0, unmanagedPointer, employee.Finger.Length);                
+                nRes = _asmeDevice.SetFinger(employee.ID, unmanagedPointer);
+                Marshal.FreeHGlobal(unmanagedPointer);
 
                 if (nRes < 0)
                 {

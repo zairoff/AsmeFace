@@ -21,6 +21,7 @@ namespace AsmeFace.UserControls
         private DataBase _dataBase;
         private GetTree _tree;
         private System.Collections.Generic.List<EmployeeShortInfo> _employeeShortInfo;
+        private string query;
 
         private void FillTree()
         {
@@ -38,7 +39,7 @@ namespace AsmeFace.UserControls
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            var query = "select employeeid, familiya, ism, otchestvo, otdel, " +
+            query = "select employeeid, familiya, ism, otchestvo, otdel, " +
                 "lavozim from employee where department <@ '" + treeView1.SelectedNode.Name + "' and status = true";
 
             GetEmployee(query);
@@ -136,7 +137,8 @@ namespace AsmeFace.UserControls
                         dataGridView1.CurrentRow.Index].Value) + " and dan = '" + dataGridView1[5,
                         dataGridView1.CurrentRow.Index].Value.ToString() + "' and gacha = '" + dataGridView1[6,
                         dataGridView1.CurrentRow.Index].Value.ToString() + "'");
-                    //RetriveGrafik();
+
+                    RetriveGrafik(query);
                     return;
                 }
 
@@ -194,7 +196,7 @@ namespace AsmeFace.UserControls
 
             var searchQuery = SearchTextBox.Text.Trim();
 
-            var query = "select employeeid, familiya, ism, otchestvo, otdel, lavozim from employee where familiya ILIKE '" +
+            query = "select employeeid, familiya, ism, otchestvo, otdel, lavozim from employee where familiya ILIKE '" +
                 searchQuery + "%' and status = true";
 
             GetEmployee(query);

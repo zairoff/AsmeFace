@@ -24,6 +24,7 @@ namespace AsmeFace.Forms
         private DataBase _dataBase;
         private GetTree _tree;
         private AsmeDevice _asmeDevice;
+        private string query;
 
         private void FillTree()
         {
@@ -41,17 +42,18 @@ namespace AsmeFace.Forms
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            RetriveData();
-        }
-
-        private void RetriveData()
-        {
-            var employees = _dataBase.GetEmployeeInDevices(
-                "select t2.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t3.device_mac, t3.device_ip, t3.device_type," +
+            query = "select t2.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t3.device_mac, t3.device_ip, t3.device_type," +
                 "t3.device_status, t3.device_door from control_doors t2 " +
                 "inner join employee t1 on t1.employeeid = t2.employeeid " +
                 "inner join devices t3 on t3.device_mac = t2.device_mac " +
-                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
+                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc";
+
+            RetriveData(query);
+        }
+
+        private void RetriveData(string query)
+        {
+            var employees = _dataBase.GetEmployeeInDevices(query);
 
             dataGridView1.Rows.Clear();
 
@@ -124,7 +126,7 @@ namespace AsmeFace.Forms
                     Convert.ToInt32(dataGridView1.CurrentRow.Cells[5].Value)))
                 {
                     CustomMessageBox.Info("Выполнено успещно");
-                    RetriveData();
+                    RetriveData(query);
                 }
             }
         }
@@ -132,6 +134,20 @@ namespace AsmeFace.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void SearchTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SearchTextBox.Text))
+                return;
+
+            query = "select t2.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t3.device_mac, t3.device_ip, t3.device_type," +
+                    "t3.device_status, t3.device_door from control_doors t2 " +
+                    "inner join employee t1 on t1.employeeid = t2.employeeid " +
+                    "inner join devices t3 on t3.device_mac = t2.device_mac " +
+                    "where t1.familiya ILIKE '" + SearchTextBox.Text.Trim() + "%' and status = true order by employeeid desc";
+
+            RetriveData(query);
         }
     }
 }

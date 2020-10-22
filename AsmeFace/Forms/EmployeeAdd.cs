@@ -168,25 +168,31 @@ namespace AsmeFace.Forms
             try
             {
                 textBox8.Text = "";
-                int nRes = _asmeDevice.OpenDevice(System.Configuration.ConfigurationManager.AppSettings["finger"].ToString());
+                int nRes = _asmeDevice.OpenDevice(System.Configuration.ConfigurationManager.AppSettings["finger"]);
                 if (nRes < 0)
                 {
                     CustomMessageBox.Error("Failed to open the device " + nRes);
                     return;
                 }
 
-                var managedArray = new byte[570];
-                nRes = _asmeDevice.ReadFinger(managedArray);
+                //var managedArray = new byte[570];
+                var unmanagedPointer = Marshal.AllocHGlobal(570);
+                //Marshal.Copy(employee.Finger, 0, unmanagedPointer, employee.Finger.Length);
+                
+                nRes = _asmeDevice.ReadFinger(unmanagedPointer);
                 if (nRes < 0)
                 {
                     CustomMessageBox.Error("Failed to read fingerprint " + nRes);
+                    Marshal.FreeHGlobal(unmanagedPointer);
                     _asmeDevice.CloseDevice();
                     return;
-                }
+                }             
 
                 _asmeDevice.CloseDevice();
-
+                var managedArray = new byte[570];
+                Marshal.Copy(unmanagedPointer, managedArray, 0, 570);
                 textBox8.Text = Convert.ToBase64String(managedArray);
+                Marshal.FreeHGlobal(unmanagedPointer);
             }
             catch (Exception msg)
             {

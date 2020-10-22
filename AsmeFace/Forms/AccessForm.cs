@@ -27,6 +27,7 @@ namespace AsmeFace.Forms
         private readonly GetTree _getTree;        
         private List<EmployeeShortInfo> _employees;
         private readonly AsmeDevice _asmeDevice;
+        private string query;
 
         private void GetGrafik()
         {
@@ -67,9 +68,11 @@ namespace AsmeFace.Forms
             GetEmployee("select distinct e.employeeid, e.ism, e.familiya, e.otchestvo, e.otdel, e.lavozim from employee e inner join control_doors cd on e.employeeid = cd.employeeid where e.department <@ '"
                 + treeView1.SelectedNode.Name + "' and e.status = true order by e.employeeid desc");
 
-            RetriveGrafik("select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.access_grafik_nomi " +
+            query = "select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.access_grafik_nomi " +
                 "from employee t1 inner join access_employee t2 on t1.employeeid = t2.employeeid where " +
-                "t1.department <@ '" + treeView1.SelectedNode.Name + "' and t1.status = true");
+                "t1.department <@ '" + treeView1.SelectedNode.Name + "' and t1.status = true";
+
+            RetriveGrafik(query);
         }        
 
         private void GetEmployee(string query)
@@ -328,8 +331,7 @@ namespace AsmeFace.Forms
                     return;
                 }
                 _dataBase.InsertData("delete from access_employee where employeeid = " + userID);
-                dataGridView1.Rows.Clear();
-                //RetriveGrafik();
+                RetriveGrafik(query);
             }
         }
 
@@ -349,9 +351,11 @@ namespace AsmeFace.Forms
             GetEmployee("select distinct e.employeeid, e.ism, e.familiya, e.otchestvo, e.otdel, e.lavozim from employee e inner join control_doors cd on e.employeeid = cd.employeeid where e.familiya ILIKE'"
                         + SearchTextBox.Text + "%' and e.status = true order by e.employeeid desc");
 
-            RetriveGrafik("select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.access_grafik_nomi " +
+            query = "select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.access_grafik_nomi " +
                             "from employee t1 inner join access_employee t2 on t1.employeeid = t2.employeeid where " +
-                            "t1.familiya ILIKE '" + SearchTextBox.Text + "%' and t1.status = true");
+                            "t1.familiya ILIKE '" + SearchTextBox.Text + "%' and t1.status = true";
+
+            RetriveGrafik(query);
         }
     }
 }

@@ -441,37 +441,45 @@ namespace AsmeFace
             return asc_SDKAPI.AS_ME_SetCard(m_hController, UserID, bIgnoreCardNum, dw64CardNum, bSearch, ref pParam);
         }
 
-        public int ReadFinger(byte[] intPtr)
+        public int ReadFinger(IntPtr intPtr)
         {
             return asc_SDKAPI.AS_ME_ReadFingerprint(m_hController, intPtr);
         }
 
-        public int SetFinger(int userID, byte[] intPtr)
+        public int SetFinger(int userID, IntPtr intPtr)
         {           
             return asc_SDKAPI.AS_ME_SetFingerprint(m_hController, true, userID, 0, intPtr);
         }
 
         public int DeleteFinger(int userID)
         {
-            return asc_SDKAPI.AS_ME_SetFingerprint(m_hController, true, userID, 0, null);
+            return asc_SDKAPI.AS_ME_SetFingerprint(m_hController, true, userID, 0, IntPtr.Zero);
         }
 
         public int WriteFace(byte[] photo, int userID)
         {      
             var temp = new byte[1080];
-            int nRes = asc_SDKAPI.AS_ME_ReadFaceByPhoto(m_hController, photo, photo.Length, temp);
 
+            var photoInptr = Marshal.AllocHGlobal(photo.Length);
+            Marshal.Copy(photo, 0, photoInptr, photo.Length);
+            var pTemplate = Marshal.AllocHGlobal(asc_STU.AS_ME_FACE_TEMPLATE_SIZE);            
+
+            int nRes = asc_SDKAPI.AS_ME_ReadFaceByPhoto(m_hController, photoInptr, photo.Length, pTemplate);
+            
             if (nRes < 0)
             {
                 CustomLog.WriteToFile("Error: AsmeDevice AS_ME_ReadFaceByPhoto " + nRes);
                 asc_SDKAPI.AS_ME_CloseController(m_hController);
                 m_hController = IntPtr.Zero;
+                Marshal.FreeHGlobal(photoInptr);
+                Marshal.FreeHGlobal(pTemplate);
                 return nRes;
             }
 
-            nRes = asc_SDKAPI.AS_ME_SetFaceByPhoto(m_hController, false, userID, photo.Length, photo,
-                userID.ToString());
+            nRes = asc_SDKAPI.AS_ME_SetFaceByPhoto(m_hController, false, userID, photo.Length, photoInptr, userID.ToString().ToCharArray());
 
+            Marshal.FreeHGlobal(photoInptr);
+            Marshal.FreeHGlobal(pTemplate);
             if (nRes < 0)
             {
                 CustomLog.WriteToFile("Error: AsmeDevice Failed AS_ME_SetFaceByPhoto " + nRes);
@@ -501,12 +509,12 @@ namespace AsmeFace
             pParam.nGroup = 0;
             pParam.szPassword = IntPtr.Zero;
 
-            return asc_SDKAPI.AS_ME_SetFaceByPhoto(m_hController, bSearch, userID, 0, null, userID.ToString());
+            return asc_SDKAPI.AS_ME_SetFaceByPhoto(m_hController, bSearch, userID, 0, IntPtr.Zero, userID.ToString().ToCharArray());
         }
 
         public int DeleteFace(int userID)
         {
-            return asc_SDKAPI.AS_ME_SetFace(m_hController, true, userID, null, userID.ToString());
+            return asc_SDKAPI.AS_ME_SetFace(m_hController, true, userID, IntPtr.Zero, userID.ToString().ToCharArray());
         }
 
         public int DeleteAllFace()

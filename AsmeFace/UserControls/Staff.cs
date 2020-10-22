@@ -17,6 +17,7 @@ namespace AsmeFace.UserControls
         private DataBase _dataBase;
         private GetTree _tree;
         private AsmeDevice _asmeDevice;
+        private string query;
 
         private void FillTree()
         {
@@ -39,9 +40,11 @@ namespace AsmeFace.UserControls
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            RetriveData("select employeeid," +
+            query = "select employeeid," +
                 "photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
-                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
+                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc";
+
+            RetriveData(query);
 
             ShowEmployeeCount();
         }
@@ -101,7 +104,7 @@ namespace AsmeFace.UserControls
             if (dataGridView1.CurrentCell.ColumnIndex.Equals(8) && e.RowIndex != -1)
             {
                 if (UpdateOrDeleteEmployee(userID, "update employee set status = false where employeeid = " + userID))
-                    dataGridView1.Rows.Clear();
+                    RetriveData(query);
                 //{
                 //    RetriveData("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
                 //                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
@@ -113,7 +116,7 @@ namespace AsmeFace.UserControls
             if (dataGridView1.CurrentCell.ColumnIndex.Equals(9) && e.RowIndex != -1)
             {
                 if (UpdateOrDeleteEmployee(userID, "delete from employee where employeeid = " + userID))
-                    dataGridView1.Rows.Clear();
+                    RetriveData(query);
                 //{
                 //    RetriveData("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
                 //                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
@@ -192,7 +195,7 @@ namespace AsmeFace.UserControls
             if (string.IsNullOrEmpty(SearchTextBox.Text))
                 return;
 
-            var query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
+            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
                 "where familiya ILIKE '" + SearchTextBox.Text.Trim() + "%' and status = true";
 
             RetriveData(query);

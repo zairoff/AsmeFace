@@ -178,11 +178,12 @@
             this.SearchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.SearchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchTextBox.ForeColor = System.Drawing.Color.Silver;
-            this.SearchTextBox.Location = new System.Drawing.Point(33, 7);
+            this.SearchTextBox.Location = new System.Drawing.Point(33, 6);
             this.SearchTextBox.Multiline = true;
             this.SearchTextBox.Name = "SearchTextBox";
             this.SearchTextBox.Size = new System.Drawing.Size(200, 22);
             this.SearchTextBox.TabIndex = 7;
+            this.SearchTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SearchTextBox_KeyUp);
             // 
             // EmployeeInDevice
             // 

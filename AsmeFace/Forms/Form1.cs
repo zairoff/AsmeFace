@@ -89,11 +89,22 @@ namespace AsmeFace.Forms
             {
                 Dock = DockStyle.Fill
             };
-
             ReplaseUserControl(staff);
         }
 
         private void button4_Click(object sender, System.EventArgs e)
+        {
+            if (grafik != null)
+                grafik.Dispose();
+
+            grafik = new UserControls.Grafik
+            {
+                Dock = DockStyle.Fill
+            };
+            ReplaseUserControl(grafik);            
+        }
+
+        private void button3_Click(object sender, System.EventArgs e)
         {
             if (programm_type == "2")
             {
@@ -117,18 +128,6 @@ namespace AsmeFace.Forms
                 };
                 ReplaseUserControl(_grafikSingle);
             }
-        }
-
-        private void button3_Click(object sender, System.EventArgs e)
-        {
-            if (grafik != null)
-                grafik.Dispose();
-
-            grafik = new UserControls.Grafik
-            {
-                Dock = DockStyle.Fill
-            };
-            ReplaseUserControl(grafik);
         }
 
         private void button7_Click(object sender, System.EventArgs e)
