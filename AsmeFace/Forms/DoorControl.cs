@@ -96,7 +96,7 @@ namespace AsmeFace.Forms
         {
             BeginInvoke(new MethodInvoker(delegate ()
             {
-                label4.Text = "Синхронизируется...";
+                label4.Text = Properties.Resources.DOOR_CONTROL_SYNCING;
                 button1.Enabled = false;
                 button2.Enabled = false;
             }));
@@ -122,7 +122,7 @@ namespace AsmeFace.Forms
 
             BeginInvoke(new MethodInvoker(delegate ()
             {
-                label4.Text = "Завершено";
+                label4.Text = Properties.Resources.DOOR_CONTROL_FINISHED;
                 button1.Enabled = true;
                 button2.Enabled = true;
             }));

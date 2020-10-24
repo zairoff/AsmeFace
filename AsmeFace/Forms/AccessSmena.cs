@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AsmeFace.Forms
@@ -28,7 +21,7 @@ namespace AsmeFace.Forms
 
             if (_dataBase.CheckDB("select exists(select 1 from access_smena where access_smena_nomi = '" + textBox1.Text.Trim() + "')"))
             {
-                CustomMessageBox.Info("Смена ограничения существует");
+                CustomMessageBox.Info(Properties.Resources.SCHEDULE_EXIST);
                 return;
             }
 

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AsmeFace.Forms
@@ -48,7 +41,7 @@ namespace AsmeFace.Forms
 
             if (_dataBase.CheckDB("select exists(select 1 from access_grafik where access_grafik_nomi = '" + textBox1.Text.Trim() + "')"))
             {
-                CustomMessageBox.Info("График сушествует");
+                CustomMessageBox.Info(textBox1.Text + " " + Properties.Resources.EXIST);
                 return;
             }
 
@@ -134,7 +127,7 @@ namespace AsmeFace.Forms
         {
             if (listBox1.SelectedItem == null)
             {
-                CustomMessageBox.Info("Выберите график");
+                CustomMessageBox.Info(Properties.Resources.SHIFT_CHOOSE);
                 return;
             }
 
@@ -142,7 +135,7 @@ namespace AsmeFace.Forms
             // Need to finde alternatives, it's in rush
             if (_dataBase.CheckDB("select exists(select 1 from access_employee where access_grafik_nomi = '" + grafik + "')"))
             {
-                CustomMessageBox.Warning("График исползуется");
+                CustomMessageBox.Warning(Properties.Resources.SHIFT_IN_USE);
                 return;
             }          
 

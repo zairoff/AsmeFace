@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace AsmeFace.UserControls
@@ -134,14 +133,15 @@ namespace AsmeFace.UserControls
         {
             if (listBox1.SelectedItem == null)
             {
-                CustomMessageBox.Info("Выберите график");
+                CustomMessageBox.Info(Properties.Resources.SHIFT_CHOOSE);
                 return;
-            }        
-            
+            }
+
+            var shift = listBox1.Items[listBox1.SelectedIndex].ToString();
             // Need to finde alternatives, it's in rush
-            if(_dataBase.CheckDB("select exists(select 1 from grafik_employee where grafik_nomi = '" + listBox1.Items[listBox1.SelectedIndex].ToString() + "')"))
+            if (_dataBase.CheckDB("select exists(select 1 from grafik_employee where grafik_nomi = '" + shift + "')"))
             {
-                CustomMessageBox.Warning("График исползуется");
+                CustomMessageBox.Warning(shift + " " + Properties.Resources.SHIFT_IN_USE);
                 return;
             }
 
@@ -152,8 +152,8 @@ namespace AsmeFace.UserControls
             //}            
 
             if (_dataBase.InsertData(
-                "delete from grafik where grafik_nomi = '" + listBox1.Items[listBox1.SelectedIndex].ToString() + "';" + 
-                "delete from grafik_employee where grafik_nomi = '" + listBox1.Items[listBox1.SelectedIndex].ToString() + "';" /*+
+                "delete from grafik where grafik_nomi = '" + shift + "';" + 
+                "delete from grafik_employee where grafik_nomi = '" + shift + "';" /*+
                 "delete from access_employee where grafik_nomi = '" + listBox1.Items[listBox1.SelectedIndex].ToString() + "';" +
                 "delete from access_group where grafik_nomi = '" + listBox1.Items[listBox1.SelectedIndex].ToString() + "';"*/))
             {

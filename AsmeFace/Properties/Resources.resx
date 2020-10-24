@@ -117,32 +117,146 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="GRAFIK_VIEW_FINISH" xml:space="preserve">
+    <value>Окончание</value>
+  </data>
+  <data name="LOGIN_WRONG" xml:space="preserve">
+    <value>Неверный логин или пароль</value>
+  </data>
+  <data name="DOORS_EDIT_DOOR" xml:space="preserve">
+    <value>Изменить дверь?</value>
+  </data>
+  <data name="CONTROL_DEVICE_CHOOSE_TYPE" xml:space="preserve">
+    <value>Выберите тип устройство</value>
+  </data>
+  <data name="CONTROL_DEVICE_SELECT_DOOR" xml:space="preserve">
+    <value>Выберите дверь</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="quant" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\quant.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="staff" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\staff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="3Security" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3Security.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="arrow_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="staff_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\staff_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PASSWORD_NOT_MATCH" xml:space="preserve">
+    <value>Пароли не совпадают</value>
   </data>
-  <data name="Quantum" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Quantum.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DEVICE_FAILED_INFO" xml:space="preserve">
+    <value>Операция не удалась. Для получения дополнительной информации см. Файл &lt;Log&gt;</value>
   </data>
-  <data name="arrow_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrow_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DOORS_DELETE_DOOR" xml:space="preserve">
+    <value>Удалить дверь?</value>
+  </data>
+  <data name="quant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\quant.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FILL_IN_ALL_FIELDS" xml:space="preserve">
+    <value>Заполните все обязательные поля</value>
+  </data>
+  <data name="GRAFIK_VIEW_DATE" xml:space="preserve">
+    <value>Число</value>
+  </data>
+  <data name="CONTROL_DEVICE_SELECT_DIRECTION" xml:space="preserve">
+    <value>Выберите направления</value>
+  </data>
+  <data name="EXIST" xml:space="preserve">
+    <value>График существует</value>
+  </data>
+  <data name="ACCESSFORM_SUCCESS_INFO" xml:space="preserve">
+    <value>Операция выполнена успешно!\r\nЧтобы узнать график сотрудника\r\nВыберите отдел</value>
+  </data>
+  <data name="GRAFIK_VIEW_START" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="CONTROL_GRAFIK_STAFF_DATE_RANGE_WARNING" xml:space="preserve">
+    <value>Число должна быть установлена ​​на будущее</value>
+  </data>
+  <data name="GRAFIK_VIEW_BREAK_END" xml:space="preserve">
+    <value>Окончание прерыва</value>
+  </data>
+  <data name="CONTROL_GRAFIK_STAFF_EMP_HAS_SHIFT" xml:space="preserve">
+    <value>У сотрудника есть график в этом периоде\r\n</value>
   </data>
   <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="WARNING" xml:space="preserve">
+    <value>Предупреждения</value>
+  </data>
+  <data name="DOOR_CONTROL_FINISHED" xml:space="preserve">
+    <value>Завершено</value>
+  </data>
+  <data name="OPERATION_FAILED" xml:space="preserve">
+    <value>Операция не удалось</value>
+  </data>
+  <data name="DEVICE_FAILED_OPEN" xml:space="preserve">
+    <value>Не удалось открыть устройство</value>
+  </data>
+  <data name="3Security" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3Security.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CONTROL_GRAFIK_STAFF_SUCCESS_INFO" xml:space="preserve">
+    <value>Операция выполнена успешно!\r\nЧтобы узнать график сотрудника\r\nвыберите период времени и отдел</value>
+  </data>
+  <data name="DOORS_IN_USE" xml:space="preserve">
+    <value>Удалить дверь невозможно \nДверь используется</value>
+  </data>
+  <data name="uk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\uk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DOOR_CONTROL_SYNCING" xml:space="preserve">
+    <value>Синхронизируется ....</value>
+  </data>
+  <data name="GRAFIK_VIEW_BREAK_START" xml:space="preserve">
+    <value>Начало прерыва</value>
+  </data>
+  <data name="GRAFIK_VIEW_BREAK_EARLY" xml:space="preserve">
+    <value>Ранный уход</value>
+  </data>
+  <data name="PASSWORD_WRONG" xml:space="preserve">
+    <value>Неверный пароль</value>
+  </data>
+  <data name="GRAFIK_VIEW_BREAK_LATE" xml:space="preserve">
+    <value>Опоздание</value>
+  </data>
+  <data name="CONTROL_STAFF_EMPLOYEE_COUNT" xml:space="preserve">
+    <value>количество сотрудников:</value>
+  </data>
+  <data name="staff_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\staff_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GRAFIK_VIEW_DAY" xml:space="preserve">
+    <value>День</value>
+  </data>
+  <data name="SCHEDULE_EXIST" xml:space="preserve">
+    <value>Смена существует</value>
+  </data>
   <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OPERATION_SUCCESS" xml:space="preserve">
+    <value>Выполнено успешно!</value>
+  </data>
+  <data name="SHIFT_IN_USE" xml:space="preserve">
+    <value>График используется</value>
+  </data>
+  <data name="Quantum" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Quantum.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CONTROL_STAFF_DEPARTMENT" xml:space="preserve">
+    <value>Отдел</value>
+  </data>
+  <data name="staff" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\staff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SHIFT_CHOOSE" xml:space="preserve">
+    <value>Пожалуйста, выберите график</value>
+  </data>
+  <data name="ru" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ru.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CONTROL_LANGUAGE_CHANGE" xml:space="preserve">
+    <value>Изменить язык?</value>
   </data>
 </root>

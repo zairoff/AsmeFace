@@ -29,7 +29,7 @@ namespace AsmeFace.UserControls
 
             if (_dataBase.CheckDB("select exists(select 1 from smena where smena_nomi = '" + textBox1.Text.Trim() + "')"))
             {
-                CustomMessageBox.Info("Смена существует");
+                CustomMessageBox.Info(textBox1.Text + " " + Properties.Resources.EXIST);
                 return;
             }
             if (_dataBase.InsertData("insert into smena (smena_nomi, smena_boshlanishi, smena_tugashi, obed_boshlanishi," +

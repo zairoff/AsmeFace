@@ -39,25 +39,32 @@ namespace AsmeFace.Forms
 
         private void connectDB()
         {
-            if (string.IsNullOrEmpty(textBox2.Text) && string.IsNullOrEmpty(textBox3.Text))
+            try
             {
-                CustomMessageBox.Info("заполните все обязательные поля");
-                return;
-            }
+                if (string.IsNullOrEmpty(textBox2.Text) && string.IsNullOrEmpty(textBox3.Text))
+                {
+                    CustomMessageBox.Info(Properties.Resources.FILL_IN_ALL_FIELDS);
+                    return;
+                }
 
-            var _dataBase = new DataBase();
+                var _dataBase = new DataBase();
 
-            if (_dataBase.CheckDB("select exists(select 1 from login where username = '" + textBox2.Text +
-                "' and pass = '" + textBox3.Text + "')"))
-            {
-                Hide();
-                new Form1().Show();
+                if (_dataBase.CheckDB("select exists(select 1 from login where username = '" + textBox2.Text +
+                    "' and pass = '" + textBox3.Text + "')"))
+                {
+                    Hide();
+                    new Form1().Show();
+                }
+                else
+                {
+                    textBox3.ForeColor = System.Drawing.Color.Red;
+                    CustomMessageBox.Error(Properties.Resources.LOGIN_WRONG);
+                }
             }
-            else
+            catch(Exception msg)
             {
-                textBox3.ForeColor = System.Drawing.Color.Red;
-                CustomMessageBox.Error("неверный логин или пароль");
-            }
+                CustomMessageBox.Error(msg.ToString());
+            }            
         }
 
         private void Login_FormClosing(object sender, FormClosingEventArgs e)

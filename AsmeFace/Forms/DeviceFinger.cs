@@ -1,12 +1,5 @@
 ﻿using AsmeFace.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AsmeFace.Forms
@@ -92,32 +85,32 @@ namespace AsmeFace.Forms
         {
             if (_asmeDevice.OpenDevice(ip) < 0)
             {
-                CustomMessageBox.Error("Failed to open the device");
+                CustomMessageBox.Error(Resources.DEVICE_FAILED_OPEN);
                 return;
             }
             
             if (_asmeDevice.CommunicationTest() < 0)
             {
-                CustomMessageBox.Error("Failed to communicate");
+                CustomMessageBox.Error(Resources.DEVICE_FAILED_INFO);
                 return;
             }
 
             var auth_mode = basic_combo_auth.SelectedIndex + 5;
             if (_asmeDevice.SetReader(Convert.ToInt32(basic_txt_open_time.Text), auth_mode) < 0)
             {
-                CustomMessageBox.Error("Failed to SetReader");
+                CustomMessageBox.Error(Resources.DEVICE_FAILED_INFO);
                 return;
             }
 
             if (_asmeDevice.SetGroup(0, _asmeDevice.GetDefaultWeek()) < 0)
             {
-                CustomMessageBox.Error("Failed to SetGroup");
+                CustomMessageBox.Error(Resources.DEVICE_FAILED_INFO);
                 return;
             }
 
             _asmeDevice.CloseDevice();
 
-            CustomMessageBox.Info("Successfully configured!");
+            CustomMessageBox.Info(Resources.OPERATION_SUCCESS);
         }
 
         private void btn_close_Click(object sender, EventArgs e)

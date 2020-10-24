@@ -75,7 +75,7 @@ namespace AsmeFace.UserControls
         {
             if (string.IsNullOrEmpty(comboBox1.Text))
             {
-                CustomMessageBox.Info("Выберите график");
+                CustomMessageBox.Info(Properties.Resources.SHIFT_CHOOSE);
                 return;
             }
             if (checkedListBox1.Items.Count < 1)
@@ -99,8 +99,7 @@ namespace AsmeFace.UserControls
                     //MessageBox.Show(employeeListbox[i].Familiya + " : " + employeeListbox[i].ID);
                 }
             }
-            CustomMessageBox.Info("Операция выполнена успешно!\r\nЧтобы узнать график сотрудника\r\n" +
-                                "выберите отдел");
+            CustomMessageBox.Info(Properties.Resources.CONTROL_GRAFIK_STAFF_SUCCESS_INFO);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

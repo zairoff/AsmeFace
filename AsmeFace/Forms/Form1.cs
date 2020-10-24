@@ -8,9 +8,7 @@ namespace AsmeFace.Forms
         {
           //System.Threading.Thread.CurrentThread.CurrentCulture =
          //System.Globalization.CultureInfo.GetCultureInfo("ru");
-
-         //System.Threading.Thread.CurrentThread.CurrentUICulture =
-        //System.Globalization.CultureInfo.GetCultureInfo("ru");
+         
             InitializeComponent();
             programm_type = (System.Configuration.ConfigurationManager.AppSettings["program_type"]);
         }
@@ -24,6 +22,7 @@ namespace AsmeFace.Forms
         private UserControls.GrafikStaff grafikStaff;
         private UserControls.GrafikstaffSingle _grafikSingle;
         private UserControls.Contact contact;
+        private UserControls.Language _language;
         private DataBase mydataBase = new DataBase();
         private System.Drawing.Point lastLocation;
         private bool mouseDown = false;
@@ -141,21 +140,6 @@ namespace AsmeFace.Forms
             //ReplaseUserControl(syncronization);
         }
 
-        private void button8_Click(object sender, System.EventArgs e)
-        {
-            if (contact == null)
-            {
-                contact = new UserControls.Contact();
-                System.Drawing.Size size = new System.Drawing.Size(contact.Size.Width, this.panel3.Size.Height);
-                contact.Size = size;
-                System.Drawing.Point point = new System.Drawing.Point(this.panel3.Size.Width / 2 - contact.Size.Width / 2,
-                    this.panel3.Size.Height / 2 - contact.Size.Height / 2);
-
-                contact.Location = point;
-            }
-            ReplaseUserControl(contact);            
-        }
-
         private void button9_Click(object sender, System.EventArgs e)
         {
             Close();
@@ -186,6 +170,33 @@ namespace AsmeFace.Forms
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button8_Click(object sender, System.EventArgs e)
+        {
+            _language = new UserControls.Language
+            {
+                Dock = DockStyle.Fill,
+                ParentForm = this                
+            };
+            ReplaseUserControl(_language);
+        }
+
+        private void button7_Click_2(object sender, System.EventArgs e)
+        {
+            //MessageBox.Show(new System.Resources.ResourceManager("AsmeFace.Forms.Form1", System.Reflection.Assembly.GetExecutingAssembly()).GetString("button1.Text"));
+
+            if (contact == null)
+            {
+                contact = new UserControls.Contact();
+                System.Drawing.Size size = new System.Drawing.Size(contact.Size.Width, this.panel3.Size.Height);
+                contact.Size = size;
+                System.Drawing.Point point = new System.Drawing.Point(this.panel3.Size.Width / 2 - contact.Size.Width / 2,
+                    this.panel3.Size.Height / 2 - contact.Size.Height / 2);
+
+                contact.Location = point;
+            }
+            ReplaseUserControl(contact);
         }
     }
 }

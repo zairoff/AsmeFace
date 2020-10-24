@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace AsmeFace.Forms
@@ -31,7 +30,7 @@ namespace AsmeFace.Forms
 
             if (_dataBase.CheckDB("select exists(select 1 from doors where name = '" + textBox1.Text + "')"))
             {
-                CustomMessageBox.Info("Дверь " + textBox1.Text + " уже существует");
+                CustomMessageBox.Info(textBox1.Text + " " + Properties.Resources.EXIST);
                 return;
             }
 
@@ -48,8 +47,8 @@ namespace AsmeFace.Forms
 
             var name = checkedListBox1.Items[checkedListBox1.SelectedIndex].ToString();
             var dialogResult = MessageBox.Show(
-                name + " удалить дверь?",
-                "Основной дверь",
+                name + " " + Properties.Resources.DOORS_DELETE_DOOR,
+                Properties.Resources.WARNING,
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
@@ -57,7 +56,7 @@ namespace AsmeFace.Forms
             {
                 if(_dataBase.CheckDB("select exists(select 1 from devices where device_door = '" + name + "')"))
                 {
-                    CustomMessageBox.Error("Удалить дверь невозможно \nДверь используется");
+                    CustomMessageBox.Error(Properties.Resources.DOORS_IN_USE);
                     return;
                 }
 
@@ -79,8 +78,8 @@ namespace AsmeFace.Forms
 
             var name = checkedListBox1.Items[checkedListBox1.SelectedIndex].ToString();
             var dialogResult = MessageBox.Show(
-                " Изменить двери?",
-                "Основной дверь",
+                Properties.Resources.DOORS_EDIT_DOOR,
+                Properties.Resources.WARNING,
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 

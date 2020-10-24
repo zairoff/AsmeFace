@@ -80,7 +80,7 @@ namespace AsmeFace.UserControls
         {
             if (string.IsNullOrEmpty(comboBox1.Text))
             {
-                CustomMessageBox.Info("Выберите график");
+                CustomMessageBox.Info(Properties.Resources.SHIFT_CHOOSE);
                 return;
             }
 
@@ -89,7 +89,7 @@ namespace AsmeFace.UserControls
 
             if (dateTimePicker1.Value > dateTimePicker2.Value)
             {
-                CustomMessageBox.Info("Число должна быть установлена ​​на будущее");
+                CustomMessageBox.Info(Properties.Resources.CONTROL_GRAFIK_STAFF_DATE_RANGE_WARNING);
                 return;
             }
 
@@ -106,7 +106,7 @@ namespace AsmeFace.UserControls
                         + dateTimePicker1.Text + "' <= gacha) or (employeeid = " + _employeeShortInfo[i].ID + " and '" 
                         + dateTimePicker2.Text + "' >= dan and '" + dateTimePicker1.Text +"' <= gacha))"))
                     {                        
-                        textBox1.Text += ("У сотрудника: " + _employeeShortInfo[i].Familiya + " есть график в этом периоде\r\n");
+                        textBox1.Text += (_employeeShortInfo[i].Familiya + ": " +  Properties.Resources.CONTROL_GRAFIK_STAFF_EMP_HAS_SHIFT);
                         //MessageBox.Show("У сотрудника: " + employeeListbox[i].Familiya + " есть график в этом периоде");
                         //listBox1.Items.(0, "У сотрудника: " + employeeListbox[i].Familiya + " есть график в этом периоде");
                     }
@@ -119,8 +119,8 @@ namespace AsmeFace.UserControls
                     //MessageBox.Show(employeeListbox[i].Familiya + " : " + employeeListbox[i].ID);
                 }
             }
-            CustomMessageBox.Info("Операция выполнена успешно!\r\nЧтобы узнать график сотрудника\r\nвыберите период времени и отдел");
-            textBox1.Text += "Заверщено!\r\n";
+            CustomMessageBox.Info(Properties.Resources.CONTROL_GRAFIK_STAFF_SUCCESS_INFO);
+            textBox1.Text += Properties.Resources.DOOR_CONTROL_FINISHED + "\r\n";
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

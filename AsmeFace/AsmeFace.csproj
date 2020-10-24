@@ -73,6 +73,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -224,6 +225,12 @@
     <Compile Include="UserControls\GrafikStaff.Designer.cs">
       <DependentUpon>GrafikStaff.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Language.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Language.Designer.cs">
+      <DependentUpon>Language.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Smena.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -236,20 +243,41 @@
     <Compile Include="UserControls\Staff.Designer.cs">
       <DependentUpon>Staff.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\AccessForm.en.resx">
+      <DependentUpon>AccessForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AccessForm.resx">
       <DependentUpon>AccessForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AccessGrafik.en.resx">
+      <DependentUpon>AccessGrafik.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AccessGrafik.resx">
       <DependentUpon>AccessGrafik.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AccessSmena.en.resx">
+      <DependentUpon>AccessSmena.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AccessSmena.resx">
       <DependentUpon>AccessSmena.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddedDoors.en.resx">
+      <DependentUpon>AddedDoors.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddedDoors.resx">
       <DependentUpon>AddedDoors.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ChangePassword.en.resx">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DeviceFace.en.resx">
+      <DependentUpon>DeviceFace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DeviceFinger.en.resx">
+      <DependentUpon>DeviceFinger.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DeviceFinger.resx">
       <DependentUpon>DeviceFinger.cs</DependentUpon>
@@ -257,20 +285,41 @@
     <EmbeddedResource Include="Forms\DeviceFace.resx">
       <DependentUpon>DeviceFace.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DoorControl.en.resx">
+      <DependentUpon>DoorControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DoorControl.resx">
       <DependentUpon>DoorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Doors.en.resx">
+      <DependentUpon>Doors.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Doors.resx">
       <DependentUpon>Doors.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmployeeAdd.en.resx">
+      <DependentUpon>EmployeeAdd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmployeeAdd.resx">
       <DependentUpon>EmployeeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmployeeInDevice.en.resx">
+      <DependentUpon>EmployeeInDevice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmployeeInDevice.resx">
       <DependentUpon>EmployeeInDevice.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form1.en.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GrafikView.en.resx">
+      <DependentUpon>GrafikView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\GrafikView.resx">
       <DependentUpon>GrafikView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login.en.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -278,11 +327,18 @@
     <EmbeddedResource Include="Forms\Sync.resx">
       <DependentUpon>Sync.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.en.resx" />
     <EmbeddedResource Include="UserControls\Contact.resx">
       <DependentUpon>Contact.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Department.en.resx">
+      <DependentUpon>Department.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Department.resx">
       <DependentUpon>Department.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Device.en.resx">
+      <DependentUpon>Device.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Device.resx">
       <DependentUpon>Device.cs</DependentUpon>
@@ -295,8 +351,17 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Grafik.en.resx">
+      <DependentUpon>Grafik.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Grafik.resx">
       <DependentUpon>Grafik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\GrafikStaff.en.resx">
+      <DependentUpon>GrafikStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\GrafikstaffSingle.en.resx">
+      <DependentUpon>GrafikstaffSingle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\GrafikstaffSingle.resx">
       <DependentUpon>GrafikstaffSingle.cs</DependentUpon>
@@ -304,8 +369,17 @@
     <EmbeddedResource Include="UserControls\GrafikStaff.resx">
       <DependentUpon>GrafikStaff.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Language.resx">
+      <DependentUpon>Language.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Smena.en.resx">
+      <DependentUpon>Smena.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Smena.resx">
       <DependentUpon>Smena.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Staff.en.resx">
+      <DependentUpon>Staff.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Staff.resx">
       <DependentUpon>Staff.cs</DependentUpon>
@@ -357,6 +431,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ru.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

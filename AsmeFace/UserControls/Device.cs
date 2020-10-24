@@ -158,19 +158,19 @@ namespace AsmeFace.UserControls
 
                 if (dataGridView1.CurrentRow.Cells[3].Value == null)
                 {
-                    CustomMessageBox.Info("Выберите тип устройство");
+                    CustomMessageBox.Info(Properties.Resources.CONTROL_DEVICE_CHOOSE_TYPE);
                     return;
                 }
 
                 if (dataGridView1.CurrentRow.Cells[4].Value == null)
                 {
-                    CustomMessageBox.Info("Выберите направления");
+                    CustomMessageBox.Info(Properties.Resources.CONTROL_DEVICE_SELECT_DIRECTION);
                     return;
                 }
 
                 if (dataGridView1.CurrentRow.Cells[5].Value == null)
                 {
-                    CustomMessageBox.Info("Выберите дверь");
+                    CustomMessageBox.Info(Properties.Resources.CONTROL_DEVICE_SELECT_DOOR);
                     return;
                 }
 
@@ -190,7 +190,7 @@ namespace AsmeFace.UserControls
                     dataGridView1.CurrentRow.Cells[4].Value.ToString() + "','" +
                     dataGridView1.CurrentRow.Cells[5].Value.ToString() + "')"))
                 {
-                    CustomMessageBox.Info("Добавлено успешно!");
+                    CustomMessageBox.Info(Properties.Resources.OPERATION_SUCCESS);
                 }
             }
 
@@ -199,17 +199,17 @@ namespace AsmeFace.UserControls
                 var ip = dataGridView1.CurrentRow.Cells[2].Value.ToString();
                 if (_asmeDevice.OpenDevice(ip) < 0)
                 {
-                    CustomMessageBox.Error("Failed to open device");
+                    CustomMessageBox.Error(Properties.Resources.DEVICE_FAILED_OPEN);
                     return;
                 }
 
                 if (_asmeDevice.InitController(ip) < 0)
                 {
-                    CustomMessageBox.Error("Инициализировать не удалось");
+                    CustomMessageBox.Error(Properties.Resources.OPERATION_FAILED);
                     _asmeDevice.CloseDevice();
                     return;
                 }
-                CustomMessageBox.Info("Инстализация выполнено успещно!");
+                CustomMessageBox.Info(Properties.Resources.OPERATION_SUCCESS);
                 _asmeDevice.CloseDevice();
                 return;
             }

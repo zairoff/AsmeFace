@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -50,8 +52,6 @@
             this.Column8 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -70,6 +70,26 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Name = "panel1";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Name = "label9";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
+            this.label9.MouseEnter += new System.EventHandler(this.label9_MouseEnter);
+            this.label9.MouseLeave += new System.EventHandler(this.label9_MouseLeave);
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Name = "label8";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
+            this.label8.MouseEnter += new System.EventHandler(this.label8_MouseEnter);
+            this.label8.MouseLeave += new System.EventHandler(this.label8_MouseLeave);
             // 
             // label7
             // 
@@ -139,6 +159,7 @@
             // 
             // dataGridView1
             // 
+            resources.ApplyResources(this.dataGridView1, "dataGridView1");
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
@@ -153,7 +174,6 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            resources.ApplyResources(this.dataGridView1, "dataGridView1");
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
@@ -222,49 +242,29 @@
             // 
             resources.ApplyResources(this.Column7, "Column7");
             this.Column7.Name = "Column7";
-            this.Column7.Text = "Добавить";
+            this.Column7.Text = "add";
             this.Column7.UseColumnTextForLinkValue = true;
             // 
             // Column8
             // 
             resources.ApplyResources(this.Column8, "Column8");
             this.Column8.Name = "Column8";
-            this.Column8.Text = "Инстализация";
+            this.Column8.Text = "Initialize";
             this.Column8.UseColumnTextForLinkValue = true;
             // 
             // Column9
             // 
             resources.ApplyResources(this.Column9, "Column9");
             this.Column9.Name = "Column9";
-            this.Column9.Text = "Параметры";
+            this.Column9.Text = "Settings";
             this.Column9.UseColumnTextForLinkValue = true;
             // 
             // Column10
             // 
             resources.ApplyResources(this.Column10, "Column10");
             this.Column10.Name = "Column10";
-            this.Column10.Text = "Удалить";
+            this.Column10.Text = "Delete";
             this.Column10.UseColumnTextForLinkValue = true;
-            // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Name = "label8";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
-            this.label8.MouseEnter += new System.EventHandler(this.label8_MouseEnter);
-            this.label8.MouseLeave += new System.EventHandler(this.label8_MouseLeave);
-            // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Name = "label9";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
-            this.label9.MouseEnter += new System.EventHandler(this.label9_MouseEnter);
-            this.label9.MouseLeave += new System.EventHandler(this.label9_MouseLeave);
             // 
             // Device
             // 
@@ -291,6 +291,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -301,8 +304,5 @@
         private System.Windows.Forms.DataGridViewLinkColumn Column8;
         private System.Windows.Forms.DataGridViewLinkColumn Column9;
         private System.Windows.Forms.DataGridViewLinkColumn Column10;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
     }
 }

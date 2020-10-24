@@ -11,14 +11,14 @@ namespace AsmeFace.Forms
             _dataBase.GetRecords("select *from grafik_view(" + ID + ",'" + 
                 grafik + "','" + dan + "','" + gacha + "')", dataGridView1);
 
-            dataGridView1.Columns[0].HeaderText = "День";
-            dataGridView1.Columns[1].HeaderText = "Число";
-            dataGridView1.Columns[2].HeaderText = "Начало";
-            dataGridView1.Columns[3].HeaderText = "Окончание";
-            dataGridView1.Columns[4].HeaderText = "Начало прерыва";
-            dataGridView1.Columns[5].HeaderText = "Окончание прерыва";
-            dataGridView1.Columns[6].HeaderText = "Опоздание";
-            dataGridView1.Columns[7].HeaderText = "Ранный уход";
+            dataGridView1.Columns[0].HeaderText = Properties.Resources.GRAFIK_VIEW_DAY;
+            dataGridView1.Columns[1].HeaderText = Properties.Resources.GRAFIK_VIEW_DATE;
+            dataGridView1.Columns[2].HeaderText = Properties.Resources.GRAFIK_VIEW_START;
+            dataGridView1.Columns[3].HeaderText = Properties.Resources.GRAFIK_VIEW_FINISH;
+            dataGridView1.Columns[4].HeaderText = Properties.Resources.GRAFIK_VIEW_BREAK_START;
+            dataGridView1.Columns[5].HeaderText = Properties.Resources.GRAFIK_VIEW_BREAK_END;
+            dataGridView1.Columns[6].HeaderText = Properties.Resources.GRAFIK_VIEW_BREAK_LATE;
+            dataGridView1.Columns[7].HeaderText = Properties.Resources.GRAFIK_VIEW_BREAK_EARLY;
         }
 
         private DataBase _dataBase;

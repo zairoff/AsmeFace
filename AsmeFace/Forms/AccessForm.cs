@@ -1,12 +1,7 @@
 ﻿using ASMeSDK_CSharp;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Resources;
 using System.Windows.Forms;
 
 namespace AsmeFace.Forms
@@ -117,7 +112,7 @@ namespace AsmeFace.Forms
         {
             if (string.IsNullOrEmpty(comboBox1.Text))
             {
-                CustomMessageBox.Info("Выберите график");
+                CustomMessageBox.Info(Properties.Resources.SHIFT_CHOOSE);
                 return;
             }
 
@@ -131,7 +126,7 @@ namespace AsmeFace.Forms
                     InsertOrUpdateDataBase(_employees[i].ID);
 
                     if (UpdateDevice(_employees[i].ID) < 0)
-                        CustomMessageBox.Error("Failed");                  
+                        CustomMessageBox.Error(Properties.Resources.OPERATION_FAILED);                  
                        
                     //MessageBox.Show(employeeListbox[i].Familiya + " : " + employeeListbox[i].ID);
                 }
@@ -327,7 +322,7 @@ namespace AsmeFace.Forms
                 var userID = Convert.ToInt32(dataGridView1[0, dataGridView1.CurrentRow.Index].Value);
                 if (UpdateDeviceForDefault(userID) < 0)
                 {
-                    CustomMessageBox.Error("Failed ");
+                    CustomMessageBox.Error(Properties.Resources.OPERATION_FAILED);
                     return;
                 }
                 _dataBase.InsertData("delete from access_employee where employeeid = " + userID);

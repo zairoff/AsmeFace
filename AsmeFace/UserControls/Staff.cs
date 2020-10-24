@@ -75,9 +75,9 @@ namespace AsmeFace.UserControls
         private void ShowEmployeeCount()
         {
             if (treeView1.SelectedNode == treeView1.Nodes[0])
-                label1.Text = treeView1.SelectedNode.Text + " | количество сотрудников: " + dataGridView1.Rows.Count;
+                label1.Text = treeView1.SelectedNode.Text + " | " + Properties.Resources.CONTROL_STAFF_EMPLOYEE_COUNT + dataGridView1.Rows.Count;
             else
-                label1.Text = "Отдел: " + treeView1.SelectedNode.Text + " | количество сотрудников: " + dataGridView1.Rows.Count;
+                label1.Text = Properties.Resources.CONTROL_STAFF_DEPARTMENT + treeView1.SelectedNode.Text + " | " + Properties.Resources.CONTROL_STAFF_EMPLOYEE_COUNT +  dataGridView1.Rows.Count;
         }
 
         private System.Drawing.Image ByteToImage(byte[] byteArrayIn)

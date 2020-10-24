@@ -132,17 +132,17 @@ namespace AsmeFace.Forms
                 var index = _dataBase.InsertFace(System.Text.Encoding.UTF8.GetString(queryEncode), photo, finger);
                 if (index < 0)
                 {
-                    MessageBox.Show("Не удалось добавить в базу данных");
+                    MessageBox.Show(Properties.Resources.OPERATION_FAILED);
                     return;
                 }
                 
                 ClearFields();
                 textBox1.Text = (index + 1).ToString();
-                CustomMessageBox.Info("Добавлено успещно!");
+                CustomMessageBox.Info(Properties.Resources.OPERATION_SUCCESS);
             }
             else
             {
-                CustomMessageBox.Info("Пожалуйста, заполните все обязательные поля!");
+                CustomMessageBox.Info(Properties.Resources.FILL_IN_ALL_FIELDS);
             }
         }
 
@@ -171,7 +171,7 @@ namespace AsmeFace.Forms
                 int nRes = _asmeDevice.OpenDevice(System.Configuration.ConfigurationManager.AppSettings["finger"]);
                 if (nRes < 0)
                 {
-                    CustomMessageBox.Error("Failed to open the device " + nRes);
+                    CustomMessageBox.Error(Properties.Resources.DEVICE_FAILED_OPEN);
                     return;
                 }
 
