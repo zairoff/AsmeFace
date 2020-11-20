@@ -130,8 +130,8 @@
   <data name="&gt;&gt;dateTimePicker6.Name" xml:space="preserve">
     <value>dateTimePicker6</value>
   </data>
-  <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="dateTimePicker4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>226, 48</value>
   </data>
   <data name="CloseButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 40</value>
@@ -141,9 +141,6 @@
   </data>
   <data name="&gt;&gt;dateTimePicker6.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="&gt;&gt;dateTimePicker5.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="&gt;&gt;label5.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -155,11 +152,8 @@
   <data name="&gt;&gt;dateTimePicker1.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="dataGridView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>706, 589</value>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Устройство работает в этом периоде</value>
@@ -276,6 +270,9 @@
   <data name="SaveButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
   </data>
@@ -284,9 +281,6 @@
   </data>
   <data name="&gt;&gt;dateTimePicker4.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="CloseButton.Text" xml:space="preserve">
-    <value>Закрыть</value>
   </data>
   <data name="&gt;&gt;Column6.Name" xml:space="preserve">
     <value>Column6</value>
@@ -329,6 +323,9 @@
   </data>
   <data name="&gt;&gt;label5.Parent" xml:space="preserve">
     <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;textBox1.Name" xml:space="preserve">
+    <value>textBox1</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -390,23 +387,29 @@
   <data name="&gt;&gt;dateTimePicker1.Name" xml:space="preserve">
     <value>dateTimePicker1</value>
   </data>
+  <data name="Column3.HeaderText" xml:space="preserve">
+    <value>Доступ - 1 [до]</value>
+  </data>
   <data name="&gt;&gt;Column6.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 13</value>
   </data>
+  <data name="&gt;&gt;dateTimePicker6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;SaveButton.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="dateTimePicker4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>226, 48</value>
+  <data name="&gt;&gt;dateTimePicker4.Name" xml:space="preserve">
+    <value>dateTimePicker4</value>
   </data>
-  <data name="dateTimePicker1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 46</value>
+  <data name="dataGridView1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>706, 589</value>
   </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;dateTimePicker3.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -414,8 +417,8 @@
   <data name="&gt;&gt;dataGridView1.Name" xml:space="preserve">
     <value>dataGridView1</value>
   </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>332, 100</value>
   </data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
@@ -438,8 +441,8 @@
   <data name="&gt;&gt;label7.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Column3.HeaderText" xml:space="preserve">
-    <value>Доступ - 1 [до]</value>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dateTimePicker2.Name" xml:space="preserve">
     <value>dateTimePicker2</value>
@@ -467,9 +470,6 @@
   </data>
   <data name="dateTimePicker3.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
-  </data>
-  <data name="Column4.HeaderText" xml:space="preserve">
-    <value>Доступ - 2 [от]</value>
   </data>
   <data name="Column1.HeaderText" xml:space="preserve">
     <value>Смена ограничение</value>
@@ -522,9 +522,6 @@
   <data name="&gt;&gt;label8.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;dateTimePicker3.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="dateTimePicker1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
@@ -576,11 +573,14 @@
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AccessSmena</value>
   </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>До</value>
+  </data>
   <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;textBox1.Name" xml:space="preserve">
-    <value>textBox1</value>
+  <data name="Column4.HeaderText" xml:space="preserve">
+    <value>Доступ - 2 [от]</value>
   </data>
   <data name="dateTimePicker1.CustomFormat" xml:space="preserve">
     <value>HH:mm:ss</value>
@@ -600,8 +600,8 @@
   <data name="&gt;&gt;label6.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;dateTimePicker5.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -612,8 +612,8 @@
   <data name="label2.Text" xml:space="preserve">
     <value>От</value>
   </data>
-  <data name="label9.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="&gt;&gt;dateTimePicker4.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -663,8 +663,8 @@
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="dateTimePicker1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 46</value>
   </data>
   <data name="label8.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -683,9 +683,6 @@
   </data>
   <data name="&gt;&gt;label3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dateTimePicker4.Name" xml:space="preserve">
-    <value>dateTimePicker4</value>
   </data>
   <data name="CloseButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -717,11 +714,14 @@
   <data name="dateTimePicker5.CustomFormat" xml:space="preserve">
     <value>HH:mm:ss</value>
   </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="&gt;&gt;label9.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>332, 100</value>
@@ -729,11 +729,11 @@
   <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 12</value>
   </data>
-  <data name="&gt;&gt;dateTimePicker2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;dateTimePicker4.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dateTimePicker3.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -765,14 +765,14 @@
   <data name="&gt;&gt;textBox1.Parent" xml:space="preserve">
     <value>groupBox4</value>
   </data>
-  <data name="&gt;&gt;dateTimePicker6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>22, 13</value>
   </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>332, 100</value>
+  <data name="&gt;&gt;dateTimePicker2.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;Column7.Name" xml:space="preserve">
     <value>Column7</value>
@@ -792,11 +792,11 @@
   <data name="textBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>До</value>
+  <data name="CloseButton.Text" xml:space="preserve">
+    <value>Закрыть</value>
   </data>
   <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
@@ -805,7 +805,7 @@
     <value>270, 22</value>
   </data>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en</value>
+    <value>ru</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

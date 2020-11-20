@@ -8,6 +8,7 @@ namespace AsmeFace.UserControls
         public Grafik()
         {
             InitializeComponent();
+            Column10.Text = Properties.Resources.GRIDVIEW_DELETE;
             var programm_type = (System.Configuration.ConfigurationManager.AppSettings["program_type"]);
             if(programm_type == "1")
             {
@@ -74,7 +75,7 @@ namespace AsmeFace.UserControls
 
             if (_dataBase.CheckDB("select exists(select 1 from grafik where grafik_nomi = '" + textBox1.Text.Trim() + "')"))
             {
-                CustomMessageBox.Info("График сушествует");
+                CustomMessageBox.Info(Properties.Resources.EXIST);
                 return;
             }
             int sikl = 0;
@@ -120,7 +121,6 @@ namespace AsmeFace.UserControls
         {
             dataGridView1.Rows.Clear();
             textBox1.Text = "";
-            textBox3.Text = "";
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)

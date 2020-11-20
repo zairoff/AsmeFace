@@ -42,13 +42,13 @@ namespace AsmeFace.Forms
 
         private void button5_Click(object sender, System.EventArgs e)
         {
-            if (smena == null)
+            if (smena != null)
+                smena.Dispose();
+
+            smena = new UserControls.Smena
             {
-                smena = new UserControls.Smena
-                {
-                    Dock = DockStyle.Fill
-                };
-            }
+                Dock = DockStyle.Fill
+            };
             ReplaseUserControl(smena);        
         }
 

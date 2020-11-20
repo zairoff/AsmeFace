@@ -130,6 +130,18 @@
   <data name="button2.Text" xml:space="preserve">
     <value>DELETE</value>
   </data>
+  <data name="comboBox1.Items" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="comboBox1.Items1" xml:space="preserve">
+    <value>Week</value>
+  </data>
+  <data name="comboBox1.Items2" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="textBox3.Text" xml:space="preserve">
+    <value>7</value>
+  </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 13</value>
   </data>

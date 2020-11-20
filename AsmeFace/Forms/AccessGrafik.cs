@@ -8,6 +8,7 @@ namespace AsmeFace.Forms
         public AccessGrafik()
         {
             InitializeComponent();
+            Column10.Text = Properties.Resources.GRIDVIEW_DELETE;
             _dataBase = new DataBase();
             var smenas = _dataBase.GetStringList("select access_smena_nomi from access_smena");
             foreach (var smena in smenas)
@@ -17,7 +18,7 @@ namespace AsmeFace.Forms
             FillListview();
         }
 
-        private DataBase _dataBase;
+        private readonly DataBase _dataBase;
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {

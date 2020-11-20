@@ -242,28 +242,28 @@
             // 
             resources.ApplyResources(this.Column7, "Column7");
             this.Column7.Name = "Column7";
-            this.Column7.Text = "add";
+            this.Column7.Text = "Добавить";
             this.Column7.UseColumnTextForLinkValue = true;
             // 
             // Column8
             // 
             resources.ApplyResources(this.Column8, "Column8");
             this.Column8.Name = "Column8";
-            this.Column8.Text = "Initialize";
+            this.Column8.Text = "Инстализация";
             this.Column8.UseColumnTextForLinkValue = true;
             // 
             // Column9
             // 
             resources.ApplyResources(this.Column9, "Column9");
             this.Column9.Name = "Column9";
-            this.Column9.Text = "Settings";
+            this.Column9.Text = "Параметры";
             this.Column9.UseColumnTextForLinkValue = true;
             // 
             // Column10
             // 
             resources.ApplyResources(this.Column10, "Column10");
             this.Column10.Name = "Column10";
-            this.Column10.Text = "Delete";
+            this.Column10.Text = "Удалить";
             this.Column10.UseColumnTextForLinkValue = true;
             // 
             // Device

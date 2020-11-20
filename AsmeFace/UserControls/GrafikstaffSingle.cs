@@ -7,6 +7,7 @@ namespace AsmeFace.UserControls
         public GrafikstaffSingle()
         {
             InitializeComponent();
+            Column9.Text = Properties.Resources.GRIDVIEW_DELETE;
             _dataBase = new DataBase();
             _tree = new GetTree();
             FillTree();
@@ -17,8 +18,8 @@ namespace AsmeFace.UserControls
             }
         }
 
-        private DataBase _dataBase;
-        private GetTree _tree;
+        private readonly DataBase _dataBase;
+        private readonly GetTree _tree;
         private System.Collections.Generic.List<EmployeeShortInfo> _employeeShortInfo;
         private string query;
 
@@ -62,7 +63,7 @@ namespace AsmeFace.UserControls
 
             for (int i = 0; i < _employeeShortInfo.Count; i++)
             {
-                checkedListBox1.Items.Add(_employeeShortInfo[i].Familiya);
+                checkedListBox1.Items.Add(_employeeShortInfo[i].Familiya + " " + _employeeShortInfo[i].Ism);
             }
         }
 
@@ -78,6 +79,7 @@ namespace AsmeFace.UserControls
                 CustomMessageBox.Info(Properties.Resources.SHIFT_CHOOSE);
                 return;
             }
+
             if (checkedListBox1.Items.Count < 1)
                 return;
 
@@ -85,10 +87,9 @@ namespace AsmeFace.UserControls
             {
                 if (checkedListBox1.GetItemChecked(i))
                 {
-                    if (_dataBase.CheckDB("select exists(select 1 from grafik_employee where employeeid = " +
-                        _employeeShortInfo[i].ID + ")"))
+                    if (_dataBase.CheckDB("select exists(select 1 from grafik_employee where employeeid = " + _employeeShortInfo[i].ID + ")"))
                     {
-                        _dataBase.InsertData("update grafik_employee set grafik_nomi = ' " + comboBox1.Text + "' where " +
+                        _dataBase.InsertData("update grafik_employee set grafik_nomi = '" + comboBox1.Text + "' where " +
                             "employeeid = " + _employeeShortInfo[i].ID);
                     }
                     else

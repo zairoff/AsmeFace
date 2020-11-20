@@ -12,11 +12,14 @@ namespace AsmeFace.UserControls
             _tree = new GetTree();
             _asmeDevice = new AsmeDevice();
             FillTree();
+            Column8.Text = Properties.Resources.GRIDVIEW_EDIT;
+            Column9.Text = Properties.Resources.GRIDVIEW_RETIRE;
+            Column10.Text = Properties.Resources.GRIDVIEW_DELETE;
         }
 
-        private DataBase _dataBase;
-        private GetTree _tree;
-        private AsmeDevice _asmeDevice;
+        private readonly DataBase _dataBase;
+        private readonly GetTree _tree;
+        private readonly AsmeDevice _asmeDevice;
         private string query;
 
         private void FillTree()
@@ -77,7 +80,7 @@ namespace AsmeFace.UserControls
             if (treeView1.SelectedNode == treeView1.Nodes[0])
                 label1.Text = treeView1.SelectedNode.Text + " | " + Properties.Resources.CONTROL_STAFF_EMPLOYEE_COUNT + dataGridView1.Rows.Count;
             else
-                label1.Text = Properties.Resources.CONTROL_STAFF_DEPARTMENT + treeView1.SelectedNode.Text + " | " + Properties.Resources.CONTROL_STAFF_EMPLOYEE_COUNT +  dataGridView1.Rows.Count;
+                label1.Text = Properties.Resources.GRIDVIEW_DEPARTMENT + treeView1.SelectedNode.Text + " | " + Properties.Resources.CONTROL_STAFF_EMPLOYEE_COUNT +  dataGridView1.Rows.Count;
         }
 
         private System.Drawing.Image ByteToImage(byte[] byteArrayIn)

@@ -61,17 +61,7 @@ namespace AsmeFace.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _3Security {
-            get {
-                object obj = ResourceManager.GetObject("3Security", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Операция выполнена успешно!\r\nЧтобы узнать график сотрудника\r\nВыберите отдел.
+        ///   Looks up a localized string similar to Операция выполнена успешно! Чтобы узнать график сотрудника выберите отдел.
         /// </summary>
         internal static string ACCESSFORM_SUCCESS_INFO {
             get {
@@ -136,7 +126,7 @@ namespace AsmeFace.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to У сотрудника есть график в этом периоде\r\n.
+        ///   Looks up a localized string similar to У сотрудника есть график в этом периоде.
         /// </summary>
         internal static string CONTROL_GRAFIK_STAFF_EMP_HAS_SHIFT {
             get {
@@ -145,7 +135,7 @@ namespace AsmeFace.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Операция выполнена успешно!\r\nЧтобы узнать график сотрудника\r\nвыберите период времени и отдел.
+        ///   Looks up a localized string similar to Операция выполнена успешно! Чтобы узнать график сотрудника выберите период времени и отдел.
         /// </summary>
         internal static string CONTROL_GRAFIK_STAFF_SUCCESS_INFO {
             get {
@@ -159,15 +149,6 @@ namespace AsmeFace.Properties {
         internal static string CONTROL_LANGUAGE_CHANGE {
             get {
                 return ResourceManager.GetString("CONTROL_LANGUAGE_CHANGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Отдел.
-        /// </summary>
-        internal static string CONTROL_STAFF_DEPARTMENT {
-            get {
-                return ResourceManager.GetString("CONTROL_STAFF_DEPARTMENT", resourceCulture);
             }
         }
         
@@ -235,7 +216,7 @@ namespace AsmeFace.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Удалить дверь невозможно \nДверь используется.
+        ///   Looks up a localized string similar to Удалить дверь невозможно, дверь используется.
         /// </summary>
         internal static string DOORS_IN_USE {
             get {
@@ -334,6 +315,78 @@ namespace AsmeFace.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Добавить.
+        /// </summary>
+        internal static string GRIDVIEW_ADD {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_ADD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Удалить.
+        /// </summary>
+        internal static string GRIDVIEW_DELETE {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_DELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Отдел.
+        /// </summary>
+        internal static string GRIDVIEW_DEPARTMENT {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_DEPARTMENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изменить.
+        /// </summary>
+        internal static string GRIDVIEW_EDIT {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_EDIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Инстализация.
+        /// </summary>
+        internal static string GRIDVIEW_INITIALIZE {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_INITIALIZE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дополнительно.
+        /// </summary>
+        internal static string GRIDVIEW_MORE {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_MORE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Увольнения.
+        /// </summary>
+        internal static string GRIDVIEW_RETIRE {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_RETIRE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Настройка.
+        /// </summary>
+        internal static string GRIDVIEW_SETTINGS {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_SETTINGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Неверный логин или пароль.
         /// </summary>
         internal static string LOGIN_WRONG {
@@ -423,6 +476,16 @@ namespace AsmeFace.Properties {
         internal static System.Drawing.Bitmap search {
             get {
                 object obj = ResourceManager.GetObject("search", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap security {
+            get {
+                object obj = ResourceManager.GetObject("security", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

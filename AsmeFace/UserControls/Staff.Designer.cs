@@ -31,14 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Staff));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.SearchTextBox = new System.Windows.Forms.TextBox();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.label1 = new System.Windows.Forms.Label();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +41,14 @@
             this.Column8 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.SearchTextBox = new System.Windows.Forms.TextBox();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -90,6 +90,63 @@
             this.dataGridView1.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.dataGridView1.RowTemplate.Height = 82;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // Column1
+            // 
+            resources.ApplyResources(this.Column1, "Column1");
+            this.Column1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            resources.ApplyResources(this.Column2, "Column2");
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            resources.ApplyResources(this.Column3, "Column3");
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            resources.ApplyResources(this.Column4, "Column4");
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            resources.ApplyResources(this.Column5, "Column5");
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            resources.ApplyResources(this.Column6, "Column6");
+            this.Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            resources.ApplyResources(this.Column7, "Column7");
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            resources.ApplyResources(this.Column8, "Column8");
+            this.Column8.Name = "Column8";
+            this.Column8.Text = "Edit";
+            this.Column8.UseColumnTextForLinkValue = true;
+            // 
+            // Column9
+            // 
+            resources.ApplyResources(this.Column9, "Column9");
+            this.Column9.Name = "Column9";
+            this.Column9.Text = "Retire";
+            this.Column9.UseColumnTextForLinkValue = true;
+            // 
+            // Column10
+            // 
+            resources.ApplyResources(this.Column10, "Column10");
+            this.Column10.Name = "Column10";
+            this.Column10.Text = "Delete";
+            this.Column10.UseColumnTextForLinkValue = true;
             // 
             // panel2
             // 
@@ -155,63 +212,6 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Name = "label1";
-            // 
-            // Column1
-            // 
-            resources.ApplyResources(this.Column1, "Column1");
-            this.Column1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            resources.ApplyResources(this.Column2, "Column2");
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            resources.ApplyResources(this.Column3, "Column3");
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            resources.ApplyResources(this.Column4, "Column4");
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            resources.ApplyResources(this.Column5, "Column5");
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            resources.ApplyResources(this.Column6, "Column6");
-            this.Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            resources.ApplyResources(this.Column7, "Column7");
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            resources.ApplyResources(this.Column8, "Column8");
-            this.Column8.Name = "Column8";
-            this.Column8.Text = "Edit";
-            this.Column8.UseColumnTextForLinkValue = true;
-            // 
-            // Column9
-            // 
-            resources.ApplyResources(this.Column9, "Column9");
-            this.Column9.Name = "Column9";
-            this.Column9.Text = "Retire";
-            this.Column9.UseColumnTextForLinkValue = true;
-            // 
-            // Column10
-            // 
-            resources.ApplyResources(this.Column10, "Column10");
-            this.Column10.Name = "Column10";
-            this.Column10.Text = "Delete";
-            this.Column10.UseColumnTextForLinkValue = true;
             // 
             // Staff
             // 

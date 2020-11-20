@@ -7,9 +7,26 @@ namespace AsmeFace.Forms
     {
         public Login()
         {
-            InitializeComponent();
+            _dataBase = new DataBase();
+            SetLanguage();
+            InitializeComponent();            
             textBox3.Select();
             //MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).ToString());
+        }
+
+        private readonly DataBase _dataBase;
+
+        private void SetLanguage()
+        {
+            try
+            {
+                var language = _dataBase.GetString("select lan from language limit 1");
+                System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo(language);
+            }
+            catch (Exception msg)
+            {
+                CustomMessageBox.Error(msg.ToString());
+            }
         }
 
         private void btn_connect_Click(object sender, EventArgs e)
@@ -45,9 +62,7 @@ namespace AsmeFace.Forms
                 {
                     CustomMessageBox.Info(Properties.Resources.FILL_IN_ALL_FIELDS);
                     return;
-                }
-
-                var _dataBase = new DataBase();
+                }                              
 
                 if (_dataBase.CheckDB("select exists(select 1 from login where username = '" + textBox2.Text +
                     "' and pass = '" + textBox3.Text + "')"))

@@ -267,6 +267,9 @@
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="textBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 22</value>
+  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 24</value>
   </data>
@@ -296,9 +299,6 @@
   </data>
   <data name="textBox2.Text" xml:space="preserve">
     <value>admin</value>
-  </data>
-  <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="textBox3.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -407,8 +407,8 @@
   <data name="&gt;&gt;textBox3.Parent" xml:space="preserve">
     <value>panel3</value>
   </data>
-  <data name="textBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 22</value>
+  <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;pictureBox3.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -465,6 +465,6 @@
     <value>True</value>
   </metadata>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en</value>
+    <value>ru</value>
   </metadata>
 </root>

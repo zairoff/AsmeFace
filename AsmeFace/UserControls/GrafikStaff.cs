@@ -8,6 +8,8 @@ namespace AsmeFace.UserControls
         public GrafikStaff()
         {
             InitializeComponent();
+            Column8.Text = Properties.Resources.GRIDVIEW_DELETE;
+            Column9.Text = Properties.Resources.GRIDVIEW_MORE;
             _dataBase = new DataBase();
             _tree = new GetTree();
             FillTree();
@@ -46,11 +48,7 @@ namespace AsmeFace.UserControls
 
             query = "select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.grafik_nomi, " +
                 "t2.dan, t2.gacha from employee t1 inner join grafik_employee t2 on t1.employeeid = t2.employeeid where " +
-                "(t1.department <@ '" + treeView1.SelectedNode.Name + "' and t1.status = true and t2.dan >= '" + dateTimePicker1.Text + "'" +
-                "and t2.dan <= '" + dateTimePicker2.Text + "') or (t1.department <@ '" + treeView1.SelectedNode.Name + "'" +
-                " and t1.status = true and t2.gacha >= '" + dateTimePicker1.Text + "' and t2.gacha <= '" + dateTimePicker2.Text + "')" +
-                "or (t1.department <@ '" + treeView1.SelectedNode.Name + "' and t1.status = true and " +
-                "'" + dateTimePicker1.Text + "' >= t2.dan and '" + dateTimePicker2.Text + "' <= t2.gacha)";
+                "t1.department <@ '" + treeView1.SelectedNode.Name + "' and t1.status = true";
 
             RetriveGrafik(query);
         }
@@ -67,7 +65,7 @@ namespace AsmeFace.UserControls
 
             for (int i = 0; i < _employeeShortInfo.Count; i++)
             {
-                checkedListBox1.Items.Add(_employeeShortInfo[i].Familiya);
+                checkedListBox1.Items.Add(_employeeShortInfo[i].Familiya + " " + _employeeShortInfo[i].Ism);
             }            
         }
 
@@ -93,34 +91,34 @@ namespace AsmeFace.UserControls
                 return;
             }
 
-            textBox1.Text = "";
+            //listBox1.Items.Clear();
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
             {
                 if (checkedListBox1.GetItemChecked(i))
                 {
-                    if(_dataBase.CheckDB("select exists(select 1 from grafik_employee where (employeeid = " + 
-                        _employeeShortInfo[i].ID + " and dan >= '" + dateTimePicker1.Text + "' and dan <= '" + 
-                        dateTimePicker2.Text + "') or (employeeid = " + _employeeShortInfo[i].ID + " and gacha >= '" 
-                        + dateTimePicker1.Text + "' and gacha <= '" + dateTimePicker2.Text + "') or (employeeid = "
-                        + _employeeShortInfo[i].ID + " and '" + dateTimePicker1.Text + "' >= dan and '" 
-                        + dateTimePicker1.Text + "' <= gacha) or (employeeid = " + _employeeShortInfo[i].ID + " and '" 
-                        + dateTimePicker2.Text + "' >= dan and '" + dateTimePicker1.Text +"' <= gacha))"))
-                    {                        
-                        textBox1.Text += (_employeeShortInfo[i].Familiya + ": " +  Properties.Resources.CONTROL_GRAFIK_STAFF_EMP_HAS_SHIFT);
+                    if(_dataBase.CheckDB("select exists(select 1 from grafik_employee where employeeid = " + 
+                        _employeeShortInfo[i].ID + ")"))
+                    {
+                        _dataBase.InsertData("update grafik_employee set grafik_nomi = '" +
+                                                comboBox1.Text.Trim() + "', " +
+                                                "dan = '" + dateTimePicker1.Text + "', " +
+                                                "gacha = '" + dateTimePicker2.Text + "' " +
+                                                "where employeeid = " + _employeeShortInfo[i].ID);
+                        //listBox1.Items.Add(_employeeShortInfo[i].Familiya + ": " +  Properties.Resources.CONTROL_GRAFIK_STAFF_EMP_HAS_SHIFT + "\r\n");
                         //MessageBox.Show("У сотрудника: " + employeeListbox[i].Familiya + " есть график в этом периоде");
                         //listBox1.Items.(0, "У сотрудника: " + employeeListbox[i].Familiya + " есть график в этом периоде");
                     }
                     else
                     {
                         _dataBase.InsertData("insert into grafik_employee (employeeid, grafik_nomi, dan, gacha) values(" +
-                            _employeeShortInfo[i].ID + ",'" + comboBox1.Text + "','" + dateTimePicker1.Text + "','" +
+                            _employeeShortInfo[i].ID + ",'" + comboBox1.Text.Trim() + "','" + dateTimePicker1.Text + "','" +
                             dateTimePicker2.Text + "')");
                     }
                     //MessageBox.Show(employeeListbox[i].Familiya + " : " + employeeListbox[i].ID);
                 }
             }
             CustomMessageBox.Info(Properties.Resources.CONTROL_GRAFIK_STAFF_SUCCESS_INFO);
-            textBox1.Text += Properties.Resources.DOOR_CONTROL_FINISHED + "\r\n";
+            //listBox1.Items.Add(Properties.Resources.DOOR_CONTROL_FINISHED + "\r\n");
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -132,11 +130,8 @@ namespace AsmeFace.UserControls
             {
                 if (dataGridView1.CurrentCell.ColumnIndex.Equals(7) && e.RowIndex != -1)
                 {
-                    _dataBase.InsertData("delete from grafik_employee where grafik_nomi = '" + dataGridView1[4,
-                        dataGridView1.CurrentRow.Index].Value.ToString() + "' and employeeid = " + System.Convert.ToInt32(dataGridView1[0,
-                        dataGridView1.CurrentRow.Index].Value) + " and dan = '" + dataGridView1[5,
-                        dataGridView1.CurrentRow.Index].Value.ToString() + "' and gacha = '" + dataGridView1[6,
-                        dataGridView1.CurrentRow.Index].Value.ToString() + "'");
+                    _dataBase.InsertData("delete from grafik_employee where employeeid = " +
+                        System.Convert.ToInt32(dataGridView1[0, dataGridView1.CurrentRow.Index].Value));
 
                     RetriveGrafik(query);
                     return;
@@ -203,11 +198,7 @@ namespace AsmeFace.UserControls
 
             query = "select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.grafik_nomi, " +
                 "t2.dan, t2.gacha from employee t1 inner join grafik_employee t2 on t1.employeeid = t2.employeeid where " +
-                "(t1.familiya ILIKE '" + searchQuery + "%' and t1.status = true and t2.dan >= '" + dateTimePicker1.Text + "'" +
-                "and t2.dan <= '" + dateTimePicker2.Text + "') or (t1.familiya ILIKE '" + searchQuery + "%'" +
-                " and t1.status = true and t2.gacha >= '" + dateTimePicker1.Text + "' and t2.gacha <= '" + dateTimePicker2.Text + "')" +
-                "or (t1.familiya ILIKE '" + searchQuery + "%' and t1.status = true and " +
-                "'" + dateTimePicker1.Text + "' >= t2.dan and '" + dateTimePicker2.Text + "' <= t2.gacha)";
+                "t1.familiya ILIKE '" + searchQuery + "%' and t1.status = true";
 
             RetriveGrafik(query);
         }

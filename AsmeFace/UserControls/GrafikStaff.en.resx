@@ -166,4 +166,8 @@
   <data name="Column9.HeaderText" xml:space="preserve">
     <value>MORE</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="panel3.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
 </root>

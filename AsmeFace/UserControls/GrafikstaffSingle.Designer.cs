@@ -43,13 +43,13 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -183,12 +183,6 @@
             this.dataGridView1.RowTemplate.Height = 42;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
-            // panel4
-            // 
-            resources.ApplyResources(this.panel4, "panel4");
-            this.panel4.Controls.Add(this.dataGridView1);
-            this.panel4.Name = "panel4";
-            // 
             // Column1
             // 
             resources.ApplyResources(this.Column1, "Column1");
@@ -224,6 +218,12 @@
             this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column9.Text = "Delete";
             this.Column9.UseColumnTextForLinkValue = true;
+            // 
+            // panel4
+            // 
+            resources.ApplyResources(this.panel4, "panel4");
+            this.panel4.Controls.Add(this.dataGridView1);
+            this.panel4.Name = "panel4";
             // 
             // GrafikstaffSingle
             // 

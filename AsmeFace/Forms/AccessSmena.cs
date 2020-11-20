@@ -8,11 +8,12 @@ namespace AsmeFace.Forms
         public AccessSmena()
         {
             InitializeComponent();
+            Column8.Text = Properties.Resources.GRIDVIEW_DELETE;
             _dataBase = new DataBase();
             RetriveSmena();
         }
 
-        private DataBase _dataBase;
+        private readonly DataBase _dataBase;
 
         private void SaveButton_Click(object sender, EventArgs e)
         {

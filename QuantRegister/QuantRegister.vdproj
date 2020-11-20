@@ -1161,6 +1161,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_796D44A61EA24F9B9AE29EB50DD3C87D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_79A998C5B02BC3DB1949AC3625E979B1"
         "OwnerKey" = "8:_C0FA26D0C2E045539E3DAA169A365E12"
         "MsmSig" = "8:_UNDEFINED"
@@ -1169,6 +1175,12 @@
         {
         "MsmKey" = "8:_7A68761CEF68A9EC06D1EE2546B7B8AB"
         "OwnerKey" = "8:_C0FA26D0C2E045539E3DAA169A365E12"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7E9E133F0E224CEFA99CF2A93B8EB4DA"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1774,6 +1786,18 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_796D44A61EA24F9B9AE29EB50DD3C87D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7E9E133F0E224CEFA99CF2A93B8EB4DA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_C0FA26D0C2E045539E3DAA169A365E12"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2044,6 +2068,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -3090,7 +3122,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ASMeSDK_CSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:ASMeSDK_CSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_43ABECA7316651E8485899DB0610E73A"
@@ -4005,6 +4037,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_796D44A61EA24F9B9AE29EB50DD3C87D"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:AsmeFace.resources, Version=1.2.0.0, Culture=en, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_796D44A61EA24F9B9AE29EB50DD3C87D"
+                    {
+                    "Name" = "8:AsmeFace.resources.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\AsmeFace\\bin\\Debug\\en\\AsmeFace.resources.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_5DF087295AF549619D7965DF40EFD494"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_79A998C5B02BC3DB1949AC3625E979B1"
             {
             "AssemblyRegister" = "3:1"
@@ -4065,6 +4128,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7E9E133F0E224CEFA99CF2A93B8EB4DA"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:AsmeFace.resources, Version=1.2.0.0, Culture=ru, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_7E9E133F0E224CEFA99CF2A93B8EB4DA"
+                    {
+                    "Name" = "8:AsmeFace.resources.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\AsmeFace\\bin\\Debug\\ru\\AsmeFace.resources.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_1EF5D863FF2346E5904CA71F38D50BA3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8263C1975330F0EFEA26A08E94E6CF60"
@@ -5870,6 +5964,28 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_1EF5D863FF2346E5904CA71F38D50BA3"
+                    {
+                    "Name" = "8:ru"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_111F3FA47844436E869C8E3C1E42A940"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_5DF087295AF549619D7965DF40EFD494"
+                    {
+                    "Name" = "8:en"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_32CAF9A50F6A41D0B3283AD7B84A45DC"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_3B7CBDC1CBE8443FBB622D62D8560E7A"
@@ -5921,15 +6037,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:QuantRegister"
-        "ProductCode" = "8:{2A6D0948-F27A-41D4-9B5C-F5A8A5FE7AE6}"
-        "PackageCode" = "8:{BB748844-2F12-4196-9CD9-3A4048048966}"
+        "ProductCode" = "8:{912235C4-0F5C-425A-A618-6EC85B24A550}"
+        "PackageCode" = "8:{16F9526E-BFFC-4CFE-9984-58D11B9AFD2D}"
         "UpgradeCode" = "8:{FDED1467-1781-49D9-85E4-B6FA8DA092D4}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.2.0"
         "Manufacturer" = "8:Quantum Smart"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

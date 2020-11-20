@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ACCESSFORM_SUCCESS_INFO" xml:space="preserve">
-    <value>Operation was successfully done!\r\nClick departments or search employee\r\nto see shift info</value>
+    <value>Operation was successfully done! Click departments or search employee to see shift info</value>
   </data>
   <data name="CONTROL_DEVICE_SELECT_DIRECTION" xml:space="preserve">
     <value>Select direction</value>
@@ -133,16 +133,13 @@
     <value>Date should be for the future</value>
   </data>
   <data name="CONTROL_GRAFIK_STAFF_EMP_HAS_SHIFT" xml:space="preserve">
-    <value>employee has shift in this period\r\n</value>
+    <value>employee has shift in this period</value>
   </data>
   <data name="CONTROL_GRAFIK_STAFF_SUCCESS_INFO" xml:space="preserve">
-    <value>Operation was successfully done!\r\nClick departments and date range\r\nor search employee to see access shift info</value>
+    <value>Operation was successfully done! Click departments and date range or search employee to see shift info</value>
   </data>
   <data name="CONTROL_LANGUAGE_CHANGE" xml:space="preserve">
     <value>change language?</value>
-  </data>
-  <data name="CONTROL_STAFF_DEPARTMENT" xml:space="preserve">
-    <value>Department</value>
   </data>
   <data name="CONTROL_STAFF_EMPLOYEE_COUNT" xml:space="preserve">
     <value>employee count:</value>
@@ -197,6 +194,30 @@
   </data>
   <data name="GRAFIK_VIEW_START" xml:space="preserve">
     <value>START</value>
+  </data>
+  <data name="GRIDVIEW_ADD" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="GRIDVIEW_DELETE" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="GRIDVIEW_DEPARTMENT" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="GRIDVIEW_EDIT" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="GRIDVIEW_INITIALIZE" xml:space="preserve">
+    <value>Initialize</value>
+  </data>
+  <data name="GRIDVIEW_MORE" xml:space="preserve">
+    <value>View schedule</value>
+  </data>
+  <data name="GRIDVIEW_RETIRE" xml:space="preserve">
+    <value>Retire</value>
+  </data>
+  <data name="GRIDVIEW_SETTINGS" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="LOGIN_WRONG" xml:space="preserve">
     <value>Login or password is wrong</value>

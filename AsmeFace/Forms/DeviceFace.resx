@@ -172,9 +172,6 @@
   <data name="temperature_btn.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="temp_combo_compensation.Items9" xml:space="preserve">
-    <value>0.4</value>
-  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label10.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -405,11 +402,11 @@
   <data name="alarm_panel.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>910, 25</value>
   </data>
+  <data name="label23.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="basic_txt_open_time.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 20</value>
   </data>
   <data name="alarm_txt_delay.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -621,6 +618,9 @@
   <data name="temp_combo_compensation.Items1" xml:space="preserve">
     <value>-1.2</value>
   </data>
+  <data name="&gt;&gt;label23.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="label24.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
@@ -689,9 +689,6 @@
   </data>
   <data name="&gt;&gt;label10.Parent" xml:space="preserve">
     <value>temp_panel</value>
-  </data>
-  <data name="&gt;&gt;adv_combo_live.ZOrder" xml:space="preserve">
-    <value>6</value>
   </data>
   <data name="&gt;&gt;label12.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -792,14 +789,17 @@
   <data name="label21.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label23.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="basic_txt_open_time.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 20</value>
   </data>
   <data name="temp_combo_compensation.Items12" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="label19.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
+  </data>
+  <data name="temperature_btn.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
   </data>
   <data name="&gt;&gt;btn_save.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -1077,8 +1077,8 @@
   <data name="adv_btn.Size" type="System.Drawing.Size, System.Drawing">
     <value>910, 29</value>
   </data>
-  <data name="&gt;&gt;label23.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;adv_combo_light.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label17.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -1215,9 +1215,6 @@
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>551, 46</value>
   </data>
-  <data name="&gt;&gt;basic_btn.Parent" xml:space="preserve">
-    <value>basic_panel</value>
-  </data>
   <data name="&gt;&gt;basic_panel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
@@ -1254,6 +1251,9 @@
   <data name="basic_combo_auth.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>543, 52</value>
+  </data>
   <data name="alarm_combo_type.Location" type="System.Drawing.Point, System.Drawing">
     <value>150, 41</value>
   </data>
@@ -1278,8 +1278,8 @@
   <data name="&gt;&gt;btn_close.Parent" xml:space="preserve">
     <value>flowLayoutPanel1</value>
   </data>
-  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>543, 52</value>
+  <data name="&gt;&gt;basic_btn.Parent" xml:space="preserve">
+    <value>basic_panel</value>
   </data>
   <data name="&gt;&gt;label17.Parent" xml:space="preserve">
     <value>advanced_panel</value>
@@ -1395,8 +1395,8 @@
   <data name="temp_combo_compensation.Items7" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="temperature_btn.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
+  <data name="temp_combo_compensation.Items9" xml:space="preserve">
+    <value>0.4</value>
   </data>
   <data name="&gt;&gt;label5.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1440,8 +1440,8 @@
   <data name="&gt;&gt;temp_combo_action.Name" xml:space="preserve">
     <value>temp_combo_action</value>
   </data>
-  <data name="&gt;&gt;adv_combo_light.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;adv_combo_live.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
     <value>594, 157</value>
@@ -1468,6 +1468,6 @@
     <value>360, 17</value>
   </metadata>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en</value>
+    <value>ru</value>
   </metadata>
 </root>

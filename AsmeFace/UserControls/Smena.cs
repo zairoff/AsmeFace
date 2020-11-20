@@ -9,11 +9,12 @@ namespace AsmeFace.UserControls
         public Smena()
         {
             InitializeComponent();
+            Column7.Text = Properties.Resources.GRIDVIEW_DELETE;
             _dataBase = new DataBase();
             RetriveSmena();
         }
 
-        private DataBase _dataBase;
+        private readonly DataBase _dataBase;
 
         private void button1_Click(object sender, EventArgs e)
         {

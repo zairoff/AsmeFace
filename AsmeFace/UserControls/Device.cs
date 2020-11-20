@@ -16,10 +16,14 @@ namespace AsmeFace.UserControls
             {
                 Column6.Items.Add(door);
             }
+            Column7.Text = Properties.Resources.GRIDVIEW_ADD;
+            Column8.Text = Properties.Resources.GRIDVIEW_INITIALIZE;
+            Column9.Text = Properties.Resources.GRIDVIEW_SETTINGS;
+            Column10.Text = Properties.Resources.GRIDVIEW_DELETE;
         }
 
-        private AsmeDevice _asmeDevice;
-        private DataBase _dataBase;
+        private readonly AsmeDevice _asmeDevice;
+        private readonly DataBase _dataBase;
 
         private void label2_MouseEnter(object sender, EventArgs e)
         {
@@ -128,7 +132,7 @@ namespace AsmeFace.UserControls
                 {
                     foreach(DeviceInfo device in devices)
                     {
-                        dataGridView1.Rows.Insert(0, device.szVersion, device.szMac, device.dwIPAddress);
+                        dataGridView1.Rows.Insert(0, device.szVersion, device.szMac, device.dwIPAddress);                        
                     }
                 }
             }            

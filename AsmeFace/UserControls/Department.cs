@@ -65,6 +65,7 @@ namespace AsmeFace.UserControls
             //var str = treeView1.SelectedNode.FullPath.ToString().Replace(" ", "");
             //str += "." + textBox1.Text.Replace(" ", "");
             var query = "insert into department (ttext, mytree) values ('" + textBox1.Text.Trim() + "','" + nodeName + "')";
+            //var query = "select update_department('" + textBox1.Text.Trim() + "','" + nodeName + "')";
 
             if (_dataBase.InsertData(query))
             {

@@ -11,6 +11,7 @@ namespace AsmeFace.Forms
         public AccessForm()
         {
             InitializeComponent();
+            Column6.Text = Properties.Resources.GRIDVIEW_DELETE;
             _dataBase = new DataBase();
             _getTree = new GetTree();
             _asmeDevice = new AsmeDevice();

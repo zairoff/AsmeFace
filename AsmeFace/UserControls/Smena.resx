@@ -311,6 +311,9 @@
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 13</value>
   </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
   <data name="dateTimePicker3.Location" type="System.Drawing.Point, System.Drawing">
     <value>24, 61</value>
   </data>
@@ -385,9 +388,6 @@
   </data>
   <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="dateTimePicker3.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
   </data>
   <data name="Column1.HeaderText" xml:space="preserve">
     <value>Название</value>
@@ -539,8 +539,8 @@
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 13</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="dateTimePicker3.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
   </data>
   <data name="&gt;&gt;Column8.Name" xml:space="preserve">
     <value>Column8</value>
@@ -676,7 +676,7 @@
     <value>259, 22</value>
   </data>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en</value>
+    <value>ru</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

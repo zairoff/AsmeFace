@@ -161,7 +161,7 @@
     <value>График существует</value>
   </data>
   <data name="ACCESSFORM_SUCCESS_INFO" xml:space="preserve">
-    <value>Операция выполнена успешно!\r\nЧтобы узнать график сотрудника\r\nВыберите отдел</value>
+    <value>Операция выполнена успешно! Чтобы узнать график сотрудника выберите отдел</value>
   </data>
   <data name="GRAFIK_VIEW_START" xml:space="preserve">
     <value>Начало</value>
@@ -173,7 +173,7 @@
     <value>Окончание прерыва</value>
   </data>
   <data name="CONTROL_GRAFIK_STAFF_EMP_HAS_SHIFT" xml:space="preserve">
-    <value>У сотрудника есть график в этом периоде\r\n</value>
+    <value>У сотрудника есть график в этом периоде</value>
   </data>
   <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,17 +190,17 @@
   <data name="DEVICE_FAILED_OPEN" xml:space="preserve">
     <value>Не удалось открыть устройство</value>
   </data>
-  <data name="3Security" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="security" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3Security.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrow_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CONTROL_GRAFIK_STAFF_SUCCESS_INFO" xml:space="preserve">
-    <value>Операция выполнена успешно!\r\nЧтобы узнать график сотрудника\r\nвыберите период времени и отдел</value>
+    <value>Операция выполнена успешно! Чтобы узнать график сотрудника выберите период времени и отдел</value>
   </data>
   <data name="DOORS_IN_USE" xml:space="preserve">
-    <value>Удалить дверь невозможно \nДверь используется</value>
+    <value>Удалить дверь невозможно, дверь используется</value>
   </data>
   <data name="uk" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\uk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -244,7 +244,7 @@
   <data name="Quantum" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Quantum.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CONTROL_STAFF_DEPARTMENT" xml:space="preserve">
+  <data name="GRIDVIEW_DEPARTMENT" xml:space="preserve">
     <value>Отдел</value>
   </data>
   <data name="staff" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -258,5 +258,26 @@
   </data>
   <data name="CONTROL_LANGUAGE_CHANGE" xml:space="preserve">
     <value>Изменить язык?</value>
+  </data>
+  <data name="GRIDVIEW_ADD" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="GRIDVIEW_DELETE" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="GRIDVIEW_INITIALIZE" xml:space="preserve">
+    <value>Инстализация</value>
+  </data>
+  <data name="GRIDVIEW_SETTINGS" xml:space="preserve">
+    <value>Настройка</value>
+  </data>
+  <data name="GRIDVIEW_EDIT" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="GRIDVIEW_RETIRE" xml:space="preserve">
+    <value>Увольнения</value>
+  </data>
+  <data name="GRIDVIEW_MORE" xml:space="preserve">
+    <value>Дополнительно</value>
   </data>
 </root>
