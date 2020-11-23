@@ -33,9 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ASMeSDK_CSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="ASMeSDK_CSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>libs\ASMeSDK_CSharp.dll</HintPath>
+      <HintPath>..\..\wetransfer-14c9b0\CSharpASMeSDK165 demo\ASMeSDK_CSharp\ASMeSDK_CSharp\bin\Debug\ASMeSDK_CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
