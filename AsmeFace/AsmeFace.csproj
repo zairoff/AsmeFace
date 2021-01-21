@@ -156,6 +156,12 @@
     <Compile Include="Forms\EmployeeInDevice.Designer.cs">
       <DependentUpon>EmployeeInDevice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Retireds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Retireds.Designer.cs">
+      <DependentUpon>Retireds.cs</DependentUpon>
+    </Compile>
     <Compile Include="GetTree.cs" />
     <Compile Include="Forms\GrafikView.cs">
       <SubType>Form</SubType>
@@ -365,6 +371,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.ru.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Retireds.en.resx">
+      <DependentUpon>Retireds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Retireds.resx">
+      <DependentUpon>Retireds.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Sync.resx">
       <DependentUpon>Sync.cs</DependentUpon>

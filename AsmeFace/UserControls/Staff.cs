@@ -80,7 +80,7 @@ namespace AsmeFace.UserControls
             if (treeView1.SelectedNode == treeView1.Nodes[0])
                 label1.Text = treeView1.SelectedNode.Text + " | " + Properties.Resources.CONTROL_STAFF_EMPLOYEE_COUNT + dataGridView1.Rows.Count;
             else
-                label1.Text = Properties.Resources.GRIDVIEW_DEPARTMENT + treeView1.SelectedNode.Text + " | " + Properties.Resources.CONTROL_STAFF_EMPLOYEE_COUNT +  dataGridView1.Rows.Count;
+                label1.Text = treeView1.SelectedNode.Text + " | " + Properties.Resources.CONTROL_STAFF_EMPLOYEE_COUNT +  dataGridView1.Rows.Count;
         }
 
         private System.Drawing.Image ByteToImage(byte[] byteArrayIn)
@@ -185,6 +185,7 @@ namespace AsmeFace.UserControls
                         return false;
                     }
                 }
+                _asmeDevice.CloseDevice();
             }
 
             //var query = "update employee set status = false where employeeid = " + userID);
@@ -202,6 +203,11 @@ namespace AsmeFace.UserControls
                 "where familiya ILIKE '" + SearchTextBox.Text.Trim() + "%' and status = true";
 
             RetriveData(query);
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            new Forms.Retireds().ShowDialog();
         }
     }
 }

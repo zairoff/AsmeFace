@@ -152,7 +152,7 @@
     <value>105, 16</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Access to doors</value>
+    <value>Access to devices</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 16</value>

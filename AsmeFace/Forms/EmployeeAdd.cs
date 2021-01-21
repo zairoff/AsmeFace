@@ -126,7 +126,7 @@ namespace AsmeFace.Forms
                     queryEncode = System.Text.Encoding.UTF8.GetBytes("update employee set photo = @Image, finger = @finger," +
                         "card = '" + textBox7.Text + "', familiya = '" + textBox2.Text + "', ism = '" + textBox3.Text +
                         "', otchestvo = '" + textBox4.Text + "'," + "department = '" + treeView1.SelectedNode.Name +
-                        "', otdel = '" + textBox6.Text + "'," + "lavozim = '" + textBox5.Text + "' where employeeid = " + userID);
+                        "', otdel = '" + textBox6.Text + "'," + "lavozim = '" + textBox5.Text + "', status = true where employeeid = " + userID);
                 }              
 
                 var index = _dataBase.InsertFace(System.Text.Encoding.UTF8.GetString(queryEncode), photo, finger);

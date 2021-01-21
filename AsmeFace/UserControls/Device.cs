@@ -16,9 +16,16 @@ namespace AsmeFace.UserControls
             {
                 Column6.Items.Add(door);
             }
+            //Column7.HeaderText = Properties.Resources.GRIDVIEW_ADD;
             Column7.Text = Properties.Resources.GRIDVIEW_ADD;
+
+            //Column8.HeaderText = Properties.Resources.GRIDVIEW_INITIALIZE;
             Column8.Text = Properties.Resources.GRIDVIEW_INITIALIZE;
+
+            //Column9.HeaderText = Properties.Resources.GRIDVIEW_SETTINGS;
             Column9.Text = Properties.Resources.GRIDVIEW_SETTINGS;
+
+            //Column10.HeaderText = Properties.Resources.GRIDVIEW_DELETE;
             Column10.Text = Properties.Resources.GRIDVIEW_DELETE;
         }
 
