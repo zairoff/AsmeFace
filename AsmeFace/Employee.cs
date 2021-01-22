@@ -19,5 +19,7 @@
         public string Otdel { get; set; }
 
         public string Lavozim { get; set; }
+
+        public string Address { get; set; }
     }
 }

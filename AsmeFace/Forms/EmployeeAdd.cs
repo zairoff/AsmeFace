@@ -5,40 +5,29 @@ using System.Windows.Forms;
 
 namespace AsmeFace.Forms
 {
-    public partial class EmployeeAdd : Form
+    public abstract partial class EmployeeAdd : Form
     {
         public EmployeeAdd()
         {
             InitializeComponent();
-            textBox1.Text = (_dataBase.GetID("select employeeid from employee order by employeeid desc limit 1") + 1).ToString();
+            _dataBase = new DataBase();
+            _tree = new GetTree();
+            _asmeDevice = new AsmeDevice();
             FillTree();
-            _status = false;
+            //_status = false;
         }
 
         public EmployeeAdd(int id)
         {
             InitializeComponent();
-            var employee = _dataBase.GetEmployee(
-                "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
-                "where employeeid = " + id);
-            if(employee.Count > 0)
-            {
-                pictureBox1.Image = ByteToImage(employee[0].Photo);
-                textBox1.Text = employee[0].ID.ToString();
-                textBox2.Text = employee[0].Familiya;
-                textBox3.Text = employee[0].Ism;
-                textBox4.Text = employee[0].Otchestvo;
-                textBox7.Text = employee[0].Card;               
-                textBox8.Text = employee[0].Finger == null ? "" : System.Text.Encoding.UTF8.GetString(employee[0].Finger);
-            }
-            FillTree();
-            _status = true;
+           
+            //_status = true;
         }
 
-        private DataBase _dataBase = new DataBase();
-        private GetTree _tree = new GetTree();
-        private AsmeDevice _asmeDevice = new AsmeDevice();
-        private readonly bool _status;
+        protected readonly DataBase _dataBase;
+        protected readonly GetTree _tree;
+        protected readonly AsmeDevice _asmeDevice;
+        //private readonly bool _status;
 
         private void FillTree()
         {
@@ -54,7 +43,7 @@ namespace AsmeFace.Forms
             }
         }
 
-        private void button1_Click(object sender, System.EventArgs e)
+        private void Button1_Click(object sender, System.EventArgs e)
         {
             var dg = new OpenFileDialog();
 
@@ -71,20 +60,20 @@ namespace AsmeFace.Forms
             pictureBox1.Image = image;
         }
 
-        private bool CheckFields()
+        protected bool CheckFields()
         {
             return (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) &&
-                !string.IsNullOrEmpty(textBox3.Text) && !string.IsNullOrEmpty(textBox5.Text) &&
-                !string.IsNullOrEmpty(textBox6.Text) && pictureBox1.Image != null);
+                    !string.IsNullOrEmpty(textBox3.Text) && !string.IsNullOrEmpty(textBox5.Text) &&
+                    !string.IsNullOrEmpty(textBox6.Text) && pictureBox1.Image != null);
         }
 
-        private void ClearFields()
+        protected void ClearFields()
         {
             textBox2.Text = ""; textBox3.Text = ""; textBox4.Text = ""; textBox5.Text = ""; textBox6.Text = "";
             textBox7.Text = ""; textBox8.Text = ""; pictureBox1.Image = null;
         }
 
-        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
+        protected byte[] ImageToByteArray(System.Drawing.Image imageIn)
         {
             using (var ms = new System.IO.MemoryStream())
             {
@@ -94,7 +83,7 @@ namespace AsmeFace.Forms
             }
         }
 
-        private System.Drawing.Image ByteToImage(byte[] byteArrayIn)
+        protected System.Drawing.Image ByteToImage(byte[] byteArrayIn)
         {
             using (var ms = new System.IO.MemoryStream(byteArrayIn))
             {
@@ -102,51 +91,51 @@ namespace AsmeFace.Forms
             }
         }
 
-        private void button3_Click(object sender, System.EventArgs e)
-        {
-            if (CheckFields())
-            {
-                byte[] queryEncode = null;
-                byte[] finger = null;
-                var userID = Convert.ToInt32(textBox1.Text);
-                var photo = ImageToByteArray(pictureBox1.Image);
+        protected abstract void Button3_Click(object sender, System.EventArgs e);
+        //{
+        //    if (CheckFields())
+        //    {
+        //        byte[] queryEncode = null;
+        //        byte[] finger = null;
+        //        var userID = Convert.ToInt32(textBox1.Text);
+        //        var photo = ImageToByteArray(pictureBox1.Image);
 
-                if (!string.IsNullOrEmpty(textBox8.Text))
-                    finger = Convert.FromBase64String(textBox8.Text);
+        //        if (!string.IsNullOrEmpty(textBox8.Text))
+        //            finger = Convert.FromBase64String(textBox8.Text);
 
-                if (!_status)
-                {
-                    queryEncode = System.Text.Encoding.UTF8.GetBytes("insert into employee (employeeid, photo, finger, " +
-                    "card, ism, familiya, otchestvo, department, otdel, lavozim) values(" + userID + ", @Image, @Finger, '" +
-                    textBox7.Text +"','" + textBox3.Text + "','" + textBox2.Text + "','" + textBox4.Text + "','" + treeView1.SelectedNode.Name +
-                    "','" + textBox6.Text + "','" + textBox5.Text + "') returning employeeid");
-                }
-                else
-                {
-                    queryEncode = System.Text.Encoding.UTF8.GetBytes("update employee set photo = @Image, finger = @finger," +
-                        "card = '" + textBox7.Text + "', familiya = '" + textBox2.Text + "', ism = '" + textBox3.Text +
-                        "', otchestvo = '" + textBox4.Text + "'," + "department = '" + treeView1.SelectedNode.Name +
-                        "', otdel = '" + textBox6.Text + "'," + "lavozim = '" + textBox5.Text + "', status = true where employeeid = " + userID);
-                }              
+        //        if (!_status)
+        //        {
+        //            queryEncode = System.Text.Encoding.UTF8.GetBytes("insert into employee (employeeid, photo, finger, " +
+        //            "card, ism, familiya, otchestvo, department, otdel, lavozim) values(" + userID + ", @Image, @Finger, '" +
+        //            textBox7.Text +"','" + textBox3.Text + "','" + textBox2.Text + "','" + textBox4.Text + "','" + treeView1.SelectedNode.Name +
+        //            "','" + textBox6.Text + "','" + textBox5.Text + "') returning employeeid");
+        //        }
+        //        else
+        //        {
+        //            queryEncode = System.Text.Encoding.UTF8.GetBytes("update employee set photo = @Image, finger = @finger," +
+        //                "card = '" + textBox7.Text + "', familiya = '" + textBox2.Text + "', ism = '" + textBox3.Text +
+        //                "', otchestvo = '" + textBox4.Text + "'," + "department = '" + treeView1.SelectedNode.Name +
+        //                "', otdel = '" + textBox6.Text + "'," + "lavozim = '" + textBox5.Text + "', status = true where employeeid = " + userID);
+        //        }              
 
-                var index = _dataBase.InsertFace(System.Text.Encoding.UTF8.GetString(queryEncode), photo, finger);
-                if (index < 0)
-                {
-                    MessageBox.Show(Properties.Resources.OPERATION_FAILED);
-                    return;
-                }
+        //        var index = _dataBase.InsertFace(System.Text.Encoding.UTF8.GetString(queryEncode), photo, finger);
+        //        if (index < 0)
+        //        {
+        //            MessageBox.Show(Properties.Resources.OPERATION_FAILED);
+        //            return;
+        //        }
                 
-                ClearFields();
-                textBox1.Text = (index + 1).ToString();
-                CustomMessageBox.Info(Properties.Resources.OPERATION_SUCCESS);
-            }
-            else
-            {
-                CustomMessageBox.Info(Properties.Resources.FILL_IN_ALL_FIELDS);
-            }
-        }
+        //        ClearFields();
+        //        textBox1.Text = (index + 1).ToString();
+        //        CustomMessageBox.Info(Properties.Resources.OPERATION_SUCCESS);
+        //    }
+        //    else
+        //    {
+        //        CustomMessageBox.Info(Properties.Resources.FILL_IN_ALL_FIELDS);
+        //    }
+        //}
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             _tree.ClearBackColor(treeView1, System.Drawing.SystemColors.Control);
             treeView1.SelectedNode.BackColor = System.Drawing.Color.Blue;
@@ -158,12 +147,12 @@ namespace AsmeFace.Forms
                 textBox6.Text = treeView1.SelectedNode.Parent.Text; 
         }
 
-        private void button2_Click(object sender, System.EventArgs e)
+        private void Button2_Click(object sender, System.EventArgs e)
         {
             Close();
         }
 
-        private void btn_finger_Click(object sender, System.EventArgs e)
+        private void Btn_finger_Click(object sender, System.EventArgs e)
         {
             try
             {

@@ -280,4 +280,19 @@
   <data name="GRIDVIEW_MORE" xml:space="preserve">
     <value>Дополнительно</value>
   </data>
+  <data name="GRIDVIEW_HISTORY" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="GRIDVIEW_HIRED_DATE" xml:space="preserve">
+    <value>Дата приема</value>
+  </data>
+  <data name="GRIDVIEW_POSITION" xml:space="preserve">
+    <value>Должность</value>
+  </data>
+  <data name="GRIDVIEW_RETIRED_DATE" xml:space="preserve">
+    <value>Дата уволнения</value>
+  </data>
+  <data name="GRIDVIEW_REASON" xml:space="preserve">
+    <value>Причина</value>
+  </data>
 </root>

@@ -309,7 +309,7 @@ namespace AsmeFace
                     {
                         while (reader.Read())
                         {
-                            Employee employee = new Employee();
+                            var employee = new Employee();
 
                             employee.ID = Convert.ToInt32(reader["employeeid"]);
                             employee.Photo = (byte[])reader["photo"];
@@ -323,6 +323,7 @@ namespace AsmeFace
                             employee.Otchestvo = reader["otchestvo"].ToString();
                             employee.Otdel = reader["otdel"].ToString();
                             employee.Lavozim = reader["lavozim"].ToString();                            
+                            employee.Address = reader["address"].ToString();                            
                             employees.Add(employee);
                         }
                     }                        

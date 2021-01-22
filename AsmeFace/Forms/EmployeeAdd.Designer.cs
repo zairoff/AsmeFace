@@ -52,15 +52,19 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btn_finger = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this.treeView1);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // treeView1
@@ -70,7 +74,7 @@
             this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeView1.Name = "treeView1";
             this.treeView1.PathSeparator = ".";
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeView1_AfterSelect);
             // 
             // label1
             // 
@@ -146,26 +150,26 @@
             resources.ApplyResources(this.button1, "button1");
             this.button1.Name = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // button2
             // 
             resources.ApplyResources(this.button2, "button2");
             this.button2.Name = "button2";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // button3
             // 
             resources.ApplyResources(this.button3, "button3");
             this.button3.Name = "button3";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // pictureBox1
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 
@@ -197,13 +201,40 @@
             resources.ApplyResources(this.btn_finger, "btn_finger");
             this.btn_finger.Name = "btn_finger";
             this.btn_finger.UseVisualStyleBackColor = true;
-            this.btn_finger.Click += new System.EventHandler(this.btn_finger_Click);
+            this.btn_finger.Click += new System.EventHandler(this.Btn_finger_Click);
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Name = "label9";
+            // 
+            // dateTimePicker1
+            // 
+            resources.ApplyResources(this.dateTimePicker1, "dateTimePicker1");
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            // 
+            // textBox9
+            // 
+            resources.ApplyResources(this.textBox9, "textBox9");
+            this.textBox9.Name = "textBox9";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Name = "label10";
             // 
             // EmployeeAdd
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(56)))), ((int)(((byte)(57)))));
+            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.btn_finger);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.label8);
@@ -237,28 +268,32 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btn_finger;
+        protected System.Windows.Forms.Panel panel1;
+        protected System.Windows.Forms.TreeView treeView1;
+        protected System.Windows.Forms.PictureBox pictureBox1;
+        protected System.Windows.Forms.Label label1;
+        protected System.Windows.Forms.TextBox textBox1;
+        protected System.Windows.Forms.TextBox textBox2;
+        protected System.Windows.Forms.Label label2;
+        protected System.Windows.Forms.TextBox textBox3;
+        protected System.Windows.Forms.Label label3;
+        protected System.Windows.Forms.TextBox textBox4;
+        protected System.Windows.Forms.Label label4;
+        protected System.Windows.Forms.Label label5;
+        protected System.Windows.Forms.Label label6;
+        protected System.Windows.Forms.Button button1;
+        protected System.Windows.Forms.Button button2;
+        protected System.Windows.Forms.Button button3;
+        protected System.Windows.Forms.TextBox textBox7;
+        protected System.Windows.Forms.Label label7;
+        protected System.Windows.Forms.TextBox textBox8;
+        protected System.Windows.Forms.Label label8;
+        protected System.Windows.Forms.Button btn_finger;
+        protected System.Windows.Forms.Label label9;
+        protected System.Windows.Forms.DateTimePicker dateTimePicker1;
+        protected System.Windows.Forms.TextBox textBox9;
+        protected System.Windows.Forms.Label label10;
+        protected System.Windows.Forms.TextBox textBox5;
+        protected System.Windows.Forms.TextBox textBox6;
     }
 }

@@ -20,6 +20,7 @@ namespace AsmeFace.Forms
             _asmeDevice = new AsmeDevice();
             FillTree();
             Column8.Text = Properties.Resources.GRIDVIEW_EDIT;
+            Column9.Text = Properties.Resources.GRIDVIEW_HISTORY;
         }
 
         private readonly DataBase _dataBase;
@@ -44,7 +45,7 @@ namespace AsmeFace.Forms
         private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             query = "select employeeid," +
-                "photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
+                "photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address from employee " +
                 "where department <@ '" + treeView1.SelectedNode.Name + "' and status = false order by employeeid desc";
 
             RetriveData(query);
@@ -86,13 +87,13 @@ namespace AsmeFace.Forms
             if (string.IsNullOrEmpty(SearchTextBox.Text))
                 return;
 
-            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
-                "where familiya ILIKE '" + SearchTextBox.Text.Trim() + "%' and status = true";
+            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address from employee " +
+                    "where familiya ILIKE '" + SearchTextBox.Text.Trim() + "%' and status = true";
 
             RetriveData(query);
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.Rows.Count < 1)
                 return;
@@ -101,12 +102,18 @@ namespace AsmeFace.Forms
 
             if (dataGridView1.CurrentCell.ColumnIndex.Equals(7) && e.RowIndex != -1)
             {
-                new EmployeeAdd(userID).ShowDialog();
+                new Forms.EmployeeRehire(userID).ShowDialog();
+                return;
+            }
+
+            if (dataGridView1.CurrentCell.ColumnIndex.Equals(8) && e.RowIndex != -1)
+            {
+                new Forms.EmployeeHistory(userID).ShowDialog();
                 return;
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             Close();
         }

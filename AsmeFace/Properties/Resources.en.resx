@@ -207,14 +207,29 @@
   <data name="GRIDVIEW_EDIT" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="GRIDVIEW_HIRED_DATE" xml:space="preserve">
+    <value>Hired Date</value>
+  </data>
+  <data name="GRIDVIEW_HISTORY" xml:space="preserve">
+    <value>History</value>
+  </data>
   <data name="GRIDVIEW_INITIALIZE" xml:space="preserve">
     <value>Initialize</value>
   </data>
   <data name="GRIDVIEW_MORE" xml:space="preserve">
     <value>View schedule</value>
   </data>
+  <data name="GRIDVIEW_POSITION" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="GRIDVIEW_REASON" xml:space="preserve">
+    <value>Reason</value>
+  </data>
   <data name="GRIDVIEW_RETIRE" xml:space="preserve">
     <value>Retire</value>
+  </data>
+  <data name="GRIDVIEW_RETIRED_DATE" xml:space="preserve">
+    <value>Retired Date</value>
   </data>
   <data name="GRIDVIEW_SETTINGS" xml:space="preserve">
     <value>Settings</value>

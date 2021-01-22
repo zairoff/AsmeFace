@@ -49,7 +49,7 @@ namespace AsmeFace.Forms
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, " +
-                "otdel, lavozim from employee where department <@ '" + treeView1.SelectedNode.Name +
+                "otdel, lavozim, address from employee where department <@ '" + treeView1.SelectedNode.Name +
                 "' and status = true order by employeeid desc");
         }   
         
@@ -166,7 +166,7 @@ namespace AsmeFace.Forms
 
             if (employee.Finger != null && string.Equals(device.dwType, "Finger"))
             {
-                CustomLog.WriteToFile("FINGER");
+                //CustomLog.WriteToFile("FINGER");
                 var unmanagedPointer = Marshal.AllocHGlobal(employee.Finger.Length);
                 Marshal.Copy(employee.Finger, 0, unmanagedPointer, employee.Finger.Length);                
                 nRes = _asmeDevice.SetFinger(employee.ID, unmanagedPointer);
@@ -191,7 +191,7 @@ namespace AsmeFace.Forms
 
             if (string.Equals(device.dwType, "Face"))
             {
-                CustomLog.WriteToFile("FACE");
+                //CustomLog.WriteToFile("FACE");
 
                 nRes = _asmeDevice.WriteFace(employee.Photo, employee.ID);
 

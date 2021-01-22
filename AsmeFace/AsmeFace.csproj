@@ -86,6 +86,7 @@
     <Compile Include="DeviceFace.cs" />
     <Compile Include="Door.cs" />
     <Compile Include="EmployeeGrafik.cs" />
+    <Compile Include="EmployeeHistoryClass.cs" />
     <Compile Include="EmployeeInDevice.cs" />
     <Compile Include="Forms\AccessForm.cs">
       <SubType>Form</SubType>
@@ -150,11 +151,41 @@
       <DependentUpon>EmployeeAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="EmployeeShortInfo.cs" />
+    <Compile Include="Forms\EmployeeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmployeeEdit.Designer.cs">
+      <DependentUpon>EmployeeEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EmployeeHire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmployeeHire.Designer.cs">
+      <DependentUpon>EmployeeHire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EmployeeHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmployeeHistory.Designer.cs">
+      <DependentUpon>EmployeeHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\EmployeeInDevice.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\EmployeeInDevice.Designer.cs">
       <DependentUpon>EmployeeInDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EmployeeRehire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmployeeRehire.Designer.cs">
+      <DependentUpon>EmployeeRehire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Retire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Retire.Designer.cs">
+      <DependentUpon>Retire.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Retireds.cs">
       <SubType>Form</SubType>
@@ -339,6 +370,15 @@
     <EmbeddedResource Include="Forms\EmployeeAdd.ru.resx">
       <DependentUpon>EmployeeAdd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmployeeEdit.resx">
+      <DependentUpon>EmployeeEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmployeeHire.resx">
+      <DependentUpon>EmployeeHire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmployeeHistory.resx">
+      <DependentUpon>EmployeeHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmployeeInDevice.en.resx">
       <DependentUpon>EmployeeInDevice.cs</DependentUpon>
     </EmbeddedResource>
@@ -347,6 +387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmployeeInDevice.ru.resx">
       <DependentUpon>EmployeeInDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmployeeRehire.resx">
+      <DependentUpon>EmployeeRehire.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form1.en.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -371,6 +414,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.ru.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Retire.resx">
+      <DependentUpon>Retire.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Retireds.en.resx">
       <DependentUpon>Retireds.cs</DependentUpon>

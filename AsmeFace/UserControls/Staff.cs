@@ -15,12 +15,18 @@ namespace AsmeFace.UserControls
             Column8.Text = Properties.Resources.GRIDVIEW_EDIT;
             Column9.Text = Properties.Resources.GRIDVIEW_RETIRE;
             Column10.Text = Properties.Resources.GRIDVIEW_DELETE;
+            Column11.Text = Properties.Resources.GRIDVIEW_HISTORY;
         }
 
         private readonly DataBase _dataBase;
         private readonly GetTree _tree;
         private readonly AsmeDevice _asmeDevice;
         private string query;
+
+        public void NotifyHandler(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+        }
 
         private void FillTree()
         {
@@ -36,15 +42,15 @@ namespace AsmeFace.UserControls
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            new Forms.EmployeeAdd().ShowDialog();
+            new Forms.EmployeeHire().ShowDialog();
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             query = "select employeeid," +
-                "photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
+                "photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address from employee " +
                 "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc";
 
             RetriveData(query);
@@ -100,14 +106,18 @@ namespace AsmeFace.UserControls
 
             if (dataGridView1.CurrentCell.ColumnIndex.Equals(7) && e.RowIndex != -1)
             {
-                new Forms.EmployeeAdd(userID).ShowDialog();
+                new Forms.EmployeeEdit(userID).ShowDialog();
+                //new Forms.EmployeeAdd(userID).ShowDialog();
                 return;
             }
 
             if (dataGridView1.CurrentCell.ColumnIndex.Equals(8) && e.RowIndex != -1)
             {
-                if (UpdateOrDeleteEmployee(userID, "update employee set status = false where employeeid = " + userID))
-                    RetriveData(query);
+                var retire = new Forms.Retire(userID);
+                retire.Notify += NotifyHandler;
+                retire.ShowDialog();
+                //if (UpdateOrDeleteEmployee(userID, "update employee set status = false where employeeid = " + userID))
+                //    RetriveData(query);
                 //{
                 //    RetriveData("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee " +
                 //                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
@@ -126,7 +136,13 @@ namespace AsmeFace.UserControls
                 //    ShowEmployeeCount();
                 //}                
                 return;
-            }            
+            }
+
+            if (dataGridView1.CurrentCell.ColumnIndex.Equals(10) && e.RowIndex != -1)
+            {
+                new Forms.EmployeeHistory(userID).ShowDialog();               
+                return;
+            }
         }
 
         private bool UpdateOrDeleteEmployee(int userID, string query)

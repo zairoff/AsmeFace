@@ -351,6 +351,24 @@ namespace AsmeFace.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Дата приема.
+        /// </summary>
+        internal static string GRIDVIEW_HIRED_DATE {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_HIRED_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to История.
+        /// </summary>
+        internal static string GRIDVIEW_HISTORY {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_HISTORY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Инстализация.
         /// </summary>
         internal static string GRIDVIEW_INITIALIZE {
@@ -369,11 +387,38 @@ namespace AsmeFace.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Должность.
+        /// </summary>
+        internal static string GRIDVIEW_POSITION {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_POSITION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Причина.
+        /// </summary>
+        internal static string GRIDVIEW_REASON {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_REASON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Увольнения.
         /// </summary>
         internal static string GRIDVIEW_RETIRE {
             get {
                 return ResourceManager.GetString("GRIDVIEW_RETIRE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата уволнения.
+        /// </summary>
+        internal static string GRIDVIEW_RETIRED_DATE {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_RETIRED_DATE", resourceCulture);
             }
         }
         
