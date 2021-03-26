@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AsmeFace.Forms
@@ -44,9 +38,9 @@ namespace AsmeFace.Forms
 
         private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            query = "select employeeid," +
-                "photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address from employee " +
-                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = false order by employeeid desc";
+            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address " +
+                    "from employee where department <@ '" + treeView1.SelectedNode.Name +
+                    "' and status = false order by employeeid desc";
 
             RetriveData(query);
         }
@@ -88,7 +82,7 @@ namespace AsmeFace.Forms
                 return;
 
             query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address from employee " +
-                    "where familiya ILIKE '" + SearchTextBox.Text.Trim() + "%' and status = true";
+                    "where familiya ILIKE '" + SearchTextBox.Text.Trim() + "%' and status = false";
 
             RetriveData(query);
         }

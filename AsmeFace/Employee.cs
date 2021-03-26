@@ -2,6 +2,23 @@
 {
     public class Employee
     {
+        public Employee()
+        {
+
+        }
+
+        public Employee(int iD, byte[] photo, string ism, string familiya, string otchestvo, string otdel, string lavozim, string address)
+        {
+            ID = iD;
+            Photo = photo;
+            Ism = ism;
+            Familiya = familiya;
+            Otchestvo = otchestvo;
+            Otdel = otdel;
+            Lavozim = lavozim;
+            Address = address;
+        }
+
         public int ID { get; set; }
 
         public byte[] Photo { get; set; }

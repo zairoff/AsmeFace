@@ -225,6 +225,42 @@ namespace AsmeFace.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изменил.
+        /// </summary>
+        internal static string EMPLOYEE_HISTORY_EDIT {
+            get {
+                return ResourceManager.GetString("EMPLOYEE_HISTORY_EDIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Принят на работу.
+        /// </summary>
+        internal static string EMPLOYEE_HISTORY_HIRED {
+            get {
+                return ResourceManager.GetString("EMPLOYEE_HISTORY_HIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заново принять на работу.
+        /// </summary>
+        internal static string EMPLOYEE_HISTORY_REHIRED {
+            get {
+                return ResourceManager.GetString("EMPLOYEE_HISTORY_REHIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Уволень с работы.
+        /// </summary>
+        internal static string EMPLOYEE_HISTORY_RETIRED {
+            get {
+                return ResourceManager.GetString("EMPLOYEE_HISTORY_RETIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to График существует.
         /// </summary>
         internal static string EXIST {
@@ -324,6 +360,15 @@ namespace AsmeFace.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Дата.
+        /// </summary>
+        internal static string GRIDVIEW_DATE {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Удалить.
         /// </summary>
         internal static string GRIDVIEW_DELETE {
@@ -405,7 +450,7 @@ namespace AsmeFace.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Увольнения.
+        ///   Looks up a localized string similar to Уволить.
         /// </summary>
         internal static string GRIDVIEW_RETIRE {
             get {
@@ -428,6 +473,15 @@ namespace AsmeFace.Properties {
         internal static string GRIDVIEW_SETTINGS {
             get {
                 return ResourceManager.GetString("GRIDVIEW_SETTINGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Статус.
+        /// </summary>
+        internal static string GRIDVIEW_STATUS {
+            get {
+                return ResourceManager.GetString("GRIDVIEW_STATUS", resourceCulture);
             }
         }
         

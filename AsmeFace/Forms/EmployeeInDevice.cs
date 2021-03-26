@@ -33,7 +33,7 @@ namespace AsmeFace.Forms
             }
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             query = "select t2.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t3.device_mac, t3.device_ip, t3.device_type," +
                     "t3.device_status, t3.device_door from control_doors t2 " +
@@ -66,7 +66,7 @@ namespace AsmeFace.Forms
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.Rows.Count < 1)
                 return;
@@ -124,7 +124,7 @@ namespace AsmeFace.Forms
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             Close();
         }

@@ -46,7 +46,7 @@ namespace AsmeFace.Forms
             }
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, " +
                 "otdel, lavozim, address from employee where department <@ '" + treeView1.SelectedNode.Name +
@@ -74,12 +74,12 @@ namespace AsmeFace.Forms
             WindowState = FormWindowState.Maximized;
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             CheckList(checkedListBox1, checkBox1);
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
             CheckList(checkedListBox2, checkBox2);
         }
@@ -94,38 +94,45 @@ namespace AsmeFace.Forms
 
         private void Syncronize()
         {
-            BeginInvoke(new MethodInvoker(delegate ()
+            try
             {
-                label4.Text = Properties.Resources.DOOR_CONTROL_SYNCING;
-                button1.Enabled = false;
-                button2.Enabled = false;
-            }));
-
-            for (int j = 0; j < checkedListBox1.Items.Count; j++)
-            {
-                if (checkedListBox1.GetItemChecked(j))
+                BeginInvoke(new MethodInvoker(delegate ()
                 {
-                    for (int i = 0; i < checkedListBox2.Items.Count; i++)
+                    label4.Text = Properties.Resources.DOOR_CONTROL_SYNCING;
+                    button1.Enabled = false;
+                    button2.Enabled = false;
+                }));
+
+                for (int j = 0; j < checkedListBox1.Items.Count; j++)
+                {
+                    if (checkedListBox1.GetItemChecked(j))
                     {
-                        if (checkedListBox2.GetItemChecked(i))
+                        for (int i = 0; i < checkedListBox2.Items.Count; i++)
                         {
-                            var devices = _dataBase.GetDevices("select *from devices where device_door = '" +
-                                checkedListBox2.Items[i].ToString() + "'");
-                            foreach (var device in devices)
+                            if (checkedListBox2.GetItemChecked(i))
                             {
-                                SyncAction(_employees[j], device);
+                                var devices = _dataBase.GetDevices("select *from devices where device_door = '" +
+                                    checkedListBox2.Items[i].ToString() + "'");
+                                foreach (var device in devices)
+                                {
+                                    SyncAction(_employees[j], device);
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            BeginInvoke(new MethodInvoker(delegate ()
+                BeginInvoke(new MethodInvoker(delegate ()
+                {
+                    label4.Text = Properties.Resources.DOOR_CONTROL_FINISHED;
+                    button1.Enabled = true;
+                    button2.Enabled = true;
+                }));
+            }
+            catch(Exception msg)
             {
-                label4.Text = Properties.Resources.DOOR_CONTROL_FINISHED;
-                button1.Enabled = true;
-                button2.Enabled = true;
-            }));
+                CustomMessageBox.Error(msg.ToString());
+            }            
         }
 
         private void SyncAction(Employee employee, DeviceInfo device)
@@ -227,12 +234,12 @@ namespace AsmeFace.Forms
             _dataBase.InsertData("select update_door_control('" + device.szMac + "'," + employee.ID + ")");
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void Button1_Click_1(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(Syncronize));
             thread.Start();
@@ -243,7 +250,8 @@ namespace AsmeFace.Forms
             if (string.IsNullOrEmpty(SearchTextBox.Text))
                 return;
 
-            GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim from employee where familiya ILIKE '" + 
+            GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address " +
+                        "from employee where familiya ILIKE '" + 
                         SearchTextBox.Text.Trim() + "%' and status = true order by employeeid desc");
         }
     }

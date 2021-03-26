@@ -165,6 +165,18 @@
   <data name="DOOR_CONTROL_SYNCING" xml:space="preserve">
     <value>Syncing ....</value>
   </data>
+  <data name="EMPLOYEE_HISTORY_EDIT" xml:space="preserve">
+    <value>Edited</value>
+  </data>
+  <data name="EMPLOYEE_HISTORY_HIRED" xml:space="preserve">
+    <value>Hired</value>
+  </data>
+  <data name="EMPLOYEE_HISTORY_REHIRED" xml:space="preserve">
+    <value>Rehired</value>
+  </data>
+  <data name="EMPLOYEE_HISTORY_RETIRED" xml:space="preserve">
+    <value>Retired</value>
+  </data>
   <data name="EXIST" xml:space="preserve">
     <value>already exist</value>
   </data>
@@ -197,6 +209,9 @@
   </data>
   <data name="GRIDVIEW_ADD" xml:space="preserve">
     <value>Add</value>
+  </data>
+  <data name="GRIDVIEW_DATE" xml:space="preserve">
+    <value>Date</value>
   </data>
   <data name="GRIDVIEW_DELETE" xml:space="preserve">
     <value>Delete</value>
@@ -233,6 +248,9 @@
   </data>
   <data name="GRIDVIEW_SETTINGS" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="GRIDVIEW_STATUS" xml:space="preserve">
+    <value>Status</value>
   </data>
   <data name="LOGIN_WRONG" xml:space="preserve">
     <value>Login or password is wrong</value>

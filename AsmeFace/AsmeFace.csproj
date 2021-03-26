@@ -86,7 +86,6 @@
     <Compile Include="DeviceFace.cs" />
     <Compile Include="Door.cs" />
     <Compile Include="EmployeeGrafik.cs" />
-    <Compile Include="EmployeeHistoryClass.cs" />
     <Compile Include="EmployeeInDevice.cs" />
     <Compile Include="Forms\AccessForm.cs">
       <SubType>Form</SubType>

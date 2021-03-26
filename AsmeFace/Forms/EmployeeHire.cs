@@ -30,9 +30,12 @@ namespace AsmeFace.Forms
 
                 var index = _dataBase.InsertFace(System.Text.Encoding.UTF8.GetString(queryEncode), photo, finger);
 
-                queryEncode = System.Text.Encoding.UTF8.GetBytes("insert into employee_history (employeeid," +
-                    "department, position, status, hired_date) values(" + userID + ",'" + textBox6.Text + "','" +
-                    textBox5.Text + "', true, '" + dateTimePicker1.Text + "')");
+                queryEncode = System.Text.Encoding.UTF8.GetBytes(
+                            "insert into employee_history (employeeid, ism, familiya, otchestvo, otdel, " +
+                            "lavozim, status, sana) values(" + userID + ",'" + textBox3.Text + "','" +
+                            textBox2.Text + "','" + textBox4.Text + "','" + textBox6.Text + "','" + 
+                            textBox5.Text + "','" + Properties.Resources.EMPLOYEE_HISTORY_HIRED + "','" + 
+                            dateTimePicker1.Text + "')");
 
                 if (index < 0)
                 {

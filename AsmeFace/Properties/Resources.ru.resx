@@ -165,6 +165,18 @@
   <data name="DOOR_CONTROL_SYNCING" xml:space="preserve">
     <value>Синхронизируется ....</value>
   </data>
+  <data name="EMPLOYEE_HISTORY_EDIT" xml:space="preserve">
+    <value>Изменил</value>
+  </data>
+  <data name="EMPLOYEE_HISTORY_HIRED" xml:space="preserve">
+    <value>Принят на работу</value>
+  </data>
+  <data name="EMPLOYEE_HISTORY_REHIRED" xml:space="preserve">
+    <value>Заново принять на работу</value>
+  </data>
+  <data name="EMPLOYEE_HISTORY_RETIRED" xml:space="preserve">
+    <value>Уволень с работы</value>
+  </data>
   <data name="EXIST" xml:space="preserve">
     <value>График существует</value>
   </data>
@@ -198,6 +210,9 @@
   <data name="GRIDVIEW_ADD" xml:space="preserve">
     <value>Добавить</value>
   </data>
+  <data name="GRIDVIEW_DATE" xml:space="preserve">
+    <value>Дата</value>
+  </data>
   <data name="GRIDVIEW_DELETE" xml:space="preserve">
     <value>Удалить</value>
   </data>
@@ -226,13 +241,16 @@
     <value>Причина</value>
   </data>
   <data name="GRIDVIEW_RETIRE" xml:space="preserve">
-    <value>Увольнения</value>
+    <value>Уволить</value>
   </data>
   <data name="GRIDVIEW_RETIRED_DATE" xml:space="preserve">
     <value>Дата уволнения</value>
   </data>
   <data name="GRIDVIEW_SETTINGS" xml:space="preserve">
     <value>Настройка</value>
+  </data>
+  <data name="GRIDVIEW_STATUS" xml:space="preserve">
+    <value>Статус</value>
   </data>
   <data name="LOGIN_WRONG" xml:space="preserve">
     <value>Неверный логин или пароль</value>

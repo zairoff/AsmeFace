@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Drawing;
 
 namespace AsmeFace
 {
@@ -309,10 +311,11 @@ namespace AsmeFace
                     {
                         while (reader.Read())
                         {
-                            var employee = new Employee();
-
-                            employee.ID = Convert.ToInt32(reader["employeeid"]);
-                            employee.Photo = (byte[])reader["photo"];
+                            var employee = new Employee
+                            {
+                                ID = Convert.ToInt32(reader["employeeid"]),
+                                Photo = (byte[])reader["photo"]
+                            };
 
                             if (reader["finger"] != DBNull.Value)
                                 employee.Finger = (byte[])reader["finger"];
@@ -330,7 +333,99 @@ namespace AsmeFace
                 }
             }
             return employees;
-        }        
+        }
+
+        // ********************
+
+        //public System.Data.DataTable GetEmployeeDataTable(string query)
+        //{
+        //    var table = new DataTable();
+        //    DataColumn column;
+        //    DataRow row;
+        //    column = new DataColumn
+        //    {
+        //        DataType = typeof(string),
+        //        ColumnName = "id",
+        //        Caption = "ID"
+        //    };
+        //    // id  
+        //    table.Columns.Add(column);
+
+        //    //photo
+        //    column = new DataColumn
+        //    {
+        //        DataType = typeof(Image),
+        //        ColumnName = "photo",
+        //        Caption = "Photo"
+        //    };
+
+        //    //familiya
+        //    column = new DataColumn
+        //    {
+        //        DataType = typeof(string),
+        //        ColumnName = "familiya",
+        //        Caption = "Familiya"
+        //    };
+
+        //    //ism
+        //    column = new DataColumn
+        //    {
+        //        DataType = typeof(string),
+        //        ColumnName = "ism",
+        //        Caption = "Ism"
+        //    };
+
+        //    //otchestvo
+        //    column = new DataColumn
+        //    {
+        //        DataType = typeof(string),
+        //        ColumnName = "otchestvo",
+        //        Caption = "Otchestvo"
+        //    };
+
+        //    //otdel
+        //    column = new DataColumn
+        //    {
+        //        DataType = typeof(string),
+        //        ColumnName = "otdel",
+        //        Caption = "Otdel"
+        //    };
+
+        //    //lavozim
+        //    column = new DataColumn
+        //    {
+        //        DataType = typeof(string),
+        //        ColumnName = "lavozim",
+        //        Caption = "Lavozim"
+        //    };
+
+        //    //address
+        //    column = new DataColumn
+        //    {
+        //        DataType = typeof(string),
+        //        ColumnName = "address",
+        //        Caption = "Address"
+        //    };
+
+        //    using (var connection = new Npgsql.NpgsqlConnection(Helper.CnnVal("DBConnection")))
+        //    {
+        //        using (var cmd = new Npgsql.NpgsqlCommand(query, connection))
+        //        {
+        //            connection.Open();
+        //            //cmd.AllResultTypesAreUnknown = true;
+        //            using (var reader = cmd.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    row = table.NewRow();
+        //                    row["id"] = reader["employeeid"].ToString();
+        //                    row["photo"] = reader["employeeid"].ToString();
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return employees;
+        //}
 
         public System.Collections.Generic.List<EmployeeInDevice> GetEmployeeInDevices(string query)
         {

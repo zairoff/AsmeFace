@@ -7,12 +7,12 @@ namespace AsmeFace
     {
         public static void WriteToFile(string Message)
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AsmeLogs";
+            string path = AppDomain.CurrentDomain.BaseDirectory + "\\AsmeLogs";
             if (!System.IO.Directory.Exists(path))
             {
                 System.IO.Directory.CreateDirectory(path);
             }
-            string filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AsmeLogs\\Log-" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
+            string filepath = AppDomain.CurrentDomain.BaseDirectory + "\\AsmeLogs\\Log-" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
             if (!System.IO.File.Exists(filepath))
             {
                 // Create a file to write to.   

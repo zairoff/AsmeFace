@@ -275,7 +275,7 @@
     <value>Изменить</value>
   </data>
   <data name="GRIDVIEW_RETIRE" xml:space="preserve">
-    <value>Увольнения</value>
+    <value>Уволить</value>
   </data>
   <data name="GRIDVIEW_MORE" xml:space="preserve">
     <value>Дополнительно</value>
@@ -294,5 +294,23 @@
   </data>
   <data name="GRIDVIEW_REASON" xml:space="preserve">
     <value>Причина</value>
+  </data>
+  <data name="EMPLOYEE_HISTORY_EDIT" xml:space="preserve">
+    <value>Изменил</value>
+  </data>
+  <data name="EMPLOYEE_HISTORY_HIRED" xml:space="preserve">
+    <value>Принят на работу</value>
+  </data>
+  <data name="EMPLOYEE_HISTORY_REHIRED" xml:space="preserve">
+    <value>Заново принять на работу</value>
+  </data>
+  <data name="EMPLOYEE_HISTORY_RETIRED" xml:space="preserve">
+    <value>Уволень с работы</value>
+  </data>
+  <data name="GRIDVIEW_STATUS" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="GRIDVIEW_DATE" xml:space="preserve">
+    <value>Дата</value>
   </data>
 </root>

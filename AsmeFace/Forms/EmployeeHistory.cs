@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AsmeFace.Forms
@@ -27,8 +21,8 @@ namespace AsmeFace.Forms
                 textBox3.Text = employee[0].Ism;                
             }
 
-            _dataBase.GetRecords("select department, position, hired_date, retired_date, reason " +
-                                "from employee_history where employeeid = " + id,
+            _dataBase.GetRecords("select otdel, lavozim, status, extra_info, sana from employee_history " +
+                                "where employeeid = " + id + " order by sana desc",
                                 dataGridView1);
 
             SetHeaders();
@@ -48,9 +42,9 @@ namespace AsmeFace.Forms
         {
             dataGridView1.Columns[0].HeaderText = Properties.Resources.GRIDVIEW_DEPARTMENT;
             dataGridView1.Columns[1].HeaderText = Properties.Resources.GRIDVIEW_POSITION;
-            dataGridView1.Columns[2].HeaderText = Properties.Resources.GRIDVIEW_HIRED_DATE;
-            dataGridView1.Columns[3].HeaderText = Properties.Resources.GRIDVIEW_RETIRED_DATE;
-            dataGridView1.Columns[4].HeaderText = Properties.Resources.GRIDVIEW_REASON;
+            dataGridView1.Columns[2].HeaderText = Properties.Resources.GRIDVIEW_STATUS;
+            dataGridView1.Columns[3].HeaderText = Properties.Resources.GRIDVIEW_REASON;
+            dataGridView1.Columns[4].HeaderText = Properties.Resources.GRIDVIEW_DATE;
         }
 
         private void Button1_Click(object sender, EventArgs e)

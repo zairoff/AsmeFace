@@ -19,7 +19,7 @@ namespace AsmeFace.Forms
                 textBox3.Text = employee[0].Ism;
                 textBox4.Text = employee[0].Otchestvo;
                 textBox7.Text = employee[0].Card;
-                textBox8.Text = employee[0].Finger == null ? "" : System.Text.Encoding.UTF8.GetString(employee[0].Finger);
+                textBox8.Text = employee[0].Finger == null ? "" : Convert.ToBase64String(employee[0].Finger);
                 textBox9.Text = employee[0].Address;
             }
         }
@@ -36,11 +36,18 @@ namespace AsmeFace.Forms
                 if (!string.IsNullOrEmpty(textBox8.Text))
                     finger = Convert.FromBase64String(textBox8.Text);
 
-                queryEncode = System.Text.Encoding.UTF8.GetBytes("update employee set photo = @Image, finger = @finger," +
-                         "card = '" + textBox7.Text + "', familiya = '" + textBox2.Text + "', ism = '" + textBox3.Text +
-                         "', otchestvo = '" + textBox4.Text + "'," + "department = '" + treeView1.SelectedNode.Name +
-                         "', otdel = '" + textBox6.Text + "'," + "lavozim = '" + textBox5.Text + "'," +
-                         "address = '" + textBox9.Text + "', status = true where employeeid = " + userID);
+                queryEncode = System.Text.Encoding.UTF8.GetBytes(
+                            "update employee set photo = @Image, finger = @finger, card = '" +
+                            textBox7.Text + "', familiya = '" + textBox2.Text + "', ism = '" +
+                            textBox3.Text + "', otchestvo = '" + textBox4.Text + "'," + "department = '" +
+                            treeView1.SelectedNode.Name + "', otdel = '" + textBox6.Text + "'," + "lavozim = '" +
+                            textBox5.Text + "', address = '" + textBox9.Text + "'," +
+                            "status = true where employeeid = " + userID + ";" +
+                            "insert into employee_history (employeeid, ism, familiya, otchestvo, otdel, " +
+                            "lavozim, status, sana) values(" + userID + ",'" + textBox3.Text + "','" +
+                            textBox2.Text + "','" + textBox4.Text + "','" + textBox6.Text + "','" +
+                            textBox5.Text + "','" + Properties.Resources.EMPLOYEE_HISTORY_EDIT + "','" +
+                            dateTimePicker1.Text + "')");
 
                 var index = _dataBase.InsertFace(System.Text.Encoding.UTF8.GetString(queryEncode), photo, finger);
                 if (index < 0)
