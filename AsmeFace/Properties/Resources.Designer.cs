@@ -486,6 +486,26 @@ namespace AsmeFace.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap left_arrow {
+            get {
+                object obj = ResourceManager.GetObject("left-arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap left_arrow_light {
+            get {
+                object obj = ResourceManager.GetObject("left-arrow-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Неверный логин или пароль.
         /// </summary>
         internal static string LOGIN_WRONG {
@@ -546,6 +566,26 @@ namespace AsmeFace.Properties {
         internal static System.Drawing.Bitmap Quantum {
             get {
                 object obj = ResourceManager.GetObject("Quantum", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap right_arrow {
+            get {
+                object obj = ResourceManager.GetObject("right-arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap right_arrow_light {
+            get {
+                object obj = ResourceManager.GetObject("right-arrow-light", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

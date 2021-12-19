@@ -7,7 +7,7 @@
 
         }
 
-        public Employee(int iD, byte[] photo, string ism, string familiya, string otchestvo, string otdel, string lavozim, string address)
+        public Employee(int iD, byte[] photo, string ism, string familiya, string otchestvo, string otdel, string lavozim, string address, string enrollment_number, string amizone_code)
         {
             ID = iD;
             Photo = photo;
@@ -38,5 +38,9 @@
         public string Lavozim { get; set; }
 
         public string Address { get; set; }
+
+        public string Enrollment_number { get; set; }
+
+        public string Amizone_code { get; set; }
     }
 }

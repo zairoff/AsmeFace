@@ -27,8 +27,8 @@ namespace AsmeFace.Forms
                 return;
             }
 
-            System.Collections.Generic.List<Employee> myEmployees = myDataBase.GetEmployee(
-                "select employeeid, photo, ism, familiya, otchestvo, otdel, lavozim from employee order by employeeid desc");
+            var myEmployees = myDataBase.GetEmployee(
+                "select employeeid, photo, ism, familiya, otchestvo, otdel, lavozim, address, enrollment_number, amizone_code from employee order by employeeid desc");
 
             if (myEmployees.Count < 1)
                 return;

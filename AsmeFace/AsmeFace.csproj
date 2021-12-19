@@ -111,6 +111,12 @@
     <Compile Include="Forms\AddedDoors.Designer.cs">
       <DependentUpon>AddedDoors.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\BulkRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BulkRegister.Designer.cs">
+      <DependentUpon>BulkRegister.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,12 @@
     </Compile>
     <Compile Include="Forms\EmployeeRehire.Designer.cs">
       <DependentUpon>EmployeeRehire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HolderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HolderForm.Designer.cs">
+      <DependentUpon>HolderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Retire.cs">
       <SubType>Form</SubType>
@@ -315,6 +327,9 @@
     <EmbeddedResource Include="Forms\AddedDoors.ru.resx">
       <DependentUpon>AddedDoors.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BulkRegister.resx">
+      <DependentUpon>BulkRegister.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ChangePassword.en.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -404,6 +419,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GrafikView.ru.resx">
       <DependentUpon>GrafikView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HolderForm.resx">
+      <DependentUpon>HolderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.en.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -558,6 +576,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ru.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right-arrow-light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left-arrow-light.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

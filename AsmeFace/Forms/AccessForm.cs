@@ -345,11 +345,12 @@ namespace AsmeFace.Forms
                 return;
 
             GetEmployee("select distinct e.employeeid, e.ism, e.familiya, e.otchestvo, e.otdel, e.lavozim from employee e inner join control_doors cd on e.employeeid = cd.employeeid where e.familiya ILIKE'"
-                        + SearchTextBox.Text + "%' and e.status = true order by e.employeeid desc");
+                        + SearchTextBox.Text + "%' or e.ism ILIKE '" + SearchTextBox.Text + "%'and e.status = true order by e.employeeid desc");
 
             query = "select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.access_grafik_nomi " +
                             "from employee t1 inner join access_employee t2 on t1.employeeid = t2.employeeid where " +
-                            "t1.familiya ILIKE '" + SearchTextBox.Text + "%' and t1.status = true";
+                            "t1.familiya ILIKE '" + SearchTextBox.Text + "%' or t1.ism ILIKE '" +
+                            SearchTextBox.Text + "%' and t1.status = true";
 
             RetriveGrafik(query);
         }

@@ -12,7 +12,7 @@ namespace AsmeFace.Forms
             _dataBase = new DataBase();
             var employee = _dataBase.GetEmployee(
                             "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel," +
-                            " lavozim, address from employee where employeeid = " + id);
+                            " lavozim, address, enrollment_number, amizone_code from employee where employeeid = " + id);
             if (employee.Count > 0)
             {
                 pictureBox1.Image = ByteToImage(employee[0].Photo);

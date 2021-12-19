@@ -327,6 +327,8 @@ namespace AsmeFace
                             employee.Otdel = reader["otdel"].ToString();
                             employee.Lavozim = reader["lavozim"].ToString();                            
                             employee.Address = reader["address"].ToString();                            
+                            employee.Enrollment_number = reader["enrollment_number"].ToString();                            
+                            employee.Amizone_code = reader["amizone_code"].ToString();                            
                             employees.Add(employee);
                         }
                     }                        
@@ -334,98 +336,6 @@ namespace AsmeFace
             }
             return employees;
         }
-
-        // ********************
-
-        //public System.Data.DataTable GetEmployeeDataTable(string query)
-        //{
-        //    var table = new DataTable();
-        //    DataColumn column;
-        //    DataRow row;
-        //    column = new DataColumn
-        //    {
-        //        DataType = typeof(string),
-        //        ColumnName = "id",
-        //        Caption = "ID"
-        //    };
-        //    // id  
-        //    table.Columns.Add(column);
-
-        //    //photo
-        //    column = new DataColumn
-        //    {
-        //        DataType = typeof(Image),
-        //        ColumnName = "photo",
-        //        Caption = "Photo"
-        //    };
-
-        //    //familiya
-        //    column = new DataColumn
-        //    {
-        //        DataType = typeof(string),
-        //        ColumnName = "familiya",
-        //        Caption = "Familiya"
-        //    };
-
-        //    //ism
-        //    column = new DataColumn
-        //    {
-        //        DataType = typeof(string),
-        //        ColumnName = "ism",
-        //        Caption = "Ism"
-        //    };
-
-        //    //otchestvo
-        //    column = new DataColumn
-        //    {
-        //        DataType = typeof(string),
-        //        ColumnName = "otchestvo",
-        //        Caption = "Otchestvo"
-        //    };
-
-        //    //otdel
-        //    column = new DataColumn
-        //    {
-        //        DataType = typeof(string),
-        //        ColumnName = "otdel",
-        //        Caption = "Otdel"
-        //    };
-
-        //    //lavozim
-        //    column = new DataColumn
-        //    {
-        //        DataType = typeof(string),
-        //        ColumnName = "lavozim",
-        //        Caption = "Lavozim"
-        //    };
-
-        //    //address
-        //    column = new DataColumn
-        //    {
-        //        DataType = typeof(string),
-        //        ColumnName = "address",
-        //        Caption = "Address"
-        //    };
-
-        //    using (var connection = new Npgsql.NpgsqlConnection(Helper.CnnVal("DBConnection")))
-        //    {
-        //        using (var cmd = new Npgsql.NpgsqlCommand(query, connection))
-        //        {
-        //            connection.Open();
-        //            //cmd.AllResultTypesAreUnknown = true;
-        //            using (var reader = cmd.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    row = table.NewRow();
-        //                    row["id"] = reader["employeeid"].ToString();
-        //                    row["photo"] = reader["employeeid"].ToString();
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return employees;
-        //}
 
         public System.Collections.Generic.List<EmployeeInDevice> GetEmployeeInDevices(string query)
         {

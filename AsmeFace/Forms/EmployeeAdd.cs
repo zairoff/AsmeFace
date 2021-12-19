@@ -70,7 +70,7 @@ namespace AsmeFace.Forms
         protected void ClearFields()
         {
             textBox2.Text = ""; textBox3.Text = ""; textBox4.Text = ""; textBox5.Text = ""; textBox6.Text = "";
-            textBox7.Text = ""; textBox8.Text = ""; pictureBox1.Image = null;
+            textBox7.Text = ""; textBox8.Text = ""; textBox10.Text = ""; textBox11.Text = "";  pictureBox1.Image = null;
         }
 
         protected byte[] ImageToByteArray(System.Drawing.Image imageIn)
@@ -187,6 +187,16 @@ namespace AsmeFace.Forms
             {
                 MessageBox.Show(msg.ToString());
             }
+        }
+
+        private void textBox10_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void textBox11_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
         //private void btn_card_Click(object sender, EventArgs e)

@@ -6,7 +6,14 @@ namespace AsmeFace.UserControls
 {
     public partial class Staff : UserControl
     {
-        private List<Employee> employees;
+        private readonly DataBase _dataBase;
+        private readonly GetTree _tree;
+        private readonly AsmeDevice _asmeDevice;
+        private string query;
+        private int _databaseOffset = 0;
+        private int _dataBaseLimit = 10;
+        private IList<Employee> employees;
+        private int _employeeCount;
 
         public Staff()
         {
@@ -18,69 +25,8 @@ namespace AsmeFace.UserControls
             Column8.Text = Properties.Resources.GRIDVIEW_EDIT;
             Column9.Text = Properties.Resources.GRIDVIEW_RETIRE;
             Column10.Text = Properties.Resources.GRIDVIEW_DELETE;
-            Column11.Text = Properties.Resources.GRIDVIEW_HISTORY;
-
-            this.dataGridView1.VirtualMode = true;
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = false;
-            this.dataGridView1.CellValueNeeded += new
-            DataGridViewCellValueEventHandler(dataGridView1_CellValueNeeded);          
-        }
-
-        private void dataGridView1_CellValueNeeded(object sender, DataGridViewCellValueEventArgs e)
-        {          
-            //if (employees.Count < 1)
-            //    return;
-
-            //try
-            //{
-            //    if (e.RowIndex == this.dataGridView1.RowCount - 1) return;
-
-            //    Employee employee = this.employees[e.RowIndex];                    
-
-            //    // Set the cell value to paint using the Customer object retrieved.
-            //    switch (this.dataGridView1.Columns[e.ColumnIndex].Name)
-            //    {
-            //        case "Column2":
-            //            e.Value = employee.ID;
-            //            break;
-
-            //        case "Column1":
-            //            e.Value = ByteToImage(employee.Photo);
-            //            break;
-
-            //        case "Column3":
-            //            e.Value = employee.Familiya;
-            //            break;
-
-            //        case "Column4":
-            //            e.Value = employee.Ism;
-            //            break;
-
-            //        case "Column5":
-            //            e.Value = employee.Otchestvo;
-            //            break;
-
-            //        case "Column6":
-            //            e.Value = employee.Otdel;
-            //            break;
-
-            //        case "Column7":
-            //            e.Value = employee.Lavozim;
-            //            break;
-            //    }
-            //}
-            //catch (Exception msg)
-            //{
-            //    CustomMessageBox.Error(msg.ToString());
-            //}            
-        }
-
-        private readonly DataBase _dataBase;
-        private readonly GetTree _tree;
-        private readonly AsmeDevice _asmeDevice;
-        private string query;
+            Column12.Text = Properties.Resources.GRIDVIEW_HISTORY;        
+        }       
 
         public void NotifyHandler(object sender, EventArgs e)
         {
@@ -108,9 +54,11 @@ namespace AsmeFace.UserControls
 
         private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            query = "select employeeid," +
-                "photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address from employee " +
-                "where department <@ '" + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc";
+            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, " +
+                    "address, address, enrollment_number, amizone_code from employee where department <@ '" + treeView1.SelectedNode.Name +
+                    "' and status = true order by employeeid asc limit " + _dataBaseLimit;
+
+            _databaseOffset = 0;
 
             RetriveData(query);
 
@@ -120,34 +68,36 @@ namespace AsmeFace.UserControls
         private void RetriveData(string query)
         {
             dataGridView1.Rows.Clear();
+            dataGridView1.DataSource = null;
 
-            //employees = _dataBase.GetEmployee(query);
-            //dataGridView1.RowCount = employees.Count + 1;
-            _dataBase.GetRecords(query, dataGridView1);
+            employees = _dataBase.GetEmployee(query);
 
-            //if (employees.Count < 1)
-            //    return;
+            if (employees.Count < 1)
+                return;           
 
-            //foreach (var employee in employees)
-            //{
-            //    dataGridView1.Rows.Insert(
-            //        0,
-            //        ByteToImage(employee.Photo),
-            //        employee.ID,
-            //        employee.Familiya,
-            //        employee.Ism,
-            //        employee.Otchestvo,
-            //        employee.Otdel,
-            //        employee.Lavozim);
-            //}            
-        }
+            for(int i = employees.Count - 1; i >= 0; i--)
+            {
+                dataGridView1.Rows.Insert(
+                    0,
+                    ByteToImage(employees[i].Photo),
+                    employees[i].ID,
+                    employees[i].Familiya,
+                    employees[i].Ism,
+                    employees[i].Otchestvo,
+                    employees[i].Otdel,
+                    employees[i].Lavozim,
+                    employees[i].Amizone_code,
+                    employees[i].Enrollment_number);
+            }
+        }       
 
         private void ShowEmployeeCount()
         {
-            if (treeView1.SelectedNode == treeView1.Nodes[0])
-                label1.Text = treeView1.SelectedNode.Text + " | " + Properties.Resources.CONTROL_STAFF_EMPLOYEE_COUNT + dataGridView1.Rows.Count;
-            else
-                label1.Text = treeView1.SelectedNode.Text + " | " + Properties.Resources.CONTROL_STAFF_EMPLOYEE_COUNT +  dataGridView1.Rows.Count;
+            _employeeCount = _dataBase.GetID("select count(*) from employee where department <@ '" +
+                          treeView1.SelectedNode.Name + "' and status = true");
+
+            label1.Text = treeView1.SelectedNode.Text + " | " +
+                          Properties.Resources.CONTROL_STAFF_EMPLOYEE_COUNT + _employeeCount;
         }
 
         private System.Drawing.Image ByteToImage(byte[] byteArrayIn)
@@ -155,42 +105,6 @@ namespace AsmeFace.UserControls
             using (var ms = new System.IO.MemoryStream(byteArrayIn))
             {
                 return System.Drawing.Image.FromStream(ms);
-            }
-        }
-
-        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridView1.Rows.Count < 1)
-                return;
-
-            var userID = Convert.ToInt32(dataGridView1[1, dataGridView1.CurrentRow.Index].Value);
-
-            if (dataGridView1.CurrentCell.ColumnIndex.Equals(7) && e.RowIndex != -1)
-            {
-                new Forms.EmployeeEdit(userID).ShowDialog();
-                return;
-            }
-
-            if (dataGridView1.CurrentCell.ColumnIndex.Equals(8) && e.RowIndex != -1)
-            {
-                var retire = new Forms.Retire(userID);
-                retire.Notify += NotifyHandler;
-                retire.ShowDialog();
-                return;
-            }
-
-            if (dataGridView1.CurrentCell.ColumnIndex.Equals(9) && e.RowIndex != -1)
-            {
-                if (UpdateOrDeleteEmployee(userID, "delete from employee where employeeid = " + userID))
-                    RetriveData(query);
-
-                return;
-            }
-
-            if (dataGridView1.CurrentCell.ColumnIndex.Equals(10) && e.RowIndex != -1)
-            {
-                new Forms.EmployeeHistory(userID).ShowDialog();               
-                return;
             }
         }
 
@@ -264,8 +178,12 @@ namespace AsmeFace.UserControls
             if (string.IsNullOrEmpty(SearchTextBox.Text))
                 return;
 
-            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address from employee " +
-                    "where familiya ILIKE '" + SearchTextBox.Text.Trim() + "%' and status = true";
+            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, " +
+                    "enrollment_number, amizone_code from employee where familiya ILIKE '"
+                    + SearchTextBox.Text.Trim() + "%' or ism ILIKE '" + SearchTextBox.Text.Trim() +
+                    "%' and status = true order by employeeid asc limit " + _dataBaseLimit;
+
+            _databaseOffset = 0;
 
             RetriveData(query);
         }
@@ -273,6 +191,87 @@ namespace AsmeFace.UserControls
         private void Button2_Click_1(object sender, EventArgs e)
         {
             new Forms.Retireds().ShowDialog();
+        }
+
+        private void forwardBtn_MouseEnter(object sender, EventArgs e)
+        {
+            forwardBtn.Image = Properties.Resources.right_arrow_light;
+        }
+
+        private void forwardBtn_MouseLeave(object sender, EventArgs e)
+        {
+            forwardBtn.Image = Properties.Resources.right_arrow;
+        }
+
+        private void backBtn_MouseEnter(object sender, EventArgs e)
+        {
+            backBtn.Image = Properties.Resources.left_arrow_light;
+        }
+
+        private void backBtn_MouseLeave(object sender, EventArgs e)
+        {
+            backBtn.Image = Properties.Resources.left_arrow;
+        }
+
+        private void forwardBtn_Click(object sender, EventArgs e)
+        {
+            if (treeView1.Nodes.Count == 0 || treeView1.SelectedNode == null || _employeeCount < _dataBaseLimit)
+                return;
+
+            _databaseOffset += _dataBaseLimit;
+            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, " +
+                    "address, enrollment_number, amizone_code from employee where department <@ '" + treeView1.SelectedNode.Name +
+                    "' and status = true order by employeeid asc LIMIT " + _dataBaseLimit + " OFFSET " + _databaseOffset;
+
+            RetriveData(query);
+        }
+
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+            if (_databaseOffset < _dataBaseLimit || treeView1.Nodes.Count == 0 || treeView1.SelectedNode == null)
+                return;
+
+            _databaseOffset -= _dataBaseLimit;
+            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, " +
+                    "address, enrollment_number, amizone_code from employee where department <@ '" + treeView1.SelectedNode.Name +
+                    "' and status = true order by employeeid asc LIMIT " + _dataBaseLimit + " OFFSET " + _databaseOffset;
+
+            RetriveData(query);
+        }
+
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Rows.Count < 1)
+                return;
+
+            var userID = Convert.ToInt32(dataGridView1[1, dataGridView1.CurrentRow.Index].Value);
+
+            if (dataGridView1.CurrentCell.ColumnIndex.Equals(9) && e.RowIndex != -1)
+            {
+                new Forms.EmployeeEdit(userID).ShowDialog();
+                return;
+            }
+
+            if (dataGridView1.CurrentCell.ColumnIndex.Equals(10) && e.RowIndex != -1)
+            {
+                var retire = new Forms.Retire(userID);
+                retire.Notify += NotifyHandler;
+                retire.ShowDialog();
+                return;
+            }
+
+            if (dataGridView1.CurrentCell.ColumnIndex.Equals(11) && e.RowIndex != -1)
+            {
+                if (UpdateOrDeleteEmployee(userID, "delete from employee where employeeid = " + userID))
+                    RetriveData(query);
+                return;
+            }
+
+            if (dataGridView1.CurrentCell.ColumnIndex.Equals(12) && e.RowIndex != -1)
+            {
+                new Forms.EmployeeHistory(userID).ShowDialog();
+                return;
+            }
         }
     }
 }

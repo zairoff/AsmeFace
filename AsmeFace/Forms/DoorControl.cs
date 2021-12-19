@@ -10,12 +10,7 @@ namespace AsmeFace.Forms
     {
         public DoorControl()
         {
-            InitializeComponent();           
-            _dataBase = new DataBase();
-            _getTree = new GetTree();
-            _asmeDevice = new AsmeDevice();
-            FillTree();
-            GetDevices();
+            InitializeComponent();                 
         }
 
         private DataBase _dataBase;
@@ -49,8 +44,8 @@ namespace AsmeFace.Forms
         private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, " +
-                "otdel, lavozim, address from employee where department <@ '" + treeView1.SelectedNode.Name +
-                "' and status = true order by employeeid desc");
+                "otdel, lavozim, address, enrollment_number, amizone_code from employee where department <@ '"
+                + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
         }   
         
         private void GetEmployee(string query)
@@ -58,6 +53,7 @@ namespace AsmeFace.Forms
             _employees = _dataBase.GetEmployee(query);
 
             checkedListBox1.Items.Clear();
+            //checkedListBox1.Dispose();
 
             if (_employees.Count < 1)
                 return;
@@ -72,6 +68,12 @@ namespace AsmeFace.Forms
         {
             MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
             WindowState = FormWindowState.Maximized;
+
+            _dataBase = new DataBase();
+            _getTree = new GetTree();
+            _asmeDevice = new AsmeDevice();
+            FillTree();
+            GetDevices();
         }
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -250,9 +252,10 @@ namespace AsmeFace.Forms
             if (string.IsNullOrEmpty(SearchTextBox.Text))
                 return;
 
-            GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address " +
+            GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, enrollment_number, amizone_code " +
                         "from employee where familiya ILIKE '" + 
-                        SearchTextBox.Text.Trim() + "%' and status = true order by employeeid desc");
+                        SearchTextBox.Text.Trim() + "%' or ism  ILIKE '" +
+                        SearchTextBox.Text.Trim() + "%' and status = true order by employeeid desc limit 50");
         }
     }
 }
