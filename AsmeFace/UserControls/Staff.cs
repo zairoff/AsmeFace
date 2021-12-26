@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AsmeFace.Forms;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -190,7 +191,7 @@ namespace AsmeFace.UserControls
 
         private void Button2_Click_1(object sender, EventArgs e)
         {
-            new Forms.Retireds().ShowDialog();
+            new BulkRegister().Show();
         }
 
         private void forwardBtn_MouseEnter(object sender, EventArgs e)
@@ -272,6 +273,11 @@ namespace AsmeFace.UserControls
                 new Forms.EmployeeHistory(userID).ShowDialog();
                 return;
             }
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            new Forms.Retireds().ShowDialog();
         }
     }
 }

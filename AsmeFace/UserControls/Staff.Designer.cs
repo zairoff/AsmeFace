@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Staff));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -40,8 +41,6 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.forwardBtn = new System.Windows.Forms.PictureBox();
-            this.backBtn = new System.Windows.Forms.PictureBox();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +54,8 @@
             this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.forwardBtn = new System.Windows.Forms.PictureBox();
+            this.backBtn = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -68,9 +69,20 @@
             // 
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(78)))));
+            this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Name = "panel2";
+            // 
+            // button3
+            // 
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Name = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // button2
             // 
@@ -178,26 +190,6 @@
             this.dataGridView1.RowTemplate.Height = 82;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick_1);
             // 
-            // forwardBtn
-            // 
-            resources.ApplyResources(this.forwardBtn, "forwardBtn");
-            this.forwardBtn.Image = global::AsmeFace.Properties.Resources.right_arrow;
-            this.forwardBtn.Name = "forwardBtn";
-            this.forwardBtn.TabStop = false;
-            this.forwardBtn.Click += new System.EventHandler(this.forwardBtn_Click);
-            this.forwardBtn.MouseEnter += new System.EventHandler(this.forwardBtn_MouseEnter);
-            this.forwardBtn.MouseLeave += new System.EventHandler(this.forwardBtn_MouseLeave);
-            // 
-            // backBtn
-            // 
-            resources.ApplyResources(this.backBtn, "backBtn");
-            this.backBtn.Image = global::AsmeFace.Properties.Resources.left_arrow;
-            this.backBtn.Name = "backBtn";
-            this.backBtn.TabStop = false;
-            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
-            this.backBtn.MouseEnter += new System.EventHandler(this.backBtn_MouseEnter);
-            this.backBtn.MouseLeave += new System.EventHandler(this.backBtn_MouseLeave);
-            // 
             // Column1
             // 
             resources.ApplyResources(this.Column1, "Column1");
@@ -272,6 +264,26 @@
             this.Column12.Text = "History";
             this.Column12.UseColumnTextForLinkValue = true;
             // 
+            // forwardBtn
+            // 
+            resources.ApplyResources(this.forwardBtn, "forwardBtn");
+            this.forwardBtn.Image = global::AsmeFace.Properties.Resources.right_arrow;
+            this.forwardBtn.Name = "forwardBtn";
+            this.forwardBtn.TabStop = false;
+            this.forwardBtn.Click += new System.EventHandler(this.forwardBtn_Click);
+            this.forwardBtn.MouseEnter += new System.EventHandler(this.forwardBtn_MouseEnter);
+            this.forwardBtn.MouseLeave += new System.EventHandler(this.forwardBtn_MouseLeave);
+            // 
+            // backBtn
+            // 
+            resources.ApplyResources(this.backBtn, "backBtn");
+            this.backBtn.Image = global::AsmeFace.Properties.Resources.left_arrow;
+            this.backBtn.Name = "backBtn";
+            this.backBtn.TabStop = false;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
+            this.backBtn.MouseEnter += new System.EventHandler(this.backBtn_MouseEnter);
+            this.backBtn.MouseLeave += new System.EventHandler(this.backBtn_MouseLeave);
+            // 
             // Staff
             // 
             resources.ApplyResources(this, "$this");
@@ -322,5 +334,6 @@
         private System.Windows.Forms.DataGridViewLinkColumn Column9;
         private System.Windows.Forms.DataGridViewLinkColumn Column10;
         private System.Windows.Forms.DataGridViewLinkColumn Column12;
+        private System.Windows.Forms.Button button3;
     }
 }
