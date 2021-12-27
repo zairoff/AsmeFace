@@ -50,20 +50,28 @@ namespace AsmeFace.UserControls
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            new Forms.EmployeeHire().ShowDialog();
+            new EmployeeHire().ShowDialog();
         }
 
         private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, " +
-                    "address, address, enrollment_number, amizone_code from employee where department <@ '" + treeView1.SelectedNode.Name +
-                    "' and status = true order by employeeid asc limit " + _dataBaseLimit;
+            try
+            {
+                query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, " +
+                   "address, address, enrollment_number, amizone_code from employee where department <@ '" + treeView1.SelectedNode.Name +
+                   "' and status = true order by employeeid asc limit " + _dataBaseLimit;
 
-            _databaseOffset = 0;
+                _databaseOffset = 0;
 
-            RetriveData(query);
+                RetriveData(query);
 
-            ShowEmployeeCount();
+                ShowEmployeeCount();
+            }
+            catch (Exception ex)
+            {
+
+            }
+           
         }
 
         private void RetriveData(string query)
@@ -176,17 +184,25 @@ namespace AsmeFace.UserControls
 
         private void SearchTextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            if (string.IsNullOrEmpty(SearchTextBox.Text))
-                return;
+            try
+            {
+                if (string.IsNullOrEmpty(SearchTextBox.Text))
+                    return;
 
-            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, " +
-                    "enrollment_number, amizone_code from employee where familiya ILIKE '"
-                    + SearchTextBox.Text.Trim() + "%' or ism ILIKE '" + SearchTextBox.Text.Trim() +
-                    "%' and status = true order by employeeid asc limit " + _dataBaseLimit;
+                query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, " +
+                        "enrollment_number, amizone_code from employee where familiya ILIKE '"
+                        + SearchTextBox.Text.Trim() + "%' or ism ILIKE '" + SearchTextBox.Text.Trim() +
+                        "%' and status = true order by employeeid asc limit " + _dataBaseLimit;
 
-            _databaseOffset = 0;
+                _databaseOffset = 0;
 
-            RetriveData(query);
+                RetriveData(query);
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
         }
 
         private void Button2_Click_1(object sender, EventArgs e)
