@@ -213,6 +213,10 @@ namespace AsmeFace
 
         private const ushort AS_ME_NO_PASSWORD = 0xffff;
 
+
+        int nReaderNum = -1;
+        int nCurDoorNum = 0;
+
         //private bool m_bOpen;
         private bool m_bStop;
         private static int OpenControllerStop = 0;
@@ -227,16 +231,18 @@ namespace AsmeFace
 
         //}
 
-        private static uint StrIpToUint(string strIPAddress)
+        public static long StrIpToUint(string strIPAddress)
         {
             if (string.IsNullOrEmpty(strIPAddress)) return 0;
 
             string[] ipSplit = strIPAddress.Split('.');
-
-            return (uint.Parse(ipSplit[3])) | (uint.Parse(ipSplit[2]) << 8) |
-                (uint.Parse(ipSplit[1]) << 16) | (uint.Parse(ipSplit[0]) << 24);
+            if (ipSplit.Length != 4)
+                return (long)asc_STU.AS_ME_ERR_GLOB_PARAM;
+            UInt32 dwIP = (UInt32.Parse(ipSplit[3])) | (UInt32.Parse(ipSplit[2]) << 8) |
+                (UInt32.Parse(ipSplit[1]) << 16) | (UInt32.Parse(ipSplit[0]) << 24);
+            return (long)dwIP;
         }
-        
+
         public int FindController()
         {
             IntPtr Handle = IntPtr.Zero;
@@ -351,9 +357,9 @@ namespace AsmeFace
         public int ChangeIP(string m_ip, string m_mask, string m_gate, string m_type, string m_mac)
         {
             m_bStop = false;
-            uint m_dwIP = StrIpToUint(m_ip);
-            uint m_dwMask = StrIpToUint(m_mask);
-            uint m_dwGate = StrIpToUint(m_gate);
+            uint m_dwIP = (uint)StrIpToUint(m_ip);
+            uint m_dwMask = (uint)StrIpToUint(m_mask);
+            uint m_dwGate = (uint)StrIpToUint(m_gate);
 
             int nRes;
             if (m_type == ("ASV-TCP/IP"))
@@ -371,56 +377,179 @@ namespace AsmeFace
 
         public int DetectController(string m_ip)
         {
-            ushort wCtrlAddress = 0;
+            asc_STU.LPAS_ME_COMM_ADDRESS address = new asc_STU.LPAS_ME_COMM_ADDRESS();
             address.nType = asc_STU.AS_ME_COMM_TYPE_IPV4;
-            address.IPV4.dwIPAddress = StrIpToUint(m_ip);
+            address.IPV4 = new asc_STU.IPV4();
+            address.IPV4.dwIPAddress = (uint)StrIpToUint(m_ip);
             address.IPV4.wServicePort = 50000;
+
+            ushort wCtrlAddress = 0;
+            int OpenControllerStop_detect = 0;
+
             asc_STU.LPAS_ME_TYPE_INFO pInfo = new asc_STU.LPAS_ME_TYPE_INFO();
             IntPtr init = Marshal.AllocHGlobal(asc_STU.AS_ME_TYPE_NAME_LEN);
             pInfo.szTypeName = init;
-            return asc_SDKAPI.AS_ME_DetectController(ref address, wCtrlAddress, ref pInfo, ref OpenControllerStop);
+
+            int nRes = asc_SDKAPI.AS_ME_DetectController(ref address, wCtrlAddress, ref pInfo, ref OpenControllerStop_detect);
+            if (nRes < 0)
+            {
+                CloseWriteToFile("Failed to set AS_ME_DetectController");
+                return -1;
+            }
+            else//Success
+            {
+                nCurDoorNum = pInfo.nCurDoorNum;
+                nReaderNum = pInfo.nReaderNum;
+                //string strInfo = "nReaderNum:"+ nReaderNum;
+                //PrintfInfo(pInfo, ref strInfo);
+                //m_info.Text = strInfo;
+            }
+            Marshal.FreeHGlobal(init);
+
+            return nRes;
+
+            //ushort wCtrlAddress = 0;
+            //address.nType = asc_STU.AS_ME_COMM_TYPE_IPV4;
+            //address.IPV4.dwIPAddress = StrIpToUint(m_ip);
+            //address.IPV4.wServicePort = 50000;
+            //asc_STU.LPAS_ME_TYPE_INFO pInfo = new asc_STU.LPAS_ME_TYPE_INFO();
+            //IntPtr init = Marshal.AllocHGlobal(asc_STU.AS_ME_TYPE_NAME_LEN);
+            //pInfo.szTypeName = init;
+            //return asc_SDKAPI.AS_ME_DetectController(ref address, wCtrlAddress, ref pInfo, ref OpenControllerStop);
         }
 
         public int OpenDevice(string ip)
         {
-            if (m_hController != IntPtr.Zero)
-                return 1;
+            if (m_hController != IntPtr.Zero) return 1;
 
+            asc_STU.LPAS_ME_COMM_ADDRESS address = new asc_STU.LPAS_ME_COMM_ADDRESS();
             address.nType = asc_STU.AS_ME_COMM_TYPE_IPV4;
-            address.IPV4.dwIPAddress = StrIpToUint(ip);
+            address.IPV4 = new asc_STU.IPV4();
+            string device_IP = ip;
+            address.IPV4.dwIPAddress = (uint)StrIpToUint(device_IP);
             address.IPV4.wServicePort = 50000;
-            int dType = -1;
-            return asc_SDKAPI.AS_ME_OpenController(dType, ref address, 0,
-                   asc_STU.AS_ME_NO_PASSWORD, ref OpenControllerStop, ref m_hController);
+
+            return asc_SDKAPI.AS_ME_OpenController((int)asc_STU.asc_device_type.AS_ME_TYPE_UNKOWN, ref address, 0,
+                    asc_STU.AS_ME_NO_PASSWORD, ref OpenControllerStop, ref m_hController);
+            
         }
 
         public int SetCard(int UserID, string card, int groupID)
         {
-            bool bIgnoreCardNum = true;
-            ulong dw64CardNum = AS_ME_NO_CARD;
-            bool bSearch = true;
-            asc_STU.LPAS_ME_CARD_PARAM pParam = new asc_STU.LPAS_ME_CARD_PARAM
+            int nHolidaySchedule = 0;
+            int nWeekSchedule = 1;
+            
+            int nRes = SetHolidaySchedule(m_hController, nHolidaySchedule);
+            if (nRes < 0)
             {
-                bHasPassCount = false,
-                bHasDeadline = false,
-                bFirstCard = false,
-                bSetGuard = false,
-                nGroup = groupID,
-                szName = Marshal.StringToHGlobalUni(UserID.ToString()),
-                szPassword = Marshal.StringToHGlobalUni("8888")
-            };
+                CloseWriteToFile("Failed to set SetHolidaySchedule");
+                return -1;
+            }
 
+            nRes = SetWeekSchedule(m_hController, nWeekSchedule);
+
+            if (nRes < 0)
+            {
+                CloseWriteToFile("Failed to set SetWeekSchedule");
+                return -1;
+            }
+
+            nRes = SetGroup(m_hController, groupID, nWeekSchedule, nHolidaySchedule);
+
+            if (nRes < 0)
+            {
+                CloseWriteToFile("Failed to set SetGroup");
+                return -1;
+            }
+
+            asc_STU.LPAS_ME_CARD_PARAM Employee = new asc_STU.LPAS_ME_CARD_PARAM();
+            Employee.bFirstCard = false;
+            Employee.bHasDeadline = false;
+            Employee.bHasPassCount = false;
+            Employee.bSetGuard = false;
+            Employee.nGroup = groupID;
+            Employee.szPassword = Marshal.StringToHGlobalUni("123456");
+            Employee.szName = Marshal.StringToHGlobalUni(UserID.ToString());
+
+            bool bIgnoreCardNum = false;
+            ulong dw64CardNum = AS_ME_NO_CARD;
+            
             if (!string.IsNullOrEmpty(card))
             {
                 dw64CardNum = Convert.ToUInt64(card);
                 bIgnoreCardNum = false;
             }
 
-            var nRes = asc_SDKAPI.AS_ME_SetCard(m_hController, UserID, bIgnoreCardNum, dw64CardNum, bSearch, ref pParam);
-            Marshal.FreeHGlobal(pParam.szPassword);
-            Marshal.FreeHGlobal(pParam.szName);
+            nRes = asc_SDKAPI.AS_ME_SetCard(m_hController, UserID, bIgnoreCardNum, dw64CardNum, false, ref Employee);
+            Marshal.FreeHGlobal(Employee.szPassword);
+            Marshal.FreeHGlobal(Employee.szName);
 
             return nRes;
+        }
+
+        private int SetGroup(IntPtr hController, int nGroup, int nWeekSchedule, int nHolidaySchedule)
+        {
+            //Just set one access group. Current all M Series controllers have max four readers.
+            //So we create schedule array which has 4 elements for simplifying code. 
+            //int[] aWeekSchedule = { nWeekSchedule, nWeekSchedule, nWeekSchedule, AS_ME_READER_NO_SCHEDULE };
+            //int[] aHolidaySchedule = { nHolidaySchedule, nHolidaySchedule, nHolidaySchedule, AS_ME_READER_NO_SCHEDULE };
+            int[] aHolidaySchedule = new int[asc_STU.AS_ME_READER_MAX_NUM]{
+                                nHolidaySchedule, 0, 0, 0,
+                                0, 0, 0, 0,
+                                0, 0, 0, 0,
+                                0, 0, 0, 0
+                            };
+            int[] aWeekSchedule = new int[asc_STU.AS_ME_READER_MAX_NUM]{
+                                nWeekSchedule, 0, 0, 0,
+                                0, 0, 0,0,
+                                0, 0, 0, 0,
+                                0, 0, 0, 0
+                            };
+            asc_STU.LPAS_ME_GROUP lmftr = new asc_STU.LPAS_ME_GROUP();
+            lmftr.aHolidaySchedule = aHolidaySchedule;
+            lmftr.aWeekSchedule = aWeekSchedule;
+            lmftr.dwReaderMask = (uint)(1 << nReaderNum) - 1;
+            return asc_SDKAPI.AS_ME_SetGroup(m_hController, nGroup, ref lmftr);
+        }
+
+        private int SetHolidaySchedule(IntPtr hController, int nHolidaySchedule)
+        {
+            //We just set one holiday schedule which has one holiday 1.1.
+            asc_STU.LPAS_ME_HOLIDAY_SCHEDULE holiday = new asc_STU.LPAS_ME_HOLIDAY_SCHEDULE();
+            holiday.aHoliday = new asc_STU.AS_ME_HOLIDAY[asc_STU.Holiday_Num];
+            //memset(&holiday, 0xff, sizeof(AS_ME_HOLIDAY_SCHEDULE));
+            for (int i = 0; i < asc_STU.Holiday_Num; i++)
+            {
+                holiday.aHoliday[i].byMonth = 0xff;
+                holiday.aHoliday[i].byDay = 0xff;
+            }
+            return asc_SDKAPI.AS_ME_SetHolidaySchedule(hController, nHolidaySchedule, ref holiday);            
+        }
+
+        private int SetWeekSchedule(IntPtr hController, int nWeekSchedule)
+        {
+            //We just two time segments per day from Monday to Friday.
+            asc_STU.LPAS_ME_WEEK_SCHEDULE week = new asc_STU.LPAS_ME_WEEK_SCHEDULE();
+            week.aDaySeg = new asc_STU.AS_ME_TIME_SEG[7, 3];
+            //memset(&week, 0, sizeof(AS_ME_WEEK_SCHEDULE));
+            for (int i = 0; i < 7; i++)
+            {
+                week.aDaySeg[i, 0].byStartHour = 0;
+                week.aDaySeg[i, 0].byStartMinute = 0;
+                week.aDaySeg[i, 0].byEndHour = 23;
+                week.aDaySeg[i, 0].byEndMinute = 59;
+
+                week.aDaySeg[i, 1].byStartHour = 0;
+                week.aDaySeg[i, 1].byStartMinute = 0;
+                week.aDaySeg[i, 1].byEndHour = 0;
+                week.aDaySeg[i, 1].byEndMinute = 0;
+
+                week.aDaySeg[i, 2].byStartHour = 0;
+                week.aDaySeg[i, 2].byStartMinute = 0;
+                week.aDaySeg[i, 2].byEndHour = 0;
+                week.aDaySeg[i, 2].byEndMinute = 0;
+            }
+            return asc_SDKAPI.AS_ME_SetWeekSchedule(hController, nWeekSchedule, ref week);
         }
 
         public int DeleteCard(int UserID)
@@ -566,8 +695,6 @@ namespace AsmeFace
             return nRes;
         }
 
-        int nReaderNum = -1;
-        int nCurDoorNum = 0;
 
         public int CommunicationTest()
         {

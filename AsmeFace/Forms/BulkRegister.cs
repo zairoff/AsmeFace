@@ -63,37 +63,49 @@ namespace AsmeFace.Forms
 
                 BeginInvoke(new MethodInvoker(() => progressBar1.Maximum = rowCount));
 
-                for (int i = 0; i < rowCount; i++)
+                string root = "TDYU";
+                for (int i = 1; i < rowCount; i++)
                 {
-                    var ttext = xlRange.Cells[(i + 1), 1];
-                    var mytree = xlRange.Cells[(i + 1), 2];
-                    if (ttext != null && mytree != null)
+                    var bulinma = xlRange.Cells[(i + 1), 4];
+                    var lavozim = xlRange.Cells[(i + 1), 5];
+
+                    if (bulinma != null && lavozim != null)
                     {
-                        ttext = ttext.Value.ToString();
-                        mytree = mytree.Value.ToString().Replace(" ", "");
+                        bulinma = bulinma.Value.ToString();
+                        var bulinmaRp = bulinma.Replace(" ", "");
+                        lavozim = lavozim.Value.ToString();
+                        var lavozimRp = lavozim.Replace(" ", "");
 
-                        if (i == 0)
-                        {
-                            Insert("insert into department (ttext, mytree) values('" + ttext + "','" + mytree + "')");
-                            BeginInvoke(new MethodInvoker(() => dataGridView2.Rows.Insert(0, ttext, mytree, "First departmenmt")));
-                            continue;
-                        }
-
-                        bool exists = dataBase.CheckDB("select exists(select 1 from department where mytree = '" + mytree + "')");
-
+                        bool exists = dataBase.CheckDB(System.Text.Encoding.UTF8.GetString(System.Text.Encoding.UTF8.GetBytes("select exists(select 1 from department where mytree = '" + root + "." + bulinmaRp + "')")));
                         if (exists)
                         {
-                            mytree = mytree + "." + ttext;
-                            Insert("insert into department (ttext, mytree) values('" + ttext + "','" + mytree + "')");
-                            BeginInvoke(new MethodInvoker(() => dataGridView2.Rows.Insert(0, ttext, mytree)));
+                            exists = dataBase.CheckDB(System.Text.Encoding.UTF8.GetString(System.Text.Encoding.UTF8.GetBytes("select exists(select 1 from department where mytree = '" + root + "." + bulinmaRp + "." + lavozimRp + "')")));
+
+                            if (exists)
+                            {
+                                BeginInvoke(new MethodInvoker(delegate ()
+                                {
+                                    dataGridView2.Rows.Insert(0, bulinma, lavozim, "already exist");
+                                }));
+                                continue;
+                            }
+                            else
+                            {
+                                Insert(System.Text.Encoding.UTF8.GetString(
+                                    System.Text.Encoding.UTF8.GetBytes(
+                                        "insert into department (ttext, mytree) values('" + lavozim + "','" + root + "." + bulinmaRp + "." + lavozimRp + "')")));
+                            }
                         }
                         else
                         {
-                            BeginInvoke(new MethodInvoker(delegate ()
-                            {
-                                dataGridView2.Rows.Insert(0, ttext, mytree, "sub-department not exist");
-                            }));
+                            Insert(System.Text.Encoding.UTF8.GetString(System.Text.Encoding.UTF8.GetBytes("insert into department (ttext, mytree) values('" + bulinma + "','" + root + "." + bulinmaRp + "')")));
+                            Insert(System.Text.Encoding.UTF8.GetString(System.Text.Encoding.UTF8.GetBytes("insert into department (ttext, mytree) values('" + lavozim + "','" + root + "." + bulinmaRp + "." + lavozimRp + "')")));
                         }
+
+                        BeginInvoke(new MethodInvoker(delegate ()
+                        {
+                            dataGridView2.Rows.Insert(0, bulinma, lavozim, "added");
+                        }));
                     }
                     BeginInvoke(new MethodInvoker(() => progressBar1.Value = i));
                 }
@@ -143,9 +155,7 @@ namespace AsmeFace.Forms
                 {
                     button3.Enabled = false;
                     var thread = new Thread(() => ImportEmployee(filePath));
-                    thread.SetApartmentState(ApartmentState.STA);
                     thread.Start();
-                    thread.Join();
                 }
                 else
                 {
@@ -180,36 +190,78 @@ namespace AsmeFace.Forms
                 int colCount = xlRange.Columns.Count;
 
                 BeginInvoke(new MethodInvoker(() => progressBar2.Maximum = rowCount));
-
-                for (int i = 0; i < rowCount; i++)
+                string root = "TDYU";
+                for (int i = 1; i < rowCount; i++)
                 {
-                    Picture pic = (Picture)xlWorksheet.Pictures(i + 1);
-                    pic.CopyPicture(XlPictureAppearance.xlScreen, XlCopyPictureFormat.xlBitmap);
-                    byte[] image = null;
-                    if (Clipboard.ContainsImage())
-                    {
-                        //pictureBox1.Image = Clipboard.GetImage();
-                        image = ImageToByteArray(Clipboard.GetImage());
-                    }
-                    var employeeID = xlRange.Cells[(i + 2), 1].Value?.ToString();
-                    var card = xlRange.Cells[(i + 2), 3].Value?.ToString();
-                    var firstName = xlRange.Cells[(i + 2), 4].Value?.ToString();
-                    var lastName = xlRange.Cells[(i + 2), 5].Value?.ToString();
-                    var familyName = xlRange.Cells[(i + 2), 6].Value?.ToString();
-                    var department = xlRange.Cells[(i + 2), 7].Value?.ToString().Replace(" ", "");
-                    var position = xlRange.Cells[(i + 2), 8].Value?.ToString().Replace(" ", "");
-                    var departmentCheck = department + "." + position;
-                    var address = xlRange.Cells[(i + 2), 10].Value?.ToString().Replace(" ", "");
-                    var enrollment = xlRange.Cells[(i + 2), 11].Value?.ToString().Replace(" ", "");
-                    var amizone = xlRange.Cells[(i + 2), 12].Value?.ToString().Replace(" ", "");
+                    //Picture pic = (Picture)xlWorksheet.Pictures(i + 1);
+                    //pic.CopyPicture(XlPictureAppearance.xlScreen, XlCopyPictureFormat.xlBitmap);
+                    //byte[] image = null;
+                    //if (Clipboard.ContainsImage())
+                    //{
+                    //    //pictureBox1.Image = Clipboard.GetImage();
+                    //    image = ImageToByteArray(Clipboard.GetImage());
+                    //}
 
-                    bool exists = dataBase.CheckDB("select exists(select 1 from department where mytree = '" + departmentCheck + "')");
+                    var employeeID = xlRange.Cells[(i + 1), 1].Value?.ToString();
+                    var names = xlRange.Cells[(i + 2), 2].Value?.ToString().Split(' ');
+                    var firstName = names[1];
+                    var lastName = names[0];
+                    string familyName = "";
+
+                    if (names.Length > 3)
+                    {
+                        familyName = names[2] + " " + names[3];
+                    }
+                    else
+                    {
+                        familyName = names[2];
+                    }
+
+                    var passport = xlRange.Cells[(i + 2), 3].Value?.ToString().Replace(" ", "");
+                    var department = xlRange.Cells[(i + 2), 4].Value?.ToString();
+                    var position = xlRange.Cells[(i + 2), 5].Value?.ToString();
+                    var departmentCheck = root + "." + department.Replace(" ", "") + "." + position.Replace(" ", "");
+                    var shtat = xlRange.Cells[(i + 2), 6].Value?.ToString();
+                    var address = xlRange.Cells[(i + 2), 7].Value?.ToString().Replace(" ", "");
+
+                    var path = Path.GetDirectoryName(filePath);
+
+                    string[] files = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
+                    byte[] image = null;
+                    
+                    foreach (var file in files)
+                    {
+                        var fileName = Path.GetFileNameWithoutExtension(file).Replace(" ", "");
+                        if (fileName == passport)
+                        {
+                            image = File.ReadAllBytes(file);
+                            break;
+                        }
+                    }
+
+                    if(image is null)
+                    {
+                        BeginInvoke(new MethodInvoker(delegate ()
+                        {
+                            dataGridView1.Rows.Insert(
+                                        0,
+                                        employeeID,
+                                        firstName + " " + lastName,
+                                        position,
+                                        "Image not found");
+                            progressBar2.Value = i;
+
+                        }));
+                        continue;
+                    }
+
+                    bool exists = dataBase.CheckDB(System.Text.Encoding.UTF8.GetString(System.Text.Encoding.UTF8.GetBytes("select exists(select 1 from department where mytree = '" + departmentCheck + "')")));
 
                     if (!exists)
                     {
                         BeginInvoke(new MethodInvoker(delegate ()
                         {
-                            dataGridView2.Rows.Insert(
+                            dataGridView1.Rows.Insert(
                                         0,
                                         employeeID,
                                         firstName + " " + lastName,
@@ -221,7 +273,7 @@ namespace AsmeFace.Forms
                         continue;
                     }
 
-                    exists = dataBase.CheckDB("select exists(select 1 from employee where employeeid = " + employeeID + ")");
+                    exists = dataBase.CheckDB(System.Text.Encoding.UTF8.GetString(System.Text.Encoding.UTF8.GetBytes("select exists(select 1 from employee where employeeid = " + employeeID + ")")));
 
                     if (exists)
                     {
@@ -239,12 +291,17 @@ namespace AsmeFace.Forms
                         continue;
                     }
 
-                    string department2 = Convert.ToString(department);
+                    //string department2 = Convert.ToString(department);
 
-                    dataBase.InsertFace("insert into employee (employeeid, photo, finger, card, ism, familiya, otchestvo, department, otdel, lavozim, status, address, enrollment_number, amizone_code) " +
-                                        "values(" + employeeID + ",@Image, @Finger, '" + card + "','" + firstName + "','" + lastName + "','" +
-                                        familyName + "','" + departmentCheck + "','" + department2.Split('.').Last() + "','" + position + "', true, '" +
-                                        address + "','" + enrollment + "','" + amizone + "')", image, null);
+                    //dataBase.InsertFace(System.Text.Encoding.UTF8.GetString(System.Text.Encoding.UTF8.GetBytes("insert into employee (employeeid, ism, familiya, otchestvo, department, otdel, lavozim, status, address, shtat, passport) " +
+                    //                    "values(" + employeeID + ",'" + firstName + "','" + lastName + "','" + familyName + "','" + departmentCheck + "','" + department +
+                    //                    "','" + position + "', true, '" + address + "','" + shtat + "','" + passport + "')")));
+
+
+                    dataBase.InsertFace("insert into employee (employeeid, photo, finger, ism, familiya, otchestvo, department, otdel, lavozim, status, address, shtat, passport) " +
+                                        "values(" + employeeID + ",@Image, @Finger,'" + firstName + "','" + lastName + "','" +
+                                        familyName + "','" + departmentCheck + "','" + department + "','" + position + "', true, '" +
+                                        address + "','" + shtat + "','" + passport + "')", image, null);
 
                     BeginInvoke(new MethodInvoker(delegate ()
                     {

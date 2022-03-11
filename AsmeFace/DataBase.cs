@@ -313,12 +313,15 @@ namespace AsmeFace
                         {
                             var employee = new Employee
                             {
-                                ID = Convert.ToInt32(reader["employeeid"]),
-                                Photo = (byte[])reader["photo"]
+                                ID = Convert.ToInt32(reader["employeeid"])
+                                //Photo = (byte[])reader["photo"]
                             };
 
                             if (reader["finger"] != DBNull.Value)
                                 employee.Finger = (byte[])reader["finger"];
+
+                            if (reader["photo"] != DBNull.Value)
+                                employee.Photo = (byte[])reader["photo"];
 
                             employee.Card = reader["card"].ToString();
                             employee.Familiya = reader["familiya"].ToString();
@@ -329,6 +332,8 @@ namespace AsmeFace
                             employee.Address = reader["address"].ToString();                            
                             employee.Enrollment_number = reader["enrollment_number"].ToString();                            
                             employee.Amizone_code = reader["amizone_code"].ToString();                            
+                            employee.Shtat = reader["shtat"].ToString();                            
+                            employee.Passport = reader["passport"].ToString();                            
                             employees.Add(employee);
                         }
                     }                        

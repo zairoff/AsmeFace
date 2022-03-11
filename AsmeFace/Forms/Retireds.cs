@@ -38,7 +38,7 @@ namespace AsmeFace.Forms
 
         private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, enrollment_number, amizone_code " +
+            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, enrollment_number, amizone_code, shtat, passport " +
                     "from employee where department <@ '" + treeView1.SelectedNode.Name +
                     "' and status = false order by employeeid desc";
 
@@ -81,7 +81,7 @@ namespace AsmeFace.Forms
             if (string.IsNullOrEmpty(SearchTextBox.Text))
                 return;
 
-            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, enrollment_number, amizone_code from employee " +
+            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, enrollment_number, amizone_code, shtat, passport from employee " +
                     "where familiya ILIKE '" + SearchTextBox.Text.Trim() + "%' or ism ILIKE '" + SearchTextBox.Text.Trim() + "%' and status = false";
 
             RetriveData(query);

@@ -128,4 +128,7 @@
   <data name="button2.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>ImageBeforeText</value>
   </data>
+  <data name="Column13.HeaderText" xml:space="preserve">
+    <value>Штат</value>
+  </data>
 </root>

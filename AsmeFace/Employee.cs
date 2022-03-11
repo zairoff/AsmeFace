@@ -42,5 +42,9 @@
         public string Enrollment_number { get; set; }
 
         public string Amizone_code { get; set; }
+
+        public string Shtat { get; set; }
+
+        public string Passport { get; set; }
     }
 }

@@ -58,7 +58,7 @@ namespace AsmeFace.UserControls
             try
             {
                 query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, " +
-                   "address, address, enrollment_number, amizone_code from employee where department <@ '" + treeView1.SelectedNode.Name +
+                   "address, address, enrollment_number, amizone_code, shtat, passport from employee where department <@ '" + treeView1.SelectedNode.Name +
                    "' and status = true order by employeeid asc limit " + _dataBaseLimit;
 
                 _databaseOffset = 0;
@@ -70,8 +70,7 @@ namespace AsmeFace.UserControls
             catch (Exception ex)
             {
 
-            }
-           
+            }           
         }
 
         private void RetriveData(string query)
@@ -88,15 +87,15 @@ namespace AsmeFace.UserControls
             {
                 dataGridView1.Rows.Insert(
                     0,
-                    ByteToImage(employees[i].Photo),
+                    employees[i].Photo == null ? null : ByteToImage(employees[i].Photo),
                     employees[i].ID,
+                    employees[i].Passport,
                     employees[i].Familiya,
                     employees[i].Ism,
                     employees[i].Otchestvo,
                     employees[i].Otdel,
                     employees[i].Lavozim,
-                    employees[i].Amizone_code,
-                    employees[i].Enrollment_number);
+                    employees[i].Shtat);
             }
         }       
 
@@ -190,7 +189,7 @@ namespace AsmeFace.UserControls
                     return;
 
                 query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, " +
-                        "enrollment_number, amizone_code from employee where familiya ILIKE '"
+                        "enrollment_number, amizone_code, shtat, passport from employee where familiya ILIKE '"
                         + SearchTextBox.Text.Trim() + "%' or ism ILIKE '" + SearchTextBox.Text.Trim() +
                         "%' and status = true order by employeeid asc limit " + _dataBaseLimit;
 
@@ -237,7 +236,7 @@ namespace AsmeFace.UserControls
 
             _databaseOffset += _dataBaseLimit;
             query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, " +
-                    "address, enrollment_number, amizone_code from employee where department <@ '" + treeView1.SelectedNode.Name +
+                    "address, enrollment_number, amizone_code, shtat, passport from employee where department <@ '" + treeView1.SelectedNode.Name +
                     "' and status = true order by employeeid asc LIMIT " + _dataBaseLimit + " OFFSET " + _databaseOffset;
 
             RetriveData(query);
@@ -250,7 +249,7 @@ namespace AsmeFace.UserControls
 
             _databaseOffset -= _dataBaseLimit;
             query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, " +
-                    "address, enrollment_number, amizone_code from employee where department <@ '" + treeView1.SelectedNode.Name +
+                    "address, enrollment_number, amizone_code, shtat, passport from employee where department <@ '" + treeView1.SelectedNode.Name +
                     "' and status = true order by employeeid asc LIMIT " + _dataBaseLimit + " OFFSET " + _databaseOffset;
 
             RetriveData(query);

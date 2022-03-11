@@ -43,7 +43,7 @@ namespace AsmeFace.Forms
             }
         }
 
-        private void Button1_Click(object sender, System.EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             var dg = new OpenFileDialog();
 
@@ -70,7 +70,7 @@ namespace AsmeFace.Forms
         protected void ClearFields()
         {
             textBox2.Text = ""; textBox3.Text = ""; textBox4.Text = ""; textBox5.Text = ""; textBox6.Text = "";
-            textBox7.Text = ""; textBox8.Text = ""; textBox10.Text = ""; textBox11.Text = "";  pictureBox1.Image = null;
+            textBox7.Text = ""; textBox8.Text = ""; textBox10.Text = ""; textBox11.Text = ""; pictureBox1.Image = null;
         }
 
         protected byte[] ImageToByteArray(System.Drawing.Image imageIn)
@@ -147,12 +147,12 @@ namespace AsmeFace.Forms
                 textBox6.Text = treeView1.SelectedNode.Parent.Text; 
         }
 
-        private void Button2_Click(object sender, System.EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void Btn_finger_Click(object sender, System.EventArgs e)
+        private void Btn_finger_Click(object sender, EventArgs e)
         {
             try
             {

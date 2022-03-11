@@ -46,7 +46,7 @@ namespace AsmeFace.Forms
             try
             {
                 GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, " +
-                "otdel, lavozim, address, enrollment_number, amizone_code from employee where department <@ '"
+                "otdel, lavozim, address, enrollment_number, amizone_code, shtat, passport from employee where department <@ '"
                 + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
             }
             catch (Exception ex)
@@ -146,7 +146,25 @@ namespace AsmeFace.Forms
 
         private void SyncAction(Employee employee, DeviceInfo device)
         {
-            int nRes = _asmeDevice.OpenDevice(device.dwIPAddress);
+            int nRes = _asmeDevice.DetectController(device.dwIPAddress);
+
+            if (nRes < 0)
+            {
+                BeginInvoke(new MethodInvoker(delegate ()
+                {
+                    dataGridView1.Rows.Insert(
+                        0,
+                        employee.Familiya + " " + employee.Ism,
+                        device.dwIPAddress,
+                        "Failed to DetectController: " + _asmeDevice.GetResponse(nRes)
+                        );
+                    dataGridView1.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
+                }));
+                return;
+            }
+
+            nRes = _asmeDevice.OpenDevice(device.dwIPAddress);
+
             if (nRes < 0) 
             {
                 BeginInvoke(new MethodInvoker(delegate ()
@@ -162,23 +180,7 @@ namespace AsmeFace.Forms
                 return;
             }          
             
-            nRes = _asmeDevice.SetCard(employee.ID, employee.Card, 0);                                     
-
-            if (nRes < 0)
-            {
-                BeginInvoke(new MethodInvoker(delegate ()
-                {
-                    dataGridView1.Rows.Insert(
-                        0,
-                        employee.Familiya + " " + employee.Ism,
-                        device.dwIPAddress,
-                        "Failed to set card: " + _asmeDevice.GetResponse(nRes)
-                        );
-                    dataGridView1.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
-                }));
-                _asmeDevice.CloseDevice();
-                return;
-            }
+            
 
             if (employee.Finger != null && string.Equals(device.dwType, "Finger"))
             {
@@ -226,7 +228,25 @@ namespace AsmeFace.Forms
                     _asmeDevice.CloseDevice();
                     return;
                 }
-            }           
+            }
+
+            nRes = _asmeDevice.SetCard(employee.ID, employee.Card, 0);
+
+            if (nRes < 0)
+            {
+                BeginInvoke(new MethodInvoker(delegate ()
+                {
+                    dataGridView1.Rows.Insert(
+                        0,
+                        employee.Familiya + " " + employee.Ism,
+                        device.dwIPAddress,
+                        "Failed to set card: " + _asmeDevice.GetResponse(nRes)
+                        );
+                    dataGridView1.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
+                }));
+                _asmeDevice.CloseDevice();
+                return;
+            }
 
             BeginInvoke(new MethodInvoker(delegate ()
             {
@@ -261,7 +281,7 @@ namespace AsmeFace.Forms
                 if (string.IsNullOrEmpty(SearchTextBox.Text))
                     return;
 
-                GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, enrollment_number, amizone_code " +
+                GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, enrollment_number, amizone_code, shtat, passport " +
                             "from employee where familiya ILIKE '" +
                             SearchTextBox.Text.Trim() + "%' or ism  ILIKE '" +
                             SearchTextBox.Text.Trim() + "%' and status = true order by employeeid desc limit 50");

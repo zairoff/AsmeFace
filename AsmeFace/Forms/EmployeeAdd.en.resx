@@ -178,16 +178,13 @@
   <data name="label10.Text" xml:space="preserve">
     <value>Address</value>
   </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 13</value>
-  </data>
   <data name="label11.Text" xml:space="preserve">
-    <value>Enrollement number</value>
+    <value>Shtat</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 13</value>
+    <value>48, 13</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
-    <value>Amizone code</value>
+    <value>Passport</value>
   </data>
 </root>
