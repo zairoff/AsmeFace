@@ -11,7 +11,7 @@ namespace AsmeFace.Forms
             InitializeComponent();
             var employee = _dataBase.GetEmployee(
                             "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel," +
-                            "lavozim, address, enrollment_number, amizone_code, shtat, passport from employee where employeeid = " + id);
+                            "lavozim, address from employee where employeeid = " + id);
             if (employee.Count > 0)
             {
                 pictureBox1.Image = ByteToImage(employee[0].Photo);
@@ -22,7 +22,6 @@ namespace AsmeFace.Forms
                 textBox7.Text = employee[0].Card;
                 textBox8.Text = employee[0].Finger == null ? "" : Convert.ToBase64String(employee[0].Finger);
                 textBox9.Text = employee[0].Address;
-                textBox10.Text = employee[0].Shtat;
             }
         }
 
@@ -44,7 +43,7 @@ namespace AsmeFace.Forms
                             textBox3.Text + "', otchestvo = '" + textBox4.Text + "'," + "department = '" + 
                             treeView1.SelectedNode.Name + "', otdel = '" + textBox6.Text + "'," +
                             "lavozim = '" + textBox5.Text + "', address = '" + textBox9.Text +
-                            "', shtat ='" + textBox10.Text + "', status = true where employeeid = " + userID + ";" +
+                            "', status = true where employeeid = " + userID + ";" +
                             "insert into employee_history (employeeid, ism, familiya, otchestvo, otdel, " +
                             "lavozim, status, sana) values(" + userID + ",'" + textBox3.Text + "','" +
                             textBox2.Text + "','" + textBox4.Text + "','" + textBox6.Text + "','" +

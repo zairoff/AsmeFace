@@ -27,7 +27,7 @@ namespace AsmeFace.Forms
                                 "card, ism, familiya, otchestvo, department, otdel, lavozim, address, shtat, passport) " +
                                 "values(" + userID + ", @Image, @Finger, '" + textBox7.Text + "','" + textBox3.Text + "','" + textBox2.Text +
                                 "','" + textBox4.Text + "','" + treeView1.SelectedNode.Name + "','" + textBox6.Text + "','" + textBox5.Text +
-                                "','" + textBox9.Text + "','" + textBox10.Text + "','" + textBox11.Text + "') returning employeeid");
+                                "','" + textBox9.Text + "') returning employeeid");
 
                 var index = _dataBase.InsertFace(System.Text.Encoding.UTF8.GetString(queryEncode), photo, finger);
 

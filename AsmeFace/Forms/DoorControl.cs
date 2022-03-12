@@ -46,7 +46,7 @@ namespace AsmeFace.Forms
             try
             {
                 GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, " +
-                "otdel, lavozim, address, enrollment_number, amizone_code, shtat, passport from employee where department <@ '"
+                "otdel, lavozim, address from employee where department <@ '"
                 + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
             }
             catch (Exception ex)

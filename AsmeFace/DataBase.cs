@@ -330,10 +330,6 @@ namespace AsmeFace
                             employee.Otdel = reader["otdel"].ToString();
                             employee.Lavozim = reader["lavozim"].ToString();                            
                             employee.Address = reader["address"].ToString();                            
-                            employee.Enrollment_number = reader["enrollment_number"].ToString();                            
-                            employee.Amizone_code = reader["amizone_code"].ToString();                            
-                            employee.Shtat = reader["shtat"].ToString();                            
-                            employee.Passport = reader["passport"].ToString();                            
                             employees.Add(employee);
                         }
                     }                        

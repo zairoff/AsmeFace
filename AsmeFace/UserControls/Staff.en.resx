@@ -145,9 +145,6 @@
   <data name="Column1.HeaderText" xml:space="preserve">
     <value>Photo</value>
   </data>
-  <data name="Column14.HeaderText" xml:space="preserve">
-    <value>Passport</value>
-  </data>
   <data name="Column3.HeaderText" xml:space="preserve">
     <value>SureName</value>
   </data>
@@ -162,9 +159,6 @@
   </data>
   <data name="Column7.HeaderText" xml:space="preserve">
     <value>Position</value>
-  </data>
-  <data name="Column13.HeaderText" xml:space="preserve">
-    <value>Shtat</value>
   </data>
   <data name="Column8.HeaderText" xml:space="preserve">
     <value>Edit</value>

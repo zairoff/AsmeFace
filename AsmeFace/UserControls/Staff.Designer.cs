@@ -41,21 +41,19 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.forwardBtn = new System.Windows.Forms.PictureBox();
-            this.backBtn = new System.Windows.Forms.PictureBox();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.forwardBtn = new System.Windows.Forms.PictureBox();
+            this.backBtn = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -171,13 +169,11 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
-            this.Column14,
             this.Column3,
             this.Column4,
             this.Column5,
             this.Column6,
             this.Column7,
-            this.Column13,
             this.Column8,
             this.Column9,
             this.Column10,
@@ -190,26 +186,6 @@
             this.dataGridView1.RowTemplate.Height = 82;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick_1);
             // 
-            // forwardBtn
-            // 
-            resources.ApplyResources(this.forwardBtn, "forwardBtn");
-            this.forwardBtn.Image = global::AsmeFace.Properties.Resources.right_arrow;
-            this.forwardBtn.Name = "forwardBtn";
-            this.forwardBtn.TabStop = false;
-            this.forwardBtn.Click += new System.EventHandler(this.forwardBtn_Click);
-            this.forwardBtn.MouseEnter += new System.EventHandler(this.forwardBtn_MouseEnter);
-            this.forwardBtn.MouseLeave += new System.EventHandler(this.forwardBtn_MouseLeave);
-            // 
-            // backBtn
-            // 
-            resources.ApplyResources(this.backBtn, "backBtn");
-            this.backBtn.Image = global::AsmeFace.Properties.Resources.left_arrow;
-            this.backBtn.Name = "backBtn";
-            this.backBtn.TabStop = false;
-            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
-            this.backBtn.MouseEnter += new System.EventHandler(this.backBtn_MouseEnter);
-            this.backBtn.MouseLeave += new System.EventHandler(this.backBtn_MouseLeave);
-            // 
             // Column1
             // 
             resources.ApplyResources(this.Column1, "Column1");
@@ -220,11 +196,6 @@
             // 
             resources.ApplyResources(this.Column2, "Column2");
             this.Column2.Name = "Column2";
-            // 
-            // Column14
-            // 
-            resources.ApplyResources(this.Column14, "Column14");
-            this.Column14.Name = "Column14";
             // 
             // Column3
             // 
@@ -250,11 +221,6 @@
             // 
             resources.ApplyResources(this.Column7, "Column7");
             this.Column7.Name = "Column7";
-            // 
-            // Column13
-            // 
-            resources.ApplyResources(this.Column13, "Column13");
-            this.Column13.Name = "Column13";
             // 
             // Column8
             // 
@@ -283,6 +249,26 @@
             this.Column12.Name = "Column12";
             this.Column12.Text = "History";
             this.Column12.UseColumnTextForLinkValue = true;
+            // 
+            // forwardBtn
+            // 
+            resources.ApplyResources(this.forwardBtn, "forwardBtn");
+            this.forwardBtn.Image = global::AsmeFace.Properties.Resources.right_arrow;
+            this.forwardBtn.Name = "forwardBtn";
+            this.forwardBtn.TabStop = false;
+            this.forwardBtn.Click += new System.EventHandler(this.forwardBtn_Click);
+            this.forwardBtn.MouseEnter += new System.EventHandler(this.forwardBtn_MouseEnter);
+            this.forwardBtn.MouseLeave += new System.EventHandler(this.forwardBtn_MouseLeave);
+            // 
+            // backBtn
+            // 
+            resources.ApplyResources(this.backBtn, "backBtn");
+            this.backBtn.Image = global::AsmeFace.Properties.Resources.left_arrow;
+            this.backBtn.Name = "backBtn";
+            this.backBtn.TabStop = false;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
+            this.backBtn.MouseEnter += new System.EventHandler(this.backBtn_MouseEnter);
+            this.backBtn.MouseLeave += new System.EventHandler(this.backBtn_MouseLeave);
             // 
             // Staff
             // 
@@ -324,13 +310,11 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridViewImageColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewLinkColumn Column8;
         private System.Windows.Forms.DataGridViewLinkColumn Column9;
         private System.Windows.Forms.DataGridViewLinkColumn Column10;

@@ -58,7 +58,7 @@ namespace AsmeFace.UserControls
             try
             {
                 query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, " +
-                   "address, address, enrollment_number, amizone_code, shtat, passport from employee where department <@ '" + treeView1.SelectedNode.Name +
+                   "address from employee where department <@ '" + treeView1.SelectedNode.Name +
                    "' and status = true order by employeeid asc limit " + _dataBaseLimit;
 
                 _databaseOffset = 0;
@@ -89,13 +89,11 @@ namespace AsmeFace.UserControls
                     0,
                     employees[i].Photo == null ? null : ByteToImage(employees[i].Photo),
                     employees[i].ID,
-                    employees[i].Passport,
                     employees[i].Familiya,
                     employees[i].Ism,
                     employees[i].Otchestvo,
                     employees[i].Otdel,
-                    employees[i].Lavozim,
-                    employees[i].Shtat);
+                    employees[i].Lavozim);
             }
         }       
 
@@ -188,8 +186,8 @@ namespace AsmeFace.UserControls
                 if (string.IsNullOrEmpty(SearchTextBox.Text))
                     return;
 
-                query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, " +
-                        "enrollment_number, amizone_code, shtat, passport from employee where familiya ILIKE '"
+                query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address " +
+                        "from employee where familiya ILIKE '"
                         + SearchTextBox.Text.Trim() + "%' or ism ILIKE '" + SearchTextBox.Text.Trim() +
                         "%' and status = true order by employeeid asc limit " + _dataBaseLimit;
 
@@ -236,7 +234,7 @@ namespace AsmeFace.UserControls
 
             _databaseOffset += _dataBaseLimit;
             query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, " +
-                    "address, enrollment_number, amizone_code, shtat, passport from employee where department <@ '" + treeView1.SelectedNode.Name +
+                    "address from employee where department <@ '" + treeView1.SelectedNode.Name +
                     "' and status = true order by employeeid asc LIMIT " + _dataBaseLimit + " OFFSET " + _databaseOffset;
 
             RetriveData(query);
@@ -249,7 +247,7 @@ namespace AsmeFace.UserControls
 
             _databaseOffset -= _dataBaseLimit;
             query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, " +
-                    "address, enrollment_number, amizone_code, shtat, passport from employee where department <@ '" + treeView1.SelectedNode.Name +
+                    "address from employee where department <@ '" + treeView1.SelectedNode.Name +
                     "' and status = true order by employeeid asc LIMIT " + _dataBaseLimit + " OFFSET " + _databaseOffset;
 
             RetriveData(query);
@@ -262,13 +260,13 @@ namespace AsmeFace.UserControls
 
             var userID = Convert.ToInt32(dataGridView1[1, dataGridView1.CurrentRow.Index].Value);
 
-            if (dataGridView1.CurrentCell.ColumnIndex.Equals(9) && e.RowIndex != -1)
+            if (dataGridView1.CurrentCell.ColumnIndex.Equals(7) && e.RowIndex != -1)
             {
                 new Forms.EmployeeEdit(userID).ShowDialog();
                 return;
             }
 
-            if (dataGridView1.CurrentCell.ColumnIndex.Equals(10) && e.RowIndex != -1)
+            if (dataGridView1.CurrentCell.ColumnIndex.Equals(8) && e.RowIndex != -1)
             {
                 var retire = new Forms.Retire(userID);
                 retire.Notify += NotifyHandler;
@@ -276,14 +274,14 @@ namespace AsmeFace.UserControls
                 return;
             }
 
-            if (dataGridView1.CurrentCell.ColumnIndex.Equals(11) && e.RowIndex != -1)
+            if (dataGridView1.CurrentCell.ColumnIndex.Equals(9) && e.RowIndex != -1)
             {
                 if (UpdateOrDeleteEmployee(userID, "delete from employee where employeeid = " + userID))
                     RetriveData(query);
                 return;
             }
 
-            if (dataGridView1.CurrentCell.ColumnIndex.Equals(12) && e.RowIndex != -1)
+            if (dataGridView1.CurrentCell.ColumnIndex.Equals(10) && e.RowIndex != -1)
             {
                 new Forms.EmployeeHistory(userID).ShowDialog();
                 return;
