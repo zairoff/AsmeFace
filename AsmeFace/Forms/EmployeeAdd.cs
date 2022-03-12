@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASMeSDK_CSharp;
+using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -14,6 +15,8 @@ namespace AsmeFace.Forms
             _tree = new GetTree();
             _asmeDevice = new AsmeDevice();
             FillTree();
+            _address = (System.Configuration.ConfigurationManager.AppSettings["face"]);
+
             //_status = false;
         }
 
@@ -27,6 +30,8 @@ namespace AsmeFace.Forms
         protected readonly DataBase _dataBase;
         protected readonly GetTree _tree;
         protected readonly AsmeDevice _asmeDevice;
+        private readonly string _address;
+        
         //private readonly bool _status;
 
         private void FillTree()
@@ -197,6 +202,26 @@ namespace AsmeFace.Forms
         private void textBox11_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int nRes = _asmeDevice.OpenDevice(_address);
+            if(nRes < 0)
+            {
+                MessageBox.Show("Failed to open the device ");
+                return;
+            }
+
+            nRes = _asmeDevice.WriteFaceByDevice(Convert.ToInt32(textBox1.Text));
+
+            if(nRes < 0)
+            {
+                MessageBox.Show("Failed to set face ");
+                return;
+            }
+
+            _asmeDevice.CloseDevice();
         }
 
         //private void btn_card_Click(object sender, EventArgs e)

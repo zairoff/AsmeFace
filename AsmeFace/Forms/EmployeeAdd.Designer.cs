@@ -56,15 +56,17 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this.treeView1);
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // treeView1
@@ -168,8 +170,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Image = global::AsmeFace.Properties.Resources.profile;
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 
@@ -226,11 +229,26 @@
             this.label10.ForeColor = System.Drawing.Color.White;
             this.label10.Name = "label10";
             // 
+            // button4
+            // 
+            resources.ApplyResources(this.button4, "button4");
+            this.button4.Name = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // linkLabel1
+            // 
+            resources.ApplyResources(this.linkLabel1, "linkLabel1");
+            this.linkLabel1.LinkColor = System.Drawing.Color.White;
+            this.linkLabel1.Name = "linkLabel1";
+            // 
             // EmployeeAdd
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(56)))), ((int)(((byte)(57)))));
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dateTimePicker1);
@@ -295,5 +313,7 @@
         protected System.Windows.Forms.Label label10;
         protected System.Windows.Forms.TextBox textBox5;
         protected System.Windows.Forms.TextBox textBox6;
+        protected System.Windows.Forms.Button button4;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

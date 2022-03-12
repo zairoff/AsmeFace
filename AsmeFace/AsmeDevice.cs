@@ -621,6 +621,28 @@ namespace AsmeFace
             return nRes;
         }
 
+        IntPtr pTemplate;
+        public int WriteFaceByDevice(int userID)
+        {
+            if (pTemplate == IntPtr.Zero)
+                pTemplate = Marshal.AllocHGlobal(asc_STU.AS_ME_FACE_TEMPLATE_SIZE);
+            int nRes = asc_SDKAPI.AS_ME_ReadFace(m_hController, pTemplate);
+            if (nRes < 0)
+            {
+                CustomLog.WriteToFile("Error: AsmeDevice Failed AS_ME_ReadFace " + nRes);
+                return -1;
+            }
+            nRes = asc_SDKAPI.AS_ME_SetFace(m_hController, true, userID, pTemplate, userID.ToString().ToCharArray());//Set face character number to device
+            if (nRes < 0)
+            {
+                CustomLog.WriteToFile("Error: AsmeDevice Failed AS_ME_SetFace " + nRes);
+                return -1;
+            }
+            Marshal.FreeHGlobal(pTemplate);
+            pTemplate = IntPtr.Zero;
+            return 1;
+        }
+
         public void CloseDevice()
         {
             asc_SDKAPI.AS_ME_CloseController(m_hController);
