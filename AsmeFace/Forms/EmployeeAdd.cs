@@ -30,6 +30,7 @@ namespace AsmeFace.Forms
         protected readonly DataBase _dataBase;
         protected readonly GetTree _tree;
         protected readonly AsmeDevice _asmeDevice;
+        protected byte[] _faceImage;
         private readonly string _address;
         
         //private readonly bool _status;
@@ -213,13 +214,15 @@ namespace AsmeFace.Forms
                 return;
             }
 
-            nRes = _asmeDevice.WriteFaceByDevice(Convert.ToInt32(textBox1.Text));
+            _faceImage = _asmeDevice.WriteFaceByDevice(Convert.ToInt32(textBox1.Text));
 
-            if(nRes < 0)
+            if(_faceImage == null)
             {
                 MessageBox.Show("Failed to set face ");
                 return;
             }
+
+            CustomMessageBox.Info("Successfully read face!");
 
             _asmeDevice.CloseDevice();
         }

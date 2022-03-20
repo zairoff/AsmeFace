@@ -1,6 +1,7 @@
 ﻿using AsmeFace.Forms;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace AsmeFace.UserControls
@@ -108,6 +109,11 @@ namespace AsmeFace.UserControls
 
         private System.Drawing.Image ByteToImage(byte[] byteArrayIn)
         {
+            if (byteArrayIn.Length < 1075)
+            {
+                return new Bitmap(Properties.Resources.profile);
+            }
+
             using (var ms = new System.IO.MemoryStream(byteArrayIn))
             {
                 return System.Drawing.Image.FromStream(ms);

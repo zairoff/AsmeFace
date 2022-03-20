@@ -146,24 +146,24 @@ namespace AsmeFace.Forms
 
         private void SyncAction(Employee employee, DeviceInfo device)
         {
-            int nRes = _asmeDevice.DetectController(device.dwIPAddress);
+            //int nRes = _asmeDevice.DetectController(device.dwIPAddress);
 
-            if (nRes < 0)
-            {
-                BeginInvoke(new MethodInvoker(delegate ()
-                {
-                    dataGridView1.Rows.Insert(
-                        0,
-                        employee.Familiya + " " + employee.Ism,
-                        device.dwIPAddress,
-                        "Failed to DetectController: " + _asmeDevice.GetResponse(nRes)
-                        );
-                    dataGridView1.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
-                }));
-                return;
-            }
+            //if (nRes < 0)
+            //{
+            //    BeginInvoke(new MethodInvoker(delegate ()
+            //    {
+            //        dataGridView1.Rows.Insert(
+            //            0,
+            //            employee.Familiya + " " + employee.Ism,
+            //            device.dwIPAddress,
+            //            "Failed to DetectController: " + _asmeDevice.GetResponse(nRes)
+            //            );
+            //        dataGridView1.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
+            //    }));
+            //    return;
+            //}
 
-            nRes = _asmeDevice.OpenDevice(device.dwIPAddress);
+            int nRes = _asmeDevice.OpenDevice(device.dwIPAddress);
 
             if (nRes < 0) 
             {
@@ -178,15 +178,31 @@ namespace AsmeFace.Forms
                     dataGridView1.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
                 }));
                 return;
-            }          
-            
-            
+            }                        
+
+            nRes = _asmeDevice.SetCard(employee.ID, employee.Card, 1);
+
+            if (nRes < 0)
+            {
+                BeginInvoke(new MethodInvoker(delegate ()
+                {
+                    dataGridView1.Rows.Insert(
+                        0,
+                        employee.Familiya + " " + employee.Ism,
+                        device.dwIPAddress,
+                        "Failed to set card: " + _asmeDevice.GetResponse(nRes)
+                        );
+                    dataGridView1.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
+                }));
+                _asmeDevice.CloseDevice();
+                return;
+            }
 
             if (employee.Finger != null && string.Equals(device.dwType, "Finger"))
             {
                 //CustomLog.WriteToFile("FINGER");
                 var unmanagedPointer = Marshal.AllocHGlobal(employee.Finger.Length);
-                Marshal.Copy(employee.Finger, 0, unmanagedPointer, employee.Finger.Length);                
+                Marshal.Copy(employee.Finger, 0, unmanagedPointer, employee.Finger.Length);
                 nRes = _asmeDevice.SetFinger(employee.ID, unmanagedPointer);
                 Marshal.FreeHGlobal(unmanagedPointer);
 
@@ -228,24 +244,6 @@ namespace AsmeFace.Forms
                     _asmeDevice.CloseDevice();
                     return;
                 }
-            }
-
-            nRes = _asmeDevice.SetCard(employee.ID, employee.Card, 0);
-
-            if (nRes < 0)
-            {
-                BeginInvoke(new MethodInvoker(delegate ()
-                {
-                    dataGridView1.Rows.Insert(
-                        0,
-                        employee.Familiya + " " + employee.Ism,
-                        device.dwIPAddress,
-                        "Failed to set card: " + _asmeDevice.GetResponse(nRes)
-                        );
-                    dataGridView1.CurrentRow.DefaultCellStyle.BackColor = Color.Red;
-                }));
-                _asmeDevice.CloseDevice();
-                return;
             }
 
             BeginInvoke(new MethodInvoker(delegate ()

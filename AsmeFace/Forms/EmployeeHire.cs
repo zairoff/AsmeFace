@@ -18,7 +18,7 @@ namespace AsmeFace.Forms
                 byte[] queryEncode = null;
                 byte[] finger = null;
                 var userID = Convert.ToInt32(textBox1.Text);
-                var photo = ImageToByteArray(pictureBox1.Image);
+                var photo = _faceImage == null ? ImageToByteArray(pictureBox1.Image) : _faceImage;
 
                 if (!string.IsNullOrEmpty(textBox8.Text))
                     finger = Convert.FromBase64String(textBox8.Text);

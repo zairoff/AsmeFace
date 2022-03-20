@@ -168,7 +168,7 @@ namespace AsmeFace.Forms
                 return;
             }
 
-            if (_asmeDevice.SetGroup(0, _asmeDevice.GetDefaultWeek()) < 0)
+            if (_asmeDevice.SetGroup(1, _asmeDevice.GetDefaultWeek()) < 0)
             {
                 CustomMessageBox.Error(Resources.DEVICE_FAILED_INFO);
                 return;

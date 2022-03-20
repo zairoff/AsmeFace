@@ -436,42 +436,44 @@ namespace AsmeFace
 
         public int SetCard(int UserID, string card, int groupID)
         {
-            int nHolidaySchedule = 0;
-            int nWeekSchedule = 1;
-            
-            int nRes = SetHolidaySchedule(m_hController, nHolidaySchedule);
-            if (nRes < 0)
+            //int nHolidaySchedule = 0;
+            //int nWeekSchedule = 1;
+
+            //int nRes = SetHolidaySchedule(m_hController, nHolidaySchedule);
+            //if (nRes < 0)
+            //{
+            //    CloseWriteToFile("Failed to set SetHolidaySchedule");
+            //    return -1;
+            //}
+
+            //nRes = SetWeekSchedule(m_hController, nWeekSchedule);
+
+            //if (nRes < 0)
+            //{
+            //    CloseWriteToFile("Failed to set SetWeekSchedule");
+            //    return -1;
+            //}
+
+            //nRes = SetGroup(m_hController, groupID, nWeekSchedule, nHolidaySchedule);
+
+            //if (nRes < 0)
+            //{
+            //    CloseWriteToFile("Failed to set SetGroup");
+            //    return -1;
+            //}
+
+            asc_STU.LPAS_ME_CARD_PARAM Employee = new asc_STU.LPAS_ME_CARD_PARAM
             {
-                CloseWriteToFile("Failed to set SetHolidaySchedule");
-                return -1;
-            }
+                bFirstCard = false,
+                bHasDeadline = false,
+                bHasPassCount = false,
+                bSetGuard = false,
+                nGroup = groupID,
+                szPassword = Marshal.StringToHGlobalUni("123456"),
+                szName = Marshal.StringToHGlobalUni(UserID.ToString())
+            };
 
-            nRes = SetWeekSchedule(m_hController, nWeekSchedule);
-
-            if (nRes < 0)
-            {
-                CloseWriteToFile("Failed to set SetWeekSchedule");
-                return -1;
-            }
-
-            nRes = SetGroup(m_hController, groupID, nWeekSchedule, nHolidaySchedule);
-
-            if (nRes < 0)
-            {
-                CloseWriteToFile("Failed to set SetGroup");
-                return -1;
-            }
-
-            asc_STU.LPAS_ME_CARD_PARAM Employee = new asc_STU.LPAS_ME_CARD_PARAM();
-            Employee.bFirstCard = false;
-            Employee.bHasDeadline = false;
-            Employee.bHasPassCount = false;
-            Employee.bSetGuard = false;
-            Employee.nGroup = groupID;
-            Employee.szPassword = Marshal.StringToHGlobalUni("123456");
-            Employee.szName = Marshal.StringToHGlobalUni(UserID.ToString());
-
-            bool bIgnoreCardNum = false;
+            bool bIgnoreCardNum = true;
             ulong dw64CardNum = AS_ME_NO_CARD;
             
             if (!string.IsNullOrEmpty(card))
@@ -480,7 +482,7 @@ namespace AsmeFace
                 bIgnoreCardNum = false;
             }
 
-            nRes = asc_SDKAPI.AS_ME_SetCard(m_hController, UserID, bIgnoreCardNum, dw64CardNum, false, ref Employee);
+            int nRes = asc_SDKAPI.AS_ME_SetCard(m_hController, UserID, bIgnoreCardNum, dw64CardNum, false, ref Employee);
             Marshal.FreeHGlobal(Employee.szPassword);
             Marshal.FreeHGlobal(Employee.szName);
 
@@ -586,14 +588,26 @@ namespace AsmeFace
         }
 
         public int WriteFace(byte[] photo, int userID)
-        {      
-            var temp = new byte[1080];
+        {    
+            int nRes = -1;
+            if(photo.Length < 1075)
+            {
+                var ptr = Marshal.AllocHGlobal(photo.Length);
+                Marshal.Copy(photo, 0, ptr, photo.Length);
+                nRes = asc_SDKAPI.AS_ME_SetFace(m_hController, true, userID, ptr, userID.ToString().ToCharArray());//Set face character number to device
+                if (nRes < 0)
+                {
+                    CustomLog.WriteToFile("Error: AsmeDevice Failed AS_ME_SetFace " + nRes);
+                    return nRes;
+                }
+                return nRes;
+            }
 
             var photoInptr = Marshal.AllocHGlobal(photo.Length);
             Marshal.Copy(photo, 0, photoInptr, photo.Length);
             var pTemplate = Marshal.AllocHGlobal(asc_STU.AS_ME_FACE_TEMPLATE_SIZE);            
 
-            int nRes = asc_SDKAPI.AS_ME_ReadFaceByPhoto(m_hController, photoInptr, photo.Length, pTemplate);
+            nRes = asc_SDKAPI.AS_ME_ReadFaceByPhoto(m_hController, photoInptr, photo.Length, pTemplate);
             
             if (nRes < 0)
             {
@@ -622,7 +636,7 @@ namespace AsmeFace
         }
 
         IntPtr pTemplate;
-        public int WriteFaceByDevice(int userID)
+        public byte[] WriteFaceByDevice(int userID)
         {
             if (pTemplate == IntPtr.Zero)
                 pTemplate = Marshal.AllocHGlobal(asc_STU.AS_ME_FACE_TEMPLATE_SIZE);
@@ -630,17 +644,20 @@ namespace AsmeFace
             if (nRes < 0)
             {
                 CustomLog.WriteToFile("Error: AsmeDevice Failed AS_ME_ReadFace " + nRes);
-                return -1;
+                return null;
             }
-            nRes = asc_SDKAPI.AS_ME_SetFace(m_hController, true, userID, pTemplate, userID.ToString().ToCharArray());//Set face character number to device
-            if (nRes < 0)
-            {
-                CustomLog.WriteToFile("Error: AsmeDevice Failed AS_ME_SetFace " + nRes);
-                return -1;
-            }
+            //nRes = asc_SDKAPI.AS_ME_SetFace(m_hController, true, userID, pTemplate, userID.ToString().ToCharArray());//Set face character number to device
+            //if (nRes < 0)
+            //{
+            //    CustomLog.WriteToFile("Error: AsmeDevice Failed AS_ME_SetFace " + nRes);
+            //    return null;
+            //}
+
+            byte[] managedArray = new byte[asc_STU.AS_ME_FACE_TEMPLATE_SIZE];
+            Marshal.Copy(pTemplate, managedArray, 0, asc_STU.AS_ME_FACE_TEMPLATE_SIZE);
             Marshal.FreeHGlobal(pTemplate);
             pTemplate = IntPtr.Zero;
-            return 1;
+            return managedArray;
         }
 
         public void CloseDevice()
@@ -675,7 +692,47 @@ namespace AsmeFace
 
         public int InitController(string m_ip)
         {
-            return asc_SDKAPI.AS_ME_InitController(m_hController);
+            asc_SDKAPI.AS_ME_InitController(m_hController);
+
+            asc_STU.LPAS_ME_COMM_ADDRESS address = new asc_STU.LPAS_ME_COMM_ADDRESS();
+            address.nType = asc_STU.AS_ME_COMM_TYPE_IPV4;
+            //address.IPV4 = new asc_Stu.IPV4();
+            address.IPV4.dwIPAddress = (uint)StrIpToUint(m_ip);
+            address.IPV4.wServicePort = 50000;
+
+            ushort wCtrlAddress = 0;
+            int OpenControllerStop_detect = 0;
+
+            asc_STU.LPAS_ME_TYPE_INFO pInfo = new asc_STU.LPAS_ME_TYPE_INFO();
+            IntPtr init = Marshal.AllocHGlobal(asc_STU.AS_ME_TYPE_NAME_LEN);
+            pInfo.szTypeName = init;
+
+            int nRes = asc_SDKAPI.AS_ME_DetectController(ref address, wCtrlAddress, ref pInfo, ref OpenControllerStop_detect);
+            if (nRes < 0)//Error Return
+            {
+                return nRes;
+            }
+            else//Success
+            {
+                nCurDoorNum = pInfo.nCurDoorNum;
+                nReaderNum = pInfo.nReaderNum;
+            }
+            Marshal.FreeHGlobal(init);
+
+            nRes = OpenDevice(m_ip);
+
+            int nHolidaySchedule = 0;
+            int nWeekSchedule = 1;
+            int nGroup = 1;
+            SetHolidaySchedule(m_hController, nHolidaySchedule);
+            //updateui(strInfo);
+            SetWeekSchedule(m_hController, nWeekSchedule);
+            //updateui(strInfo);
+            SetGroup(m_hController, nGroup, nWeekSchedule, nHolidaySchedule);
+
+            CloseDevice();
+
+            return nRes;
         }
 
         public int ReadCard(ulong card)
