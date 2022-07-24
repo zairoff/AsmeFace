@@ -1,5 +1,6 @@
 ﻿using ASMeSDK_CSharp;
 using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -91,6 +92,11 @@ namespace AsmeFace.Forms
 
         protected System.Drawing.Image ByteToImage(byte[] byteArrayIn)
         {
+            if (byteArrayIn.Length < 1075)
+            {
+                return new Bitmap(Properties.Resources.profile);
+            }
+
             using (var ms = new System.IO.MemoryStream(byteArrayIn))
             {
                 return System.Drawing.Image.FromStream(ms);
