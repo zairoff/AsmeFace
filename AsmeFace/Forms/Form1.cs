@@ -198,5 +198,31 @@ namespace AsmeFace.Forms
             }
             ReplaseUserControl(contact);
         }
+
+        private bool max_check;
+        private void MaximizeCheck()
+        {
+            if (max_check)
+            {
+                WindowState = FormWindowState.Normal;
+                max_check = false;
+            }
+            else
+            {
+                MaximizedBounds = Screen.FromHandle(Handle).WorkingArea;
+                WindowState = FormWindowState.Maximized;
+                max_check = true;
+            }
+        }
+
+        private void button10_Click_1(object sender, System.EventArgs e)
+        {
+            MaximizeCheck();
+        }
+
+        private void button11_Click_1(object sender, System.EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
     }
 }
