@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 
@@ -91,6 +92,66 @@ namespace AsmeFace
                 }
             }
             return devices;
+        }
+
+        public List<Lift> GetLifts(string query)
+        {
+            var lifts = new List<Lift>();
+            using (var connection = new Npgsql.NpgsqlConnection(Helper.CnnVal("DBConnection")))
+            {
+                using (var cmd = new Npgsql.NpgsqlCommand(query, connection))
+                {
+                    connection.Open();
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var lift = new Lift
+                        {
+                            Name = reader["name"].ToString(),
+                            Serinniy = reader["serinniy"].ToString(),
+                            IP = reader["address"].ToString()
+                        };
+
+                        lifts.Add(lift);
+                    }
+                }
+            }
+            return lifts;
+        }
+
+        public List<LiftControl> GetLiftControl(string query)
+        {
+            var liftControls = new List<LiftControl>();
+            using (var connection = new Npgsql.NpgsqlConnection(Helper.CnnVal("DBConnection")))
+            {
+                using (var cmd = new Npgsql.NpgsqlCommand(query, connection))
+                {
+                    connection.Open();
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var liftControl = new LiftControl
+                        {
+                            Employee = new Employee
+                            {
+                                ID = Convert.ToInt32(reader["employeeid"]),
+                                Ism = reader["ism"].ToString(),
+                                Familiya = reader["familiya"].ToString(),
+                                Card = reader["card"].ToString(),
+                            },
+                            Lift = new Lift
+                            {
+                                Name = reader["name"].ToString(),
+                                Serinniy = reader["serinniy"].ToString(),
+                                IP = reader["address"].ToString(),
+                            }
+                        };
+
+                        liftControls.Add(liftControl);
+                    }
+                }
+            }
+            return liftControls;
         }
 
         public int InsertFace(string query, byte[] photo, byte[] finger)
@@ -270,9 +331,9 @@ namespace AsmeFace
 
         /*For Single*/
 
-        public System.Collections.Generic.List<EmployeeGrafik> GetEmployeeGrafikSingle(string query)
+        public List<EmployeeGrafik> GetEmployeeGrafikSingle(string query)
         {
-            System.Collections.Generic.List<EmployeeGrafik> mySmenas = new System.Collections.Generic.List<EmployeeGrafik>();
+            System.Collections.Generic.List<EmployeeGrafik> mySmenas = new List<EmployeeGrafik>();
             using (var connection = new Npgsql.NpgsqlConnection(Helper.CnnVal("DBConnection")))
             {
                 using (var cmd = new Npgsql.NpgsqlCommand(query, connection))
@@ -298,9 +359,9 @@ namespace AsmeFace
             return mySmenas;
         }
 
-        public System.Collections.Generic.List<Employee> GetEmployee(string query)
+        public List<Employee> GetEmployee(string query)
         {
-            var employees = new System.Collections.Generic.List<Employee>();
+            var employees = new List<Employee>();
             using (var connection = new Npgsql.NpgsqlConnection(Helper.CnnVal("DBConnection")))
             {
                 using (var cmd = new Npgsql.NpgsqlCommand(query, connection))

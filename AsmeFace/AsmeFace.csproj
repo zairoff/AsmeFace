@@ -191,6 +191,18 @@
     <Compile Include="Forms\HolderForm.Designer.cs">
       <DependentUpon>HolderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\LiftAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LiftAdd.Designer.cs">
+      <DependentUpon>LiftAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LiftForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LiftForm.Designer.cs">
+      <DependentUpon>LiftForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Retire.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +231,8 @@
     </Compile>
     <Compile Include="DataBase.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="Lift.cs" />
+    <Compile Include="LiftControl.cs" />
     <Compile Include="MyGrafik.cs" />
     <Compile Include="MySmena.cs" />
     <Compile Include="Tree.cs" />
@@ -424,6 +438,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\HolderForm.resx">
       <DependentUpon>HolderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LiftAdd.resx">
+      <DependentUpon>LiftAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LiftForm.resx">
+      <DependentUpon>LiftForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.en.resx">
       <DependentUpon>Login.cs</DependentUpon>
