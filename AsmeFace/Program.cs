@@ -18,7 +18,7 @@ namespace AsmeFace
             //System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo(language);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Forms.LiftForm());
+            Application.Run(new Forms.Login());
         }
     }
 }

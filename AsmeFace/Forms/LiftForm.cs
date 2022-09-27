@@ -87,10 +87,10 @@ namespace AsmeFace.Forms
             var liftControls = _dataBase.GetLiftControl("select e.employeeid, e.ism, e.familiya, e.card, l.name, l.serinniy, l.address from employee e inner " +
                     "join control_lift c on e.employeeid = c.employeeid inner join lift l on c.serinniy = l.serinniy where e.department <@ '" + treeView1.SelectedNode.Name + "' and status = true");
 
+            dataGridView1.Rows.Clear();
+
             if (liftControls.Count < 1)
                 return;
-
-            dataGridView1.Rows.Clear();
 
             foreach (var liftControl in liftControls)
             {
@@ -349,6 +349,9 @@ namespace AsmeFace.Forms
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dataGridView1.Rows.Count < 1)
+                return;
+
             if (dataGridView1.CurrentCell.ColumnIndex.Equals(7) && e.RowIndex != -1)
             {
                 var address = dataGridView1[3, dataGridView1.CurrentRow.Index].Value.ToString();
@@ -362,7 +365,6 @@ namespace AsmeFace.Forms
                 {
                     if(_dataBase.InsertData("delete from control_lift where employeeid = " + employeeid + " and serinniy = '" + serinniy + "'"))
                     {
-                        dataGridView1.Rows.Clear();
                         GetLiftControl();
                     }
                 }
@@ -374,10 +376,25 @@ namespace AsmeFace.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            for(int i = 0; i < dataGridView1.Rows.Count; i++)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
+                if (Convert.ToBoolean(row.Cells[0].Value) == true)
+                {
+                    var address = row.Cells[3].Value.ToString();
+                    var serinniy = row.Cells[2].Value.ToString();
+                    var card = row.Cells[6].Value.ToString();
+                    var employeeid = Convert.ToInt32(row.Cells[4].Value);
 
+                    var success = AddOrDeleteLift(address, serinniy, card, 0);
+
+                    if (success)
+                    {
+                        _dataBase.InsertData("delete from control_lift where employeeid = " + employeeid + " and serinniy = '" + serinniy + "'");
+                    }
+                }
             }
+
+            GetLiftControl();
         }
     }
 }
