@@ -81,8 +81,12 @@ namespace AsmeFace.Forms
             if (string.IsNullOrEmpty(SearchTextBox.Text))
                 return;
 
-            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, enrollment_number, amizone_code from employee " +
-                    "where familiya ILIKE '" + SearchTextBox.Text.Trim() + "%' or ism ILIKE '" + SearchTextBox.Text.Trim() + "%' and status = false";
+            var search = SearchTextBox.Text.Trim();
+
+            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, " +
+                    "enrollment_number, amizone_code from employee where (familiya ILIKE '"
+                    + search + "%' or ism ILIKE '" + search + "%' or enrollment_number ILIKE '"
+                    + search + "%' or amizone_code ILIKE '" + search + "%') and status = false order by employeeid asc limit ";
 
             RetriveData(query);
         }

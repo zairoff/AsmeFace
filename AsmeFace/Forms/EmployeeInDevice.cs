@@ -189,12 +189,14 @@ namespace AsmeFace.Forms
             if (string.IsNullOrEmpty(SearchTextBox.Text))
                 return;
 
+            var search = SearchTextBox.Text.Trim();
+
             query = "select t2.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t3.device_mac, t3.device_ip, t3.device_type," +
                     "t3.device_status, t3.device_door from control_doors t2 " +
                     "inner join employee t1 on t1.employeeid = t2.employeeid " +
                     "inner join devices t3 on t3.device_mac = t2.device_mac " +
-                    "where t1.familiya ILIKE '" + SearchTextBox.Text.Trim() + "%' or " +
-                    "t1.ism ILIKE '" + SearchTextBox.Text.Trim() + "%' and status = true order by employeeid desc";
+                    "where (t1.familiya ILIKE '" + search + "%' or t1.ism ILIKE '" + search + "%' or enrollment_number ILIKE '"
+                    + search + "%' or amizone_code ILIKE '" + search + "%') and status = true order by employeeid desc";
 
             RetriveData(query);
         }

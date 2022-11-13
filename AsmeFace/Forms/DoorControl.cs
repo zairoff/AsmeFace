@@ -28,7 +28,7 @@ namespace AsmeFace.Forms
                     Name = myTrees[i].Tname,
                     Text = myTrees[i].Ttext
                 };
-                _getTree.FindByText(tnode, treeView1);
+                _getTree.FindByText(tnode, treeView10);
             }
         }        
 
@@ -43,16 +43,7 @@ namespace AsmeFace.Forms
 
         private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            try
-            {
-                GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, " +
-                "otdel, lavozim, address, enrollment_number, amizone_code from employee where department <@ '"
-                + treeView1.SelectedNode.Name + "' and status = true order by employeeid desc");
-            }
-            catch (Exception ex)
-            {
-
-            }            
+             
         }   
         
         private void GetEmployee(string query)
@@ -250,8 +241,12 @@ namespace AsmeFace.Forms
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            SearchTextBox.Focus();
+
             System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(Syncronize));
             thread.Start();
+
+            SearchTextBox.Focus();
         }
 
         private void SearchTextBox_KeyUp(object sender, KeyEventArgs e)
@@ -261,16 +256,34 @@ namespace AsmeFace.Forms
                 if (string.IsNullOrEmpty(SearchTextBox.Text))
                     return;
 
-                GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, enrollment_number, amizone_code " +
-                            "from employee where familiya ILIKE '" +
-                            SearchTextBox.Text.Trim() + "%' or ism  ILIKE '" +
-                            SearchTextBox.Text.Trim() + "%' and status = true order by employeeid desc limit 50");
+                var search = SearchTextBox.Text.Trim();
+
+                var query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, " +
+                        "enrollment_number, amizone_code from employee where (familiya ILIKE '"
+                        + search + "%' or ism ILIKE '" + search + "%' or enrollment_number ILIKE '"
+                        + search + "%' or amizone_code ILIKE '" + search + "%') and status = true order by employeeid asc limit 50";
+
+                GetEmployee(query);
             }
             catch (Exception ex)
             {
-
+                CustomMessageBox.Error(ex.ToString());
             }
             
+        }
+
+        private void treeView10_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            try
+            {
+                GetEmployee("select employeeid, photo, finger, card, ism, familiya, otchestvo, " +
+                "otdel, lavozim, address, enrollment_number, amizone_code from employee where department <@ '"
+                + treeView10.SelectedNode.Name + "' and status = true order by employeeid desc");
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Error(ex.ToString());
+            }
         }
     }
 }

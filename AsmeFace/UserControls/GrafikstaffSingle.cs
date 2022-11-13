@@ -154,14 +154,16 @@ namespace AsmeFace.UserControls
 
             var searchQuery = SearchTextBox.Text.Trim();
 
-            query = "select employeeid, familiya, ism, otchestvo, otdel, lavozim from employee where familiya ILIKE '" +
-                searchQuery + "%' and status = true";
+            query = "select employeeid, familiya, ism, otchestvo, otdel, lavozim from employee where (familiya ILIKE '"
+                    + searchQuery + "%' or ism ILIKE '" + searchQuery + "%' or enrollment_number ILIKE '"
+                    + searchQuery + "%' or amizone_code ILIKE '" + searchQuery + "%') and status = true";
 
             GetEmployee(query);
 
-            query = "select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.grafik_nomi " +
-                "from employee t1 inner join grafik_employee t2 on t1.employeeid = t2.employeeid where " +
-                "t1.familiya ILIKE '" + searchQuery + "%' and t1.status = true";
+            query = "select t1.employeeid, t1.ism, t1.familiya, t1.otchestvo, t1.otdel, t1.lavozim, t2.grafik_nomi, " +
+                "t2.dan, t2.gacha from employee t1 inner join grafik_employee t2 on t1.employeeid = t2.employeeid where (t1.familiya ILIKE '"
+                    + searchQuery + "%' or t1.ism ILIKE '" + searchQuery + "%' or t1.enrollment_number ILIKE '"
+                    + searchQuery + "%' or t1.amizone_code ILIKE '" + searchQuery + "%') and t1.status = true";
 
             RetriveGrafik(query);
         }

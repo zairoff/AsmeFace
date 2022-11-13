@@ -69,7 +69,7 @@ namespace AsmeFace.UserControls
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString());
             }
            
         }
@@ -189,10 +189,12 @@ namespace AsmeFace.UserControls
                 if (string.IsNullOrEmpty(SearchTextBox.Text))
                     return;
 
+                var search = SearchTextBox.Text.Trim();
+
                 query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address, " +
-                        "enrollment_number, amizone_code from employee where familiya ILIKE '"
-                        + SearchTextBox.Text.Trim() + "%' or ism ILIKE '" + SearchTextBox.Text.Trim() +
-                        "%' and status = true order by employeeid asc limit " + _dataBaseLimit;
+                        "enrollment_number, amizone_code from employee where (familiya ILIKE '"
+                        + search + "%' or ism ILIKE '" + search + "%' or enrollment_number ILIKE '" 
+                        + search + "%' or amizone_code ILIKE '" + search + "%') and status = true order by employeeid asc limit " + _dataBaseLimit;
 
                 _databaseOffset = 0;
 
@@ -200,7 +202,7 @@ namespace AsmeFace.UserControls
             }
             catch(Exception ex)
             {
-
+                CustomMessageBox.Error(ex.ToString());
             }
             
         }

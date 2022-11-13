@@ -209,7 +209,7 @@ namespace AsmeFace.Forms
                     {
                         BeginInvoke(new MethodInvoker(delegate ()
                         {
-                            dataGridView2.Rows.Insert(
+                            dataGridView1.Rows.Insert(
                                         0,
                                         employeeID,
                                         firstName + " " + lastName,
