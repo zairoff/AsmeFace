@@ -13,7 +13,7 @@ namespace AsmeFace.Forms
         {
             InitializeComponent();
             var employee = _dataBase.GetEmployee(
-                            "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel," +
+                            "select employeeid, photo, finger, card, ism, familiya, tableid, otdel," +
                             " lavozim, address from employee where employeeid = " + id);
             if (employee.Count > 0)
             {

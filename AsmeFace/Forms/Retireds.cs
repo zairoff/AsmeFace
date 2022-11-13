@@ -38,7 +38,7 @@ namespace AsmeFace.Forms
 
         private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address " +
+            query = "select employeeid, photo, finger, card, ism, familiya, tableid, otdel, lavozim, address " +
                     "from employee where department <@ '" + treeView1.SelectedNode.Name +
                     "' and status = false order by employeeid desc";
 

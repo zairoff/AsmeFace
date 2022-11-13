@@ -12,7 +12,7 @@ namespace AsmeFace.Forms
             _asmeDevice = new AsmeDevice();
             _dataBase = new DataBase();
             _employee = _dataBase.GetEmployee(
-                            "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel," +
+                            "select employeeid, photo, finger, card, ism, familiya, tableid, otdel," +
                             " lavozim, address from employee where employeeid = " + id);
             if (_employee.Count > 0)
             {

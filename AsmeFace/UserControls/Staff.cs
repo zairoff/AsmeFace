@@ -89,9 +89,9 @@ namespace AsmeFace.UserControls
                     0,
                     employees[i].Photo == null ? null : ByteToImage(employees[i].Photo),
                     employees[i].ID,
+                    employees[i].TableId,
                     employees[i].Familiya,
                     employees[i].Ism,
-                    employees[i].TableId,
                     employees[i].Otdel,
                     employees[i].Lavozim);
             }
@@ -186,10 +186,11 @@ namespace AsmeFace.UserControls
                 if (string.IsNullOrEmpty(SearchTextBox.Text))
                     return;
 
+                var search = SearchTextBox.Text.Trim();
+
                 query = "select employeeid, photo, finger, card, ism, familiya, tableid, otdel, lavozim, address " +
-                        "from employee where familiya ILIKE '"
-                        + SearchTextBox.Text.Trim() + "%' or ism ILIKE '" + SearchTextBox.Text.Trim() +
-                        "%' and status = true order by employeeid asc limit " + _dataBaseLimit;
+                        "from employee where (familiya ILIKE '" + search + "%' or ism ILIKE '" + SearchTextBox.Text.Trim() +
+                        "%' or tableid ILIKE '" + search + "%') and status = true order by employeeid asc limit " + _dataBaseLimit;
 
                 _databaseOffset = 0;
 
@@ -233,7 +234,7 @@ namespace AsmeFace.UserControls
                 return;
 
             _databaseOffset += _dataBaseLimit;
-            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, " +
+            query = "select employeeid, photo, finger, card, ism, familiya, tableid, otdel, lavozim, " +
                     "address from employee where department <@ '" + treeView1.SelectedNode.Name +
                     "' and status = true order by employeeid asc LIMIT " + _dataBaseLimit + " OFFSET " + _databaseOffset;
 
@@ -246,7 +247,7 @@ namespace AsmeFace.UserControls
                 return;
 
             _databaseOffset -= _dataBaseLimit;
-            query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, " +
+            query = "select employeeid, photo, finger, card, ism, familiya, tableid, otdel, lavozim, " +
                     "address from employee where department <@ '" + treeView1.SelectedNode.Name +
                     "' and status = true order by employeeid asc LIMIT " + _dataBaseLimit + " OFFSET " + _databaseOffset;
 

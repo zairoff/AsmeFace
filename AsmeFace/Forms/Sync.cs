@@ -28,7 +28,7 @@ namespace AsmeFace.Forms
             }
 
             var myEmployees = myDataBase.GetEmployee(
-                "select employeeid, photo, ism, familiya, otchestvo, otdel, lavozim, address from employee order by employeeid desc");
+                "select employeeid, photo, ism, familiya, tableid, otdel, lavozim, address from employee order by employeeid desc");
 
             if (myEmployees.Count < 1)
                 return;
