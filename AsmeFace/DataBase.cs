@@ -326,7 +326,7 @@ namespace AsmeFace
                             employee.Card = reader["card"].ToString();
                             employee.Familiya = reader["familiya"].ToString();
                             employee.Ism = reader["ism"].ToString();
-                            employee.Otchestvo = reader["otchestvo"].ToString();
+                            employee.TableId = reader["tableid"].ToString();
                             employee.Otdel = reader["otdel"].ToString();
                             employee.Lavozim = reader["lavozim"].ToString();                            
                             employee.Address = reader["address"].ToString();                            

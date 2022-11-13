@@ -62,7 +62,7 @@ namespace AsmeFace.Forms
                     employee.ID,
                     employee.Familiya,
                     employee.Ism,
-                    employee.Otchestvo,
+                    employee.TableId,
                     employee.Otdel,
                     employee.Lavozim);
             }

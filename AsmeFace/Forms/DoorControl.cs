@@ -67,7 +67,7 @@ namespace AsmeFace.Forms
 
             for (int i = 0; i < _employees.Count; i++)
             {
-                checkedListBox1.Items.Add(_employees[i].Familiya + " " + _employees[i].Ism + " " + _employees[i].Otchestvo);
+                checkedListBox1.Items.Add(_employees[i].Familiya + " " + _employees[i].Ism + " " + _employees[i].TableId);
             }
         }
 

@@ -24,7 +24,7 @@ namespace AsmeFace.Forms
                     finger = Convert.FromBase64String(textBox8.Text);
 
                 queryEncode = System.Text.Encoding.UTF8.GetBytes("insert into employee (employeeid, photo, finger, " +
-                                "card, ism, familiya, otchestvo, department, otdel, lavozim, address) " +
+                                "card, ism, familiya, tableid, department, otdel, lavozim, address) " +
                                 "values(" + userID + ", @Image, @Finger, '" + textBox7.Text + "','" + textBox3.Text + "','" + textBox2.Text +
                                 "','" + textBox4.Text + "','" + treeView1.SelectedNode.Name + "','" + textBox6.Text + "','" + textBox5.Text +
                                 "','" + textBox9.Text + "') returning employeeid");
@@ -32,7 +32,7 @@ namespace AsmeFace.Forms
                 var index = _dataBase.InsertFace(System.Text.Encoding.UTF8.GetString(queryEncode), photo, finger);
 
                 queryEncode = System.Text.Encoding.UTF8.GetBytes(
-                            "insert into employee_history (employeeid, ism, familiya, otchestvo, otdel, " +
+                            "insert into employee_history (employeeid, ism, familiya, tableid, otdel, " +
                             "lavozim, status, sana) values(" + userID + ",'" + textBox3.Text + "','" +
                             textBox2.Text + "','" + textBox4.Text + "','" + textBox6.Text + "','" + 
                             textBox5.Text + "','" + Properties.Resources.EMPLOYEE_HISTORY_HIRED + "','" + 
@@ -53,6 +53,18 @@ namespace AsmeFace.Forms
             {
                 CustomMessageBox.Info(Properties.Resources.FILL_IN_ALL_FIELDS);
             }
+        }
+
+        protected override void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            _tree.ClearBackColor(treeView1, System.Drawing.SystemColors.Control);
+            treeView1.SelectedNode.BackColor = System.Drawing.Color.Blue;
+            treeView1.SelectedNode.ForeColor = System.Drawing.Color.White;
+            textBox5.Text = treeView1.SelectedNode.Text;
+            if (treeView1.SelectedNode == treeView1.Nodes[0])
+                textBox6.Text = treeView1.SelectedNode.Text;
+            else
+                textBox6.Text = treeView1.SelectedNode.Parent.Text;
         }
     }
 }

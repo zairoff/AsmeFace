@@ -124,7 +124,7 @@ namespace AsmeFace.Forms
         //            MessageBox.Show(Properties.Resources.OPERATION_FAILED);
         //            return;
         //        }
-                
+
         //        ClearFields();
         //        textBox1.Text = (index + 1).ToString();
         //        CustomMessageBox.Info(Properties.Resources.OPERATION_SUCCESS);
@@ -135,17 +135,7 @@ namespace AsmeFace.Forms
         //    }
         //}
 
-        private void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            _tree.ClearBackColor(treeView1, System.Drawing.SystemColors.Control);
-            treeView1.SelectedNode.BackColor = System.Drawing.Color.Blue;
-            treeView1.SelectedNode.ForeColor = System.Drawing.Color.White;
-            textBox5.Text = treeView1.SelectedNode.Text;
-            if (treeView1.SelectedNode == treeView1.Nodes[0])
-                textBox6.Text = treeView1.SelectedNode.Text;
-            else
-                textBox6.Text = treeView1.SelectedNode.Parent.Text; 
-        }
+        protected abstract void TreeView1_AfterSelect(object sender, TreeViewEventArgs e);
 
         private void Button2_Click(object sender, EventArgs e)
         {

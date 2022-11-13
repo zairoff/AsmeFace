@@ -39,7 +39,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EmployeeHire";
             this.ResumeLayout(false);
-
         }
 
         #endregion

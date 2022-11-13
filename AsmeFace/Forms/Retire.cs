@@ -42,7 +42,7 @@ namespace AsmeFace.Forms
             var query = "update employee set status = false where employeeid = " + userID + ";" +
                         "insert into employee_history (employeeid, ism, familiya, otchestvo, otdel, " +
                         "lavozim, status, extra_info, sana) values(" + userID + ",'" + textBox3.Text + "','" +
-                        textBox2.Text + "','" + _employee[0].Otchestvo + "','" + _employee[0].Otdel +
+                        textBox2.Text + "','" + _employee[0].TableId + "','" + _employee[0].Otdel +
                         "','" + _employee[0].Lavozim + "','" + Properties.Resources.EMPLOYEE_HISTORY_RETIRED +
                         "','" + textBox4.Text + "','" + dateTimePicker1.Text + "')";
 

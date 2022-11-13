@@ -6,6 +6,10 @@ namespace AsmeFace.Forms
 {
     public partial class EmployeeRehire : EmployeeAdd
     {
+        private readonly string otdel;
+        private readonly string lavozim;
+        private bool IsFirstTime;
+
         public EmployeeRehire(int id)
         {
             InitializeComponent();
@@ -18,10 +22,34 @@ namespace AsmeFace.Forms
                 textBox1.Text = employee[0].ID.ToString();
                 textBox2.Text = employee[0].Familiya;
                 textBox3.Text = employee[0].Ism;
-                textBox4.Text = employee[0].Otchestvo;
+                textBox4.Text = employee[0].TableId;
                 textBox7.Text = employee[0].Card;
                 textBox8.Text = employee[0].Finger == null ? "" : Convert.ToBase64String(employee[0].Finger);
                 textBox9.Text = employee[0].Address;
+                otdel = employee[0].Otdel;
+                lavozim = employee[0].Lavozim;
+                IsFirstTime = true;
+            }
+        }
+
+        protected override void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (IsFirstTime)
+            {
+                textBox6.Text = otdel;
+                textBox5.Text = lavozim;
+                IsFirstTime = false;
+            }
+            else
+            {
+                _tree.ClearBackColor(treeView1, System.Drawing.SystemColors.Control);
+                treeView1.SelectedNode.BackColor = System.Drawing.Color.Blue;
+                treeView1.SelectedNode.ForeColor = System.Drawing.Color.White;
+                textBox5.Text = treeView1.SelectedNode.Text;
+                if (treeView1.SelectedNode == treeView1.Nodes[0])
+                    textBox6.Text = treeView1.SelectedNode.Text;
+                else
+                    textBox6.Text = treeView1.SelectedNode.Parent.Text;
             }
         }
 

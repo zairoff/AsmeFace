@@ -5,6 +5,10 @@ namespace AsmeFace.Forms
 {
     public partial class EmployeeEdit : EmployeeAdd
     {
+        private readonly string otdel;
+        private readonly string lavozim;
+        private bool IsFirstTime;
+
         public EmployeeEdit(int id)
         {
             InitializeComponent();
@@ -17,14 +21,38 @@ namespace AsmeFace.Forms
                 textBox1.Text = employee[0].ID.ToString();
                 textBox2.Text = employee[0].Familiya;
                 textBox3.Text = employee[0].Ism;
-                textBox4.Text = employee[0].Otchestvo;
+                textBox4.Text = employee[0].TableId;
                 textBox7.Text = employee[0].Card;
                 textBox8.Text = employee[0].Finger == null ? "" : Convert.ToBase64String(employee[0].Finger);
                 textBox9.Text = employee[0].Address;
+                otdel = employee[0].Otdel;
+                lavozim = employee[0].Lavozim;
+                IsFirstTime = true;
             }
         }
 
-        protected override void Button3_Click(object sender, System.EventArgs e)
+        protected override void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (IsFirstTime)
+            {
+                textBox6.Text = otdel;
+                textBox5.Text = lavozim;
+                IsFirstTime = false;
+            }
+            else
+            {
+                _tree.ClearBackColor(treeView1, System.Drawing.SystemColors.Control);
+                treeView1.SelectedNode.BackColor = System.Drawing.Color.Blue;
+                treeView1.SelectedNode.ForeColor = System.Drawing.Color.White;
+                textBox5.Text = treeView1.SelectedNode.Text;
+                if (treeView1.SelectedNode == treeView1.Nodes[0])
+                    textBox6.Text = treeView1.SelectedNode.Text;
+                else
+                    textBox6.Text = treeView1.SelectedNode.Parent.Text;
+            }
+        }
+
+        protected override void Button3_Click(object sender, EventArgs e)
         {
             if (CheckFields())
             {
@@ -39,10 +67,10 @@ namespace AsmeFace.Forms
                 queryEncode = System.Text.Encoding.UTF8.GetBytes(
                             "update employee set photo = @Image, finger = @finger, card = '" +
                             textBox7.Text + "', familiya = '" + textBox2.Text + "', ism = '" +
-                            textBox3.Text + "', otchestvo = '" + textBox4.Text + "'," + "department = '" +
+                            textBox3.Text + "', tableid = '" + textBox4.Text + "'," + "department = '" +
                             treeView1.SelectedNode.Name + "', otdel = '" + textBox6.Text + "'," + "lavozim = '" +
                             textBox5.Text + "', address = '" + textBox9.Text + "', status = true where employeeid = " + userID + ";" +
-                            "insert into employee_history (employeeid, ism, familiya, otchestvo, otdel, " +
+                            "insert into employee_history (employeeid, ism, familiya, tableid, otdel, " +
                             "lavozim, status, sana) values(" + userID + ",'" + textBox3.Text + "','" +
                             textBox2.Text + "','" + textBox4.Text + "','" + textBox6.Text + "','" +
                             textBox5.Text + "','" + Properties.Resources.EMPLOYEE_HISTORY_EDIT + "','" +

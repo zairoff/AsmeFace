@@ -57,7 +57,7 @@ namespace AsmeFace.UserControls
         {
             try
             {
-                query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, " +
+                query = "select employeeid, photo, finger, card, ism, familiya, tableid, otdel, lavozim, " +
                    "address from employee where department <@ '" + treeView1.SelectedNode.Name +
                    "' and status = true order by employeeid asc limit " + _dataBaseLimit;
 
@@ -91,7 +91,7 @@ namespace AsmeFace.UserControls
                     employees[i].ID,
                     employees[i].Familiya,
                     employees[i].Ism,
-                    employees[i].Otchestvo,
+                    employees[i].TableId,
                     employees[i].Otdel,
                     employees[i].Lavozim);
             }
@@ -186,7 +186,7 @@ namespace AsmeFace.UserControls
                 if (string.IsNullOrEmpty(SearchTextBox.Text))
                     return;
 
-                query = "select employeeid, photo, finger, card, ism, familiya, otchestvo, otdel, lavozim, address " +
+                query = "select employeeid, photo, finger, card, ism, familiya, tableid, otdel, lavozim, address " +
                         "from employee where familiya ILIKE '"
                         + SearchTextBox.Text.Trim() + "%' or ism ILIKE '" + SearchTextBox.Text.Trim() +
                         "%' and status = true order by employeeid asc limit " + _dataBaseLimit;
