@@ -8,6 +8,7 @@ namespace AsmeFace.Forms
     {
         private readonly string otdel;
         private readonly string lavozim;
+        private string department;
         private bool IsFirstTime;
 
         public EmployeeRehire(int id)
@@ -30,6 +31,8 @@ namespace AsmeFace.Forms
                 lavozim = employee[0].Lavozim;
                 IsFirstTime = true;
             }
+
+            department = _dataBase.GetDepartment($"select department from employee where employeeid = {id}");
         }
 
         protected override void TreeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -46,6 +49,7 @@ namespace AsmeFace.Forms
                 treeView1.SelectedNode.BackColor = System.Drawing.Color.Blue;
                 treeView1.SelectedNode.ForeColor = System.Drawing.Color.White;
                 textBox5.Text = treeView1.SelectedNode.Text;
+                department = treeView1.SelectedNode.Name;
                 if (treeView1.SelectedNode == treeView1.Nodes[0])
                     textBox6.Text = treeView1.SelectedNode.Text;
                 else
@@ -68,8 +72,8 @@ namespace AsmeFace.Forms
                 queryEncode = Encoding.UTF8.GetBytes(
                             "update employee set photo = @Image, finger = @finger, card = '" + 
                             textBox7.Text + "', familiya = '" + textBox2.Text + "', ism = '" + 
-                            textBox3.Text + "', otchestvo = '" + textBox4.Text + "'," + "department = '" + 
-                            treeView1.SelectedNode.Name + "', otdel = '" + textBox6.Text + "'," +
+                            textBox3.Text + "', otchestvo = '" + textBox4.Text + "'," + "department = '" +
+                            department + "', otdel = '" + textBox6.Text + "'," +
                             "lavozim = '" + textBox5.Text + "', address = '" + textBox9.Text +
                             "', status = true where employeeid = " + userID + ";" +
                             "insert into employee_history (employeeid, ism, familiya, otchestvo, otdel, " +

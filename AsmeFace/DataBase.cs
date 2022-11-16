@@ -298,6 +298,25 @@ namespace AsmeFace
             return mySmenas;
         }
 
+        public string GetDepartment(string query)
+        {
+            string department = string.Empty;
+            using (var connection = new Npgsql.NpgsqlConnection(Helper.CnnVal("DBConnection")))
+            {
+                using (var cmd = new Npgsql.NpgsqlCommand(query, connection))
+                {
+                    connection.Open();
+                    cmd.AllResultTypesAreUnknown = true;
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        department = reader[0].ToString();
+                    }
+                }
+            }
+            return department;
+        }
+
         public System.Collections.Generic.List<Employee> GetEmployee(string query)
         {
             var employees = new System.Collections.Generic.List<Employee>();

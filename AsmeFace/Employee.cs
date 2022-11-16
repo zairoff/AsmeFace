@@ -38,5 +38,7 @@
         public string Lavozim { get; set; }
 
         public string Address { get; set; }
+
+        public string Department { get; set; }
     }
 }

@@ -69,7 +69,7 @@ namespace AsmeFace.UserControls
             }
             catch (Exception ex)
             {
-
+                CustomMessageBox.Error(ex.ToString());
             }           
         }
 
